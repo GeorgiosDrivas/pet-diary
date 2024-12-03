@@ -2,6 +2,7 @@
 
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/client";
+import Image from "next/image";
 
 export default function Home() {
   const handleGoogle = async (e: any) => {
@@ -19,18 +20,16 @@ export default function Home() {
         <div className="flex justify-center items-center w-full">
           <button
             onClick={(e) => handleGoogle(e)}
-            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-200 rounded shadow"
+            className="flex flex-row justify-center items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-200 rounded shadow"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="mr-2"
-            >
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.994 3.063H4.878v-1.474h3.116v-1.474H4.878V6.469h3.116v-1.474H4.878v-1.474h3.116v-1.474H4.878V2.002h3.116C10.291 2.002 12 3.792 12 6s-1.709 3.998-4 3.998z" />
-            </svg>
-            Sign in with Google
+            <Image
+              src="/google-logo.png"
+              width={20}
+              height={20}
+              className="me-3"
+              alt="Picture of the author"
+            />
+            <span>Sign in with Google</span>
           </button>
         </div>
       </main>
