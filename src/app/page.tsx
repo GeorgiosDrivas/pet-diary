@@ -3,11 +3,25 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const handleGoogle = async (e: any) => {
-    const provider = await new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+
+      // Optionally handle user data
+      const user = result.user;
+      console.log("Signed-in user:", user);
+
+      // Redirect to the dashboard
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Error during Google sign-in:", error);
+    }
   };
 
   return (
