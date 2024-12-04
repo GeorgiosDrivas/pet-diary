@@ -1,7 +1,7 @@
 import { AppointmentsType, MedicationType } from "@/types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, onValue, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -13,6 +13,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
 
 export function writeUsers(
   userId: number,
@@ -20,13 +21,20 @@ export function writeUsers(
   appointments: AppointmentsType[],
   medications: MedicationType[]
 ) {
-  const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
   const reference = ref(db, "users/" + userId);
 
   set(reference, {
     username: name,
     appointments: appointments,
     medications: medications,
+  });
+}
+
+export function readData(userId: number) {
+  const userRef = ref(db, "users/" + userId);
+  onValue(userRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(`User data: ${JSON.stringify(data, null, 2)}`);
   });
 }
 

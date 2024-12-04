@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import useAuth from "@/utils/auth";
 import { useEffect } from "react";
 import { useAuthContext } from "@/context/authContext";
+import { readData } from "../../../firebase/client";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -19,6 +20,8 @@ export default function Dashboard() {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  readData(1);
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
