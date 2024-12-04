@@ -1,3 +1,4 @@
+import { AppointmentsType, MedicationType } from "@/types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
@@ -12,19 +13,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
-interface AppointmentsType {
-  title: string;
-  doctor: string;
-  date: string;
-  notes?: string;
-}
-
-interface MedicationType {
-  medicationName: string;
-  date: string;
-  notes?: string;
-}
 
 export function writeUsers(
   userId: number,
