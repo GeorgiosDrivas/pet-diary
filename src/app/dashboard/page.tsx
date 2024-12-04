@@ -22,12 +22,22 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      <div className="w-full">
-        <div className="grid grid-rows-3 grid-flow-col gap-4">
-          <div className="row-span-3">Sidebar</div>
-          <div className="col-span-2 row-span-2">
-            Apointments and medication schedule
+      <div className="w-full h-screen">
+        <div className="grid grid-cols-12 gap-4 h-full">
+          <div className="col-span-2">
+            <div
+              id="sidebar"
+              className="bg-[#ffffff] h-full grid grid-rows-12 ps-5"
+            >
+              <div className="row-span-11">
+                <h1>Pet Diary</h1>
+              </div>
+              <div className="row-span-1">
+                <p>{user.displayName}</p>
+              </div>
+            </div>
           </div>
+          <div className="col-span-10">Apointments and medication schedule</div>
         </div>
       </div>
     </main>
