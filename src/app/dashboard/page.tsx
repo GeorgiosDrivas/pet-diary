@@ -40,7 +40,22 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="col-span-10">Apointments and medication schedule</div>
+          <div className="col-span-10 pe-4">
+            <div className="grid grid-rows-12 h-full py-5">
+              <div className="row-span-6">
+                <div className="appointments h-full px-8 py-5">
+                  <h2>Appointments</h2>
+                  <div className="flex flex-col justify-center items-center mt-8">
+                    <p>Your appointments will be displayed here</p>
+                    <button className="mt-4">Create an appointment</button>
+                  </div>
+                </div>
+              </div>
+              <div className="row-span-6">
+                <h1>Pet Diary</h1>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
