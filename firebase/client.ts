@@ -13,17 +13,35 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export function writeUsers(userId: number, name: string | null) {
+interface AppointmentsType {
+  title: string;
+  doctor: string;
+  date: string;
+  notes?: string;
+}
+
+interface MedicationType {
+  medicationName: string;
+  date: string;
+  notes?: string;
+}
+
+export function writeUsers(
+  userId: number,
+  name: string | null,
+  appointments: AppointmentsType[],
+  medications: MedicationType[]
+) {
   const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
   const reference = ref(db, "users/" + userId);
 
   set(reference, {
     username: name,
+    appointments: appointments,
+    medications: medications,
   });
 }
 
 export const auth = getAuth(app);
-
-// writeUsers(1, "Georgios Drivas", "drivasgiorgos9@gmail.com");
 
 export default app;

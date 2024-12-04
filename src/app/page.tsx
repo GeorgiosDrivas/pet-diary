@@ -17,7 +17,12 @@ export default function Home() {
 
       const user = result.user;
       setUser(user);
-      writeUsers(1, user.displayName);
+      writeUsers(
+        1,
+        user.displayName,
+        [{ title: "Vet", doctor: "Mike James", date: "20/01/2002" }],
+        [{ medicationName: "Vet", date: "20/01/2002" }]
+      );
       router.push("/dashboard");
     } catch (error) {
       console.error("Error during Google sign-in:", error);
