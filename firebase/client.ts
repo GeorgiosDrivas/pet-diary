@@ -13,18 +13,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-function writeUsers(userId: number, name: string, email: string) {
+export function writeUsers(userId: number, name: string | null) {
   const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
   const reference = ref(db, "users/" + userId);
 
   set(reference, {
     username: name,
-    email: email,
   });
 }
 
 export const auth = getAuth(app);
 
-writeUsers(1, "Georgios Drivas", "drivasgiorgos9@gmail.com");
+// writeUsers(1, "Georgios Drivas", "drivasgiorgos9@gmail.com");
 
 export default app;
