@@ -8,8 +8,8 @@ const useAuth = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsAuthenticated(!!user); // `true` if a user is logged in
-      setLoading(false); // Authentication state is determined
+      setIsAuthenticated(!!user);
+      setLoading(false);
     });
 
     return () => unsubscribe();

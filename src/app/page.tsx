@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
   const { setUser } = useAuthContext();
 
-  const handleGoogle = async (e: any) => {
+  const handleGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -33,7 +33,7 @@ export default function Home() {
         </div>
         <div className="flex justify-center items-center w-full">
           <button
-            onClick={(e) => handleGoogle(e)}
+            onClick={() => handleGoogle()}
             className="flex flex-row justify-center items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-200 rounded shadow"
           >
             <Image
