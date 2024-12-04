@@ -48,7 +48,7 @@ export default function Home() {
               className="me-3"
               alt="Picture of the author"
             />
-            <span>Sign in with Google</span>
+            <span>Connect with Google</span>
           </button>
         </div>
       </main>
