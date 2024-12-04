@@ -41,7 +41,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="col-span-10 pe-4">
-            <div className="grid grid-rows-12 h-full py-5">
+            <div className="grid grid-rows-12 gap-4 h-full py-3">
               <div className="row-span-6">
                 <div className="appointments h-full px-8 py-5">
                   <h2>Appointments</h2>
@@ -52,7 +52,13 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="row-span-6">
-                <h1>Pet Diary</h1>
+                <div className="medication h-full px-8 py-5">
+                  <h2>Appointments</h2>
+                  <div className="flex flex-col justify-center items-center mt-8">
+                    <p>Your medication will be displayed here</p>
+                    <button className="mt-4">Create a medication</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

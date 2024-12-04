@@ -24,7 +24,8 @@ body.dashboard {
   background-color: #ebebeb;
 }
 
-.appointments {
+.appointments,
+.medication {
   background-color: #ffffff;
   border-radius: 40px;
 }
