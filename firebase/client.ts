@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -12,5 +13,18 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+function writeUsers(userId: number, name: string, email: string) {
+  const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
+  const reference = ref(db, "users/" + userId);
+
+  set(reference, {
+    username: name,
+    email: email,
+  });
+}
+
 export const auth = getAuth(app);
+
+writeUsers(1, "Georgios Drivas", "drivasgiorgos9@gmail.com");
+
 export default app;
