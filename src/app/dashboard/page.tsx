@@ -11,6 +11,12 @@ export default function Dashboard() {
   const { isAuthenticated, loading } = useAuth();
   const { user } = useAuthContext();
   const [showForm, setShowForm] = useState(false);
+  const [newAppointment, setNewAppointment] = useState({
+    title: "",
+    doctor: "",
+    date: "",
+    notes: "",
+  }); // make it an object
 
   useEffect(() => {
     if ((!loading && !isAuthenticated) || !user) {
@@ -52,19 +58,58 @@ export default function Dashboard() {
                         <form>
                           <div>
                             <label htmlFor="title">Title</label>
-                            <input type="text" id="title" />
+                            <input
+                              type="text"
+                              id="title"
+                              value={newAppointment.title}
+                              onChange={(e) =>
+                                setNewAppointment({
+                                  ...newAppointment,
+                                  title: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div>
                             <label htmlFor="doctor">Doctor</label>
-                            <input type="text" id="doctor" />
+                            <input
+                              type="text"
+                              id="doctor"
+                              value={newAppointment.doctor}
+                              onChange={(e) =>
+                                setNewAppointment({
+                                  ...newAppointment,
+                                  doctor: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div>
                             <label htmlFor="date">Date</label>
-                            <input type="date" id="date" />
+                            <input
+                              type="date"
+                              id="date"
+                              value={newAppointment.date}
+                              onChange={(e) =>
+                                setNewAppointment({
+                                  ...newAppointment,
+                                  date: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div>
                             <label htmlFor="notes">Notes</label>
-                            <textarea id="notes" />
+                            <textarea
+                              id="notes"
+                              value={newAppointment.notes}
+                              onChange={(e) =>
+                                setNewAppointment({
+                                  ...newAppointment,
+                                  notes: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <button>Create appointment</button>
                         </form>
