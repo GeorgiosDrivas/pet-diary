@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import useAuth from "@/utils/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/authContext";
 import { readData } from "../../../firebase/client";
 
@@ -10,6 +10,7 @@ export default function Dashboard() {
   const router = useRouter();
   const { isAuthenticated, loading } = useAuth();
   const { user } = useAuthContext();
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     if ((!loading && !isAuthenticated) || !user) {
@@ -46,8 +47,45 @@ export default function Dashboard() {
                 <div className="appointments h-full px-8 py-5">
                   <h2>Appointments</h2>
                   <div className="flex flex-col justify-center items-center mt-8">
-                    <p>Your appointments will be displayed here</p>
-                    <button className="mt-4">Create an appointment</button>
+                    {showForm ? (
+                      <div className="relative">
+                        <form>
+                          <div>
+                            <label htmlFor="title">Title</label>
+                            <input type="text" id="title" />
+                          </div>
+                          <div>
+                            <label htmlFor="doctor">Doctor</label>
+                            <input type="text" id="doctor" />
+                          </div>
+                          <div>
+                            <label htmlFor="date">Date</label>
+                            <input type="date" id="date" />
+                          </div>
+                          <div>
+                            <label htmlFor="notes">Notes</label>
+                            <textarea id="notes" />
+                          </div>
+                          <button>Create appointment</button>
+                        </form>
+                        <button
+                          className="hide-form-btn"
+                          onClick={() => setShowForm((prv) => !prv)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <p>Your appointments will be displayed here</p>
+                        <button
+                          className="mt-4"
+                          onClick={() => setShowForm((prv) => !prv)}
+                        >
+                          Create an appointment
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

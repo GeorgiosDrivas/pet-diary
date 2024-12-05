@@ -47,3 +47,20 @@ button:hover {
   background-color: #ebebeb;
   border: 1px solid #ffffff;
 }
+
+input,
+textarea {
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+}
+
+.hide-form-btn {
+  position: absolute;
+  top: 0;
+  right: -50px;
+  font-size: 12px;
+}
