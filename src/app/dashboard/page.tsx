@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import useAuth from "@/utils/auth";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/authContext";
-import { readData } from "../../../firebase/client";
+import { addAppointment, readData, writeUsers } from "../../../firebase/client";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -27,6 +27,17 @@ export default function Dashboard() {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleAddAppointment = (e: any) => {
+    e.preventDefault();
+    addAppointment(1, newAppointment);
+    setNewAppointment({
+      title: "",
+      doctor: "",
+      date: "",
+      notes: "",
+    });
+  };
 
   readData(1);
 
@@ -111,7 +122,9 @@ export default function Dashboard() {
                               }
                             />
                           </div>
-                          <button>Create appointment</button>
+                          <button onClick={(e) => handleAddAppointment(e)}>
+                            Create appointment
+                          </button>
                         </form>
                         <button
                           className="hide-form-btn"

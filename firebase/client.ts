@@ -1,7 +1,7 @@
 import { AppointmentsType, MedicationType } from "@/types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, onValue, ref, set } from "firebase/database";
+import { get, getDatabase, onValue, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -28,6 +28,36 @@ export function writeUsers(
     appointments: appointments,
     medications: medications,
   });
+}
+
+export async function addAppointment(
+  userId: number,
+  newAppointment: AppointmentsType
+) {
+  const reference = ref(db, "users/" + userId);
+
+  try {
+    // Fetch the current user data
+    const snapshot = await get(reference);
+    if (snapshot.exists()) {
+      const userData = snapshot.val();
+
+      const currentAppointments = userData.appointments || [];
+      const updatedAppointments = [...currentAppointments, newAppointment];
+
+      writeUsers(
+        userId,
+        userData.username,
+        updatedAppointments,
+        userData.medications
+      );
+      console.log("Appointment added successfully!");
+    } else {
+      console.error("User not found!");
+    }
+  } catch (error) {
+    console.error("Error adding appointment:", error);
+  }
 }
 
 export function readData(userId: number) {
