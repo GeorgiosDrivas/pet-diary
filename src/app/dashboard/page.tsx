@@ -16,7 +16,7 @@ export default function Dashboard() {
     doctor: "",
     date: "",
     notes: "",
-  }); // make it an object
+  });
 
   useEffect(() => {
     if ((!loading && !isAuthenticated) || !user) {
@@ -54,7 +54,7 @@ export default function Dashboard() {
                   <h2>Appointments</h2>
                   <div className="mt-8">
                     {showForm ? (
-                      <div className="relative w-[400px]">
+                      <div className="relative w-[300px]">
                         <form>
                           <div>
                             <label htmlFor="title">Title</label>
