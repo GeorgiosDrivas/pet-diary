@@ -52,9 +52,9 @@ export default function Dashboard() {
               <div className="row-span-6">
                 <div className="appointments h-full px-8 py-5">
                   <h2>Appointments</h2>
-                  <div className="flex flex-col justify-center items-center mt-8">
+                  <div className="mt-8">
                     {showForm ? (
-                      <div className="relative">
+                      <div className="relative w-[400px]">
                         <form>
                           <div>
                             <label htmlFor="title">Title</label>
@@ -117,7 +117,24 @@ export default function Dashboard() {
                           className="hide-form-btn"
                           onClick={() => setShowForm((prv) => !prv)}
                         >
-                          X
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20px"
+                            height="20px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <g id="Menu / Close_MD">
+                              <path
+                                id="Vector"
+                                d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18"
+                                stroke="#000000"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </g>
+                          </svg>
                         </button>
                       </div>
                     ) : (
