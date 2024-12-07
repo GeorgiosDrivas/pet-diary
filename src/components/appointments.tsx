@@ -7,6 +7,7 @@ interface Data {
   setShowForm: any;
   newAppointment: any;
   setNewAppointment: any;
+  user: any;
 }
 
 export default function Appointments({
@@ -14,6 +15,7 @@ export default function Appointments({
   setShowForm,
   newAppointment,
   setNewAppointment,
+  user,
 }: Data) {
   const handleAddAppointment = (e: any) => {
     e.preventDefault();
@@ -25,6 +27,8 @@ export default function Appointments({
       notes: "",
     });
   };
+
+  console.log(user);
 
   return (
     <>
@@ -119,7 +123,11 @@ export default function Appointments({
             </div>
           ) : (
             <>
-              <p>Your appointments will be displayed here</p>
+              {user && user.appointments.length > 0 ? (
+                user.appointments.map((item: any) => <p>{item.title}</p>)
+              ) : (
+                <p>Your appointments will be displayed here</p>
+              )}
               <button
                 className="mt-4"
                 onClick={() => setShowForm((prv: boolean) => !prv)}

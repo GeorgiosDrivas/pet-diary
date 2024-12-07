@@ -19,6 +19,16 @@ export default function Dashboard() {
     date: "",
     notes: "",
   });
+  let userData;
+
+  async function getUserData() {
+    try {
+      userData = await readData(1);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  }
+  getUserData();
 
   useEffect(() => {
     if ((!loading && !isAuthenticated) || !user) {
@@ -29,8 +39,6 @@ export default function Dashboard() {
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  readData(1);
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -57,6 +65,7 @@ export default function Dashboard() {
                   setShowForm={setShowForm}
                   newAppointment={newAppointment}
                   setNewAppointment={setNewAppointment}
+                  user={userData}
                 />
               </div>
               <div className="row-span-6">
