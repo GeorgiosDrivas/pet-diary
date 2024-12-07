@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import useAuth from "@/utils/auth";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/authContext";
-import { addAppointment, readData, writeUsers } from "../../../firebase/client";
+import { readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 
 export default function Dashboard() {
