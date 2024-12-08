@@ -12,6 +12,8 @@ export default function Dashboard() {
   const router = useRouter();
   const { isAuthenticated, loading } = useAuth();
   const { user } = useAuthContext();
+
+  const [userData, setUserData] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [newAppointment, setNewAppointment] = useState({
     title: "",
@@ -19,16 +21,6 @@ export default function Dashboard() {
     date: "",
     notes: "",
   });
-  let userData;
-
-  async function getUserData() {
-    try {
-      userData = await readData(1);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  }
-  getUserData();
 
   useEffect(() => {
     if ((!loading && !isAuthenticated) || !user) {
@@ -36,7 +28,19 @@ export default function Dashboard() {
     }
   }, [isAuthenticated, loading, router]);
 
-  if (loading) {
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const data = await readData(1);
+        setUserData(data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+    fetchUserData();
+  }, []);
+
+  if (loading || !userData) {
     return <div>Loading...</div>;
   }
 
