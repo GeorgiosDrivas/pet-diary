@@ -1,5 +1,6 @@
 "use client";
 
+import { table } from "console";
 import { addAppointment } from "../../firebase/client";
 
 interface Data {
@@ -27,8 +28,6 @@ export default function Appointments({
       notes: "",
     });
   };
-
-  console.log(user);
 
   return (
     <>
@@ -124,7 +123,40 @@ export default function Appointments({
           ) : (
             <>
               {user && user.appointments.length > 0 ? (
-                user.appointments.map((item: any) => <p>{item.title}</p>)
+                <table className="w-full">
+                  <tr>
+                    <th>Title</th>
+                    <th>Doctor's name</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                  </tr>
+                  <tr>
+                    <td className="text-center">
+                      {user.appointments.map((item: any) => (
+                        <p>{item.title}</p>
+                      ))}
+                    </td>
+                    <td className="text-center">
+                      {user.appointments.map((item: any) => (
+                        <p>{item.doctor}</p>
+                      ))}
+                    </td>
+                    <td className="text-center">
+                      {user.appointments.map((item: any) => (
+                        <p>{item.date}</p>
+                      ))}
+                    </td>
+                    <td className="text-center">
+                      {user.notes ? (
+                        user.appointments.map((item: any) => (
+                          <p key={item.id}>{item.title}</p>
+                        ))
+                      ) : (
+                        <p>0 notes</p>
+                      )}
+                    </td>
+                  </tr>
+                </table>
               ) : (
                 <p>Your appointments will be displayed here</p>
               )}
