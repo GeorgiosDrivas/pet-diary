@@ -1,6 +1,6 @@
 import { AppointmentsType, Pet } from "@/types";
 import { initializeApp } from "firebase/app";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { get, getDatabase, onValue, ref, set } from "firebase/database";
 
 const firebaseConfig = {
@@ -35,7 +35,6 @@ export async function addAppointment(
     if (snapshot.exists()) {
       const userData: { username: string; pets: Pet[] } = snapshot.val();
 
-      // Find the pet by name
       const updatedPets = userData.pets.map((pet) => {
         if (pet.name === petName) {
           return {
