@@ -8,6 +8,7 @@ import { readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
 import { Pet, UserData } from "@/types";
+import Logout from "@/utils/logout";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -68,6 +69,7 @@ export default function Dashboard() {
                 {userData &&
                   userData.pets.map((pet: any) => (
                     <p
+                      key={pet.name}
                       className="cursor-pointer single-pet"
                       onClick={() => selectPet(pet.name)}
                     >
@@ -75,8 +77,25 @@ export default function Dashboard() {
                     </p>
                   ))}
               </div>
-              <div className="row-span-1">
+              <div className="flex justify-between items-center row-span-1">
                 <p>{user.displayName}</p>
+                <svg
+                  onClick={() => Logout(isAuthenticated)}
+                  className="me-4 cursor-pointer"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30px"
+                  height="30px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M15 16.5V19C15 20.1046 14.1046 21 13 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3H13C14.1046 3 15 3.89543 15 5V8.0625M11 12H21M21 12L18.5 9.5M21 12L18.5 14.5"
+                    stroke="#000000"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
             </div>
           </div>

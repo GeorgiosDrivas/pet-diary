@@ -17,22 +17,23 @@ export default function Home() {
 
       const user = result.user;
       setUser(user);
-      writeUsers(1, user.displayName, [
-        {
-          name: "Aron",
-          appointments: [
-            { title: "Vet", doctor: "Mike James", date: "20/01/2002" },
-          ],
-          medications: [{ medicationName: "Vet", date: "20/01/2002" }],
-        },
-        {
-          name: "Alvin",
-          appointments: [
-            { title: "Checkup", doctor: "Sarah Taylor", date: "25/01/2002" },
-          ],
-          medications: [{ medicationName: "Checkup Med", date: "25/01/2002" }],
-        },
-      ]);
+
+      // writeUsers(1, user.displayName, [
+      //   {
+      //     name: "Aron",
+      //     appointments: [
+      //       { title: "Vet", doctor: "Mike James", date: "20/01/2002" },
+      //     ],
+      //     medications: [{ medicationName: "Vet", date: "20/01/2002" }],
+      //   },
+      //   {
+      //     name: "Alvin",
+      //     appointments: [
+      //       { title: "Checkup", doctor: "Sarah Taylor", date: "25/01/2002" },
+      //     ],
+      //     medications: [{ medicationName: "Checkup Med", date: "25/01/2002" }],
+      //   },
+      // ]);
 
       router.push("/dashboard");
     } catch (error) {
