@@ -80,16 +80,16 @@ export default function Medication({
                     ) : (
                       <tr>
                         <td colSpan={4} className="text-center">
-                          No appointments available.
+                          No medications available.
                         </td>
                       </tr>
                     )}
                   </tbody>
                 </table>
               ) : (
-                <p>Please select a pet to view appointments.</p>
+                <p>Please select a pet to view medications.</p>
               )}
-              <button className="mt-4">Create an Appointment</button>
+              <button className="mt-4">Create an medication</button>
             </>
           )}
         </div>
