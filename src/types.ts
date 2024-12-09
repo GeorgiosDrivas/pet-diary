@@ -19,6 +19,11 @@ export interface Pet {
     date: string;
     notes?: string;
   }[];
+  medications: {
+    medicationName: string;
+    date: string;
+    notes?: string;
+  }[];
 }
 
 export interface UserData {
