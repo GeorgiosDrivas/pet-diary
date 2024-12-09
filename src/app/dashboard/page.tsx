@@ -80,7 +80,7 @@ export default function Dashboard() {
               <div className="flex justify-between items-center row-span-1">
                 <p>{user.displayName}</p>
                 <svg
-                  onClick={() => Logout(isAuthenticated)}
+                  onClick={() => Logout()}
                   className="me-4 cursor-pointer"
                   xmlns="http://www.w3.org/2000/svg"
                   width="30px"

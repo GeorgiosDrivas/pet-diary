@@ -1,6 +1,6 @@
-import { AppointmentsType, MedicationType, Pet } from "@/types";
+import { AppointmentsType, Pet } from "@/types";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { get, getDatabase, onValue, ref, set } from "firebase/database";
 
 const firebaseConfig = {
