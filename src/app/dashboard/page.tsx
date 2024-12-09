@@ -7,13 +7,14 @@ import { useAuthContext } from "@/context/authContext";
 import { readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
+import { UserData } from "@/types";
 
 export default function Dashboard() {
   const router = useRouter();
   const { isAuthenticated, loading } = useAuth();
   const { user } = useAuthContext();
 
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [newAppointment, setNewAppointment] = useState({
     title: "",
@@ -53,8 +54,11 @@ export default function Dashboard() {
               id="sidebar"
               className="bg-[#ffffff] h-full grid grid-rows-12 ps-5"
             >
-              <div className="row-span-11">
+              <div className="row-span-6">
                 <h1>Pet Diary</h1>
+              </div>
+              <div className="row-span-5">
+                {userData && userData.pets.map((pet: any) => <p>{pet.name}</p>)}
               </div>
               <div className="row-span-1">
                 <p>{user.displayName}</p>

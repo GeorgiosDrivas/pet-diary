@@ -1,8 +1,5 @@
 "use client";
 
-import { table } from "console";
-import { addAppointment } from "../../firebase/client";
-
 interface Data {
   showForm: boolean;
   setShowForm: any;

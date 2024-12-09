@@ -1,4 +1,4 @@
-import { AppointmentsType, MedicationType } from "@/types";
+import { AppointmentsType, MedicationType, Pet } from "@/types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { get, getDatabase, onValue, ref, set } from "firebase/database";
@@ -11,12 +11,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGRENDERID,
   appId: process.env.NEXT_PUBLIC_APPID,
 };
-
-interface Pet {
-  name: string;
-  appointments: AppointmentsType[];
-  medications: MedicationType[];
-}
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
@@ -32,7 +26,7 @@ export function writeUsers(userId: number, name: string | null, pets: Pet[]) {
 
 export async function addAppointment(
   userId: number,
-  petName: string, // Specify which pet to update
+  petName: string,
   newAppointment: AppointmentsType
 ) {
   const reference = ref(db, `users/${userId}`);

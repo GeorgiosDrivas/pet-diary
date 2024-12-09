@@ -10,3 +10,14 @@ export interface MedicationType {
   date: string;
   notes?: string;
 }
+
+export interface Pet {
+  name: string;
+  appointments: AppointmentsType[];
+  medications: MedicationType[];
+}
+
+export interface UserData {
+  username: string;
+  pets: Pet[];
+}
