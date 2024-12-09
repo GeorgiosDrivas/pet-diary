@@ -5,7 +5,7 @@ interface Data {
   setShowForm: any;
   newAppointment: any;
   setNewAppointment: any;
-  user: any;
+  pet: any;
 }
 
 export default function Appointments({
@@ -13,7 +13,7 @@ export default function Appointments({
   setShowForm,
   newAppointment,
   setNewAppointment,
-  user,
+  pet,
 }: Data) {
   return (
     <>
@@ -105,49 +105,42 @@ export default function Appointments({
             </div>
           ) : (
             <>
-              {/* {user && user.appointments.length > 0 ? (
-                <table className="w-full">
-                  <tr>
-                    <th>Title</th>
-                    <th>Doctor's name</th>
-                    <th>Date</th>
-                    <th>Notes</th>
-                  </tr>
-                  <tr>
-                    <td className="text-center">
-                      {user.appointments.map((item: any) => (
-                        <p>{item.title}</p>
-                      ))}
-                    </td>
-                    <td className="text-center">
-                      {user.appointments.map((item: any) => (
-                        <p>{item.doctor}</p>
-                      ))}
-                    </td>
-                    <td className="text-center">
-                      {user.appointments.map((item: any) => (
-                        <p>{item.date}</p>
-                      ))}
-                    </td>
-                    <td className="text-center">
-                      {user.notes ? (
-                        user.appointments.map((item: any) => (
-                          <p key={item.id}>{item.title}</p>
-                        ))
-                      ) : (
-                        <p>0 notes</p>
-                      )}
-                    </td>
-                  </tr>
+              {pet ? (
+                <table className="w-full border-collapse border border-gray-200">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Doctor</th>
+                      <th>Date</th>
+                      <th>Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pet.appointments.length > 0 ? (
+                      pet.appointments.map((appointment: any, index: any) => (
+                        <tr key={index}>
+                          <td className="text-center">{appointment.title}</td>
+                          <td className="text-center">{appointment.doctor}</td>
+                          <td className="text-center">{appointment.date}</td>
+                          <td className="text-center">
+                            {appointment.notes || "No notes"}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={4} className="text-center">
+                          No appointments available.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
                 </table>
               ) : (
-                <p>Your appointments will be displayed here</p>
-              )} */}
-              <button
-                className="mt-4"
-                onClick={() => setShowForm((prv: boolean) => !prv)}
-              >
-                Create an appointment
+                <p>Please select a pet to view appointments.</p>
+              )}
+              <button className="mt-4" onClick={() => setShowForm(true)}>
+                Create an Appointment
               </button>
             </>
           )}

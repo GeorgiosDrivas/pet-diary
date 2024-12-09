@@ -7,7 +7,7 @@ import { useAuthContext } from "@/context/authContext";
 import { readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
-import { UserData } from "@/types";
+import { Pet, UserData } from "@/types";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -22,6 +22,7 @@ export default function Dashboard() {
     date: "",
     notes: "",
   });
+  const [currentPet, setCurrentPet] = useState<Pet | null>(null);
 
   useEffect(() => {
     if ((!loading && !isAuthenticated) || !user) {
@@ -45,6 +46,11 @@ export default function Dashboard() {
     return <div>Loading...</div>;
   }
 
+  const selectPet = (name: string) => {
+    const pet = userData?.pets.find((pet) => pet.name === name);
+    setCurrentPet(pet || null);
+  };
+
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
       <div className="w-full h-screen">
@@ -58,7 +64,10 @@ export default function Dashboard() {
                 <h1>Pet Diary</h1>
               </div>
               <div className="row-span-5">
-                {userData && userData.pets.map((pet: any) => <p>{pet.name}</p>)}
+                {userData &&
+                  userData.pets.map((pet: any) => (
+                    <p onClick={() => selectPet(pet.name)}>{pet.name}</p>
+                  ))}
               </div>
               <div className="row-span-1">
                 <p>{user.displayName}</p>
@@ -73,7 +82,7 @@ export default function Dashboard() {
                   setShowForm={setShowForm}
                   newAppointment={newAppointment}
                   setNewAppointment={setNewAppointment}
-                  user={userData}
+                  pet={currentPet}
                 />
               </div>
               <div className="row-span-6">

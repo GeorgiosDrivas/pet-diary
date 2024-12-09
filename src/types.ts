@@ -13,11 +13,15 @@ export interface MedicationType {
 
 export interface Pet {
   name: string;
-  appointments: AppointmentsType[];
-  medications: MedicationType[];
+  appointments: {
+    title: string;
+    doctor: string;
+    date: string;
+    notes?: string;
+  }[];
 }
 
 export interface UserData {
-  username: string;
   pets: Pet[];
+  displayName: string;
 }
