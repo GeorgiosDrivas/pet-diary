@@ -86,7 +86,7 @@ export default function Dashboard() {
                 />
               </div>
               <div className="row-span-6">
-                <Medication />
+                <Medication pet={currentPet} showForm={showForm} />
               </div>
             </div>
           </div>
