@@ -4,19 +4,15 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, writeUsers } from "../../firebase/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useAuthContext } from "@/context/authContext";
 
 export default function Home() {
   const router = useRouter();
-  const { setUser } = useAuthContext();
 
   const handleGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-
       const user = result.user;
-      setUser(user);
 
       // writeUsers(1, user.displayName, [
       //   {
@@ -35,7 +31,7 @@ export default function Home() {
       //   },
       // ]);
 
-      router.push("/dashboard");
+      router.push(`/dashboard?${user.uid}`);
     } catch (error) {
       console.error("Error during Google sign-in:", error);
     }

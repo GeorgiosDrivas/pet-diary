@@ -6,6 +6,7 @@ import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
 import { Pet, UserData } from "@/types";
 import Logout from "@/utils/logout";
+import { useSearchParams } from "next/navigation";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | any>(null);
@@ -18,6 +19,8 @@ export default function Dashboard() {
     notes: "",
   });
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("user.uid");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
