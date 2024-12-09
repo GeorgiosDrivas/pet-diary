@@ -58,6 +58,7 @@ export default function Medication({
                   <thead>
                     <tr>
                       <th>Name</th>
+                      <th>Dosage</th>
                       <th>Date</th>
                       <th>Notes</th>
                     </tr>
@@ -69,6 +70,7 @@ export default function Medication({
                           <td className="text-center">
                             {medication.medicationName}
                           </td>
+                          <td className="text-center">{medication.dosage}</td>
                           <td className="text-center">{medication.date}</td>
                           <td className="text-center">
                             {medication.notes || "No notes"}

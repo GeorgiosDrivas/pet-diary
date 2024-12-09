@@ -7,6 +7,7 @@ export interface AppointmentsType {
 
 export interface MedicationType {
   medicationName: string;
+  dosage: string;
   date: string;
   notes?: string;
 }
