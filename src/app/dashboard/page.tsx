@@ -4,19 +4,16 @@ import { useRouter } from "next/navigation";
 import useAuth from "@/utils/auth";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/authContext";
-import { readData } from "../../../firebase/client";
+import { auth, readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
 import { Pet, UserData } from "@/types";
 import Logout from "@/utils/logout";
 
 export default function Dashboard() {
-  const router = useRouter();
-  const { isAuthenticated, loading } = useAuth();
-  const { user } = useAuthContext();
-
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserData | any>(null);
   const [showForm, setShowForm] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const [newAppointment, setNewAppointment] = useState({
     title: "",
     doctor: "",
@@ -26,29 +23,26 @@ export default function Dashboard() {
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
 
   useEffect(() => {
-    if ((!loading && !isAuthenticated) || !user) {
-      router.push("/");
-    }
-  }, [isAuthenticated, loading, router]);
-
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        const data = await readData(1);
-        setUserData(data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        console.log("User is signed in:", user);
+        setUser(user);
+        try {
+          const data = await readData(1);
+          setUserData(data);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      } else {
+        console.log("No user signed in.");
       }
-    }
-    fetchUserData();
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  if (loading || !userData) {
-    return <div>Loading...</div>;
-  }
-
   const selectPet = (name: string) => {
-    const pet = userData?.pets.find((pet) => pet.name === name);
+    const pet = userData?.pets.find((pet: any) => pet.name === name);
     setCurrentPet(pet || null);
   };
 
@@ -78,7 +72,7 @@ export default function Dashboard() {
                   ))}
               </div>
               <div className="flex justify-between items-center row-span-1">
-                <p>{user.displayName}</p>
+                <p>{user?.displayName || "Guest"}</p>
                 <svg
                   onClick={() => Logout()}
                   className="me-4 cursor-pointer"
