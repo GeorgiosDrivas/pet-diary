@@ -66,7 +66,12 @@ export default function Dashboard() {
               <div className="row-span-5">
                 {userData &&
                   userData.pets.map((pet: any) => (
-                    <p onClick={() => selectPet(pet.name)}>{pet.name}</p>
+                    <p
+                      className="cursor-pointer"
+                      onClick={() => selectPet(pet.name)}
+                    >
+                      {pet.name}
+                    </p>
                   ))}
               </div>
               <div className="row-span-1">
