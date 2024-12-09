@@ -60,14 +60,15 @@ export default function Dashboard() {
               id="sidebar"
               className="bg-[#ffffff] h-full grid grid-rows-12 ps-5"
             >
-              <div className="row-span-6">
+              <div className="row-span-5">
                 <h1>Pet Diary</h1>
               </div>
-              <div className="row-span-5">
+              <div className="row-span-6">
+                <p className="mb-5">Your Pets</p>
                 {userData &&
                   userData.pets.map((pet: any) => (
                     <p
-                      className="cursor-pointer"
+                      className="cursor-pointer single-pet"
                       onClick={() => selectPet(pet.name)}
                     >
                       {pet.name}

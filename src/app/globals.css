@@ -65,3 +65,15 @@ label {
   right: -50px;
   font-size: 12px;
 }
+
+.single-pet {
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border: 1px solid transparent;
+  transition: all, 0.3s;
+}
+
+.single-pet:hover {
+  border: 1px solid;
+  border-radius: 3px;
+}
