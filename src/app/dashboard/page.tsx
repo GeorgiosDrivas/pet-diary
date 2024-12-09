@@ -1,9 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import useAuth from "@/utils/auth";
 import { useEffect, useState } from "react";
-import { useAuthContext } from "@/context/authContext";
 import { auth, readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
