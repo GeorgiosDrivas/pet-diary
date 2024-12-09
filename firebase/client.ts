@@ -12,45 +12,47 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APPID,
 };
 
+interface Pet {
+  name: string;
+  appointments: AppointmentsType[];
+  medications: MedicationType[];
+}
+
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
 
-export function writeUsers(
-  userId: number,
-  name: string | null,
-  appointments: AppointmentsType[],
-  medications: MedicationType[]
-) {
+export function writeUsers(userId: number, name: string | null, pets: Pet[]) {
   const reference = ref(db, "users/" + userId);
 
   set(reference, {
     username: name,
-    appointments: appointments,
-    medications: medications,
+    pets: pets,
   });
 }
 
 export async function addAppointment(
   userId: number,
+  petName: string, // Specify which pet to update
   newAppointment: AppointmentsType
 ) {
-  const reference = ref(db, "users/" + userId);
-
+  const reference = ref(db, `users/${userId}`);
   try {
-    // Fetch the current user data
     const snapshot = await get(reference);
     if (snapshot.exists()) {
-      const userData = snapshot.val();
+      const userData: { username: string; pets: Pet[] } = snapshot.val();
 
-      const currentAppointments = userData.appointments || [];
-      const updatedAppointments = [...currentAppointments, newAppointment];
+      // Find the pet by name
+      const updatedPets = userData.pets.map((pet) => {
+        if (pet.name === petName) {
+          return {
+            ...pet,
+            appointments: [...(pet.appointments || []), newAppointment],
+          };
+        }
+        return pet;
+      });
 
-      writeUsers(
-        userId,
-        userData.username,
-        updatedAppointments,
-        userData.medications
-      );
+      await writeUsers(userId, userData.username, updatedPets);
       console.log("Appointment added successfully!");
     } else {
       console.error("User not found!");

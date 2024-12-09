@@ -18,17 +18,6 @@ export default function Appointments({
   setNewAppointment,
   user,
 }: Data) {
-  const handleAddAppointment = (e: any) => {
-    e.preventDefault();
-    addAppointment(1, newAppointment);
-    setNewAppointment({
-      title: "",
-      doctor: "",
-      date: "",
-      notes: "",
-    });
-  };
-
   return (
     <>
       <div className="appointments h-full px-8 py-5">
@@ -92,9 +81,6 @@ export default function Appointments({
                     }
                   />
                 </div>
-                <button onClick={(e) => handleAddAppointment(e)}>
-                  Create appointment
-                </button>
               </form>
               <button
                 className="hide-form-btn"
@@ -122,7 +108,7 @@ export default function Appointments({
             </div>
           ) : (
             <>
-              {user && user.appointments.length > 0 ? (
+              {/* {user && user.appointments.length > 0 ? (
                 <table className="w-full">
                   <tr>
                     <th>Title</th>
@@ -159,7 +145,7 @@ export default function Appointments({
                 </table>
               ) : (
                 <p>Your appointments will be displayed here</p>
-              )}
+              )} */}
               <button
                 className="mt-4"
                 onClick={() => setShowForm((prv: boolean) => !prv)}
