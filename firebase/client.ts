@@ -1,4 +1,4 @@
-import { AppointmentsType, Pet } from "@/types";
+import { AppointmentsType, MedicationType, Pet } from "@/types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { get, getDatabase, onValue, ref, set } from "firebase/database";
@@ -69,6 +69,37 @@ export function readData(userId: number): Promise<any> {
       }
     );
   });
+}
+
+export async function addMedication(
+  userId: number,
+  petName: string,
+  newMedication: MedicationType
+) {
+  const reference = ref(db, `users/${userId}`);
+  try {
+    const snapshot = await get(reference);
+    if (snapshot.exists()) {
+      const userData: { username: string; pets: Pet[] } = snapshot.val();
+
+      const updatedPets = userData.pets.map((pet) => {
+        if (pet.name === petName) {
+          return {
+            ...pet,
+            medications: [...(pet.medications || []), newMedication],
+          };
+        }
+        return pet;
+      });
+
+      await writeUsers(userId, userData.username, updatedPets);
+      console.log("Medication added successfully!");
+    } else {
+      console.error("User not found!");
+    }
+  } catch (error) {
+    console.error("Error adding medication:", error);
+  }
 }
 
 export const auth = getAuth(app);

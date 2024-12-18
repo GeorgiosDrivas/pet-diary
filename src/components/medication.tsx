@@ -1,7 +1,18 @@
 import { useState } from "react";
+import { addMedication } from "../../firebase/client";
 
 export default function Medication({ pet }: { pet: any }) {
   const [showForm, setShowForm] = useState(false);
+  const [newMedication, setNewMedication] = useState({
+    medicationName: "",
+    dosage: "",
+    date: "",
+    notes: "",
+  });
+
+  const handleNewMedication = () => {
+    addMedication(1, pet.name, newMedication);
+  };
 
   return (
     <>
@@ -12,21 +23,61 @@ export default function Medication({ pet }: { pet: any }) {
             <div className="relative w-[300px]">
               <form>
                 <div>
-                  <label htmlFor="title">Title</label>
-                  <input type="text" id="title" />
+                  <label htmlFor="medicationName">Medication Name</label>
+                  <input
+                    type="text"
+                    id="medicationName"
+                    value={newMedication.medicationName}
+                    onChange={(e) =>
+                      setNewMedication({
+                        ...newMedication,
+                        medicationName: e.target.value,
+                      })
+                    }
+                  />
                 </div>
                 <div>
-                  <label htmlFor="doctor">Dosage</label>
-                  <input type="text" id="doctor" />
+                  <label htmlFor="dosage">Dosage</label>
+                  <input
+                    type="text"
+                    id="dosage"
+                    value={newMedication.dosage}
+                    onChange={(e) =>
+                      setNewMedication({
+                        ...newMedication,
+                        dosage: e.target.value,
+                      })
+                    }
+                  />
                 </div>
                 <div>
                   <label htmlFor="date">Date</label>
-                  <input type="date" id="date" />
+                  <input
+                    type="date"
+                    id="date"
+                    value={newMedication.date}
+                    onChange={(e) =>
+                      setNewMedication({
+                        ...newMedication,
+                        date: e.target.value,
+                      })
+                    }
+                  />
                 </div>
                 <div>
                   <label htmlFor="notes">Notes</label>
-                  <textarea id="notes" />
+                  <textarea
+                    id="notes"
+                    value={newMedication.notes}
+                    onChange={(e) =>
+                      setNewMedication({
+                        ...newMedication,
+                        notes: e.target.value,
+                      })
+                    }
+                  />
                 </div>
+                <button onClick={() => handleNewMedication()}>Submit</button>
               </form>
               <button
                 className="hide-form-btn"
@@ -58,7 +109,7 @@ export default function Medication({ pet }: { pet: any }) {
                 <table className="w-full border-collapse border border-gray-200">
                   <thead>
                     <tr>
-                      <th>Name</th>
+                      <th>Medication Name</th>
                       <th>Dosage</th>
                       <th>Date</th>
                       <th>Notes</th>
