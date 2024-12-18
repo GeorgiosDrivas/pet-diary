@@ -1,20 +1,20 @@
 "use client";
 
+import { useState } from "react";
+
 interface Data {
-  showForm: boolean;
-  setShowForm: any;
   newAppointment: any;
   setNewAppointment: any;
   pet: any;
 }
 
 export default function Appointments({
-  showForm,
-  setShowForm,
   newAppointment,
   setNewAppointment,
   pet,
 }: Data) {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <>
       <div className="appointments h-full px-8 py-5">

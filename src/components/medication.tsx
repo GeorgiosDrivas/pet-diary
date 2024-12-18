@@ -1,10 +1,8 @@
-export default function Medication({
-  pet,
-  showForm,
-}: {
-  pet: any;
-  showForm: boolean;
-}) {
+import { useState } from "react";
+
+export default function Medication({ pet }: { pet: any }) {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <>
       <div className="medication h-full px-8 py-5">
@@ -18,7 +16,7 @@ export default function Medication({
                   <input type="text" id="title" />
                 </div>
                 <div>
-                  <label htmlFor="doctor">Doctor</label>
+                  <label htmlFor="doctor">Dosage</label>
                   <input type="text" id="doctor" />
                 </div>
                 <div>
@@ -30,7 +28,10 @@ export default function Medication({
                   <textarea id="notes" />
                 </div>
               </form>
-              <button className="hide-form-btn">
+              <button
+                className="hide-form-btn"
+                onClick={() => setShowForm((prv: boolean) => !prv)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20px"
@@ -89,7 +90,9 @@ export default function Medication({
               ) : (
                 <p>Please select a pet to view medications.</p>
               )}
-              <button className="mt-4">Create an medication</button>
+              <button className="mt-4" onClick={() => setShowForm(true)}>
+                Create an medication
+              </button>
             </>
           )}
         </div>

@@ -10,7 +10,6 @@ import { useSearchParams } from "next/navigation";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | any>(null);
-  const [showForm, setShowForm] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [newAppointment, setNewAppointment] = useState({
     title: "",
@@ -81,15 +80,13 @@ export default function Dashboard() {
             <div className="grid grid-rows-12 gap-4 h-full py-3">
               <div className="row-span-6">
                 <Appointments
-                  showForm={showForm}
-                  setShowForm={setShowForm}
                   newAppointment={newAppointment}
                   setNewAppointment={setNewAppointment}
                   pet={currentPet}
                 />
               </div>
               <div className="row-span-6">
-                <Medication pet={currentPet} showForm={showForm} />
+                <Medication pet={currentPet} />
               </div>
             </div>
           </div>
