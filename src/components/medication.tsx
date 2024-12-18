@@ -67,13 +67,17 @@ export default function Medication({ pet }: { pet: any }) {
                   <tbody>
                     {pet.medications.length > 0 ? (
                       pet.medications.map((medication: any, index: any) => (
-                        <tr key={index}>
-                          <td className="text-center">
+                        <tr key={index} className="border-b border-[#e5e7eb]">
+                          <td className="text-center py-3">
                             {medication.medicationName}
                           </td>
-                          <td className="text-center">{medication.dosage}</td>
-                          <td className="text-center">{medication.date}</td>
-                          <td className="text-center">
+                          <td className="text-center py-3">
+                            {medication.dosage}
+                          </td>
+                          <td className="text-center py-3">
+                            {medication.date}
+                          </td>
+                          <td className="text-center py-3">
                             {medication.notes || "No notes"}
                           </td>
                         </tr>
