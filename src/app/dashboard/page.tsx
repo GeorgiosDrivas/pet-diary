@@ -11,12 +11,7 @@ import { useSearchParams } from "next/navigation";
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | any>(null);
   const [user, setUser] = useState<any>(null);
-  const [newAppointment, setNewAppointment] = useState({
-    title: "",
-    doctor: "",
-    date: "",
-    notes: "",
-  });
+
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
   const searchParams = useSearchParams();
   const userId = searchParams.get("user.uid");
@@ -79,11 +74,7 @@ export default function Dashboard() {
           <div className="col-span-10 pe-4">
             <div className="grid grid-rows-12 gap-4 h-full py-3">
               <div className="row-span-6">
-                <Appointments
-                  newAppointment={newAppointment}
-                  setNewAppointment={setNewAppointment}
-                  pet={currentPet}
-                />
+                <Appointments pet={currentPet} />
               </div>
               <div className="row-span-6">
                 <Medication pet={currentPet} />

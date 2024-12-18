@@ -1,19 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import { addAppointment } from "../../firebase/client";
 
 interface Data {
-  newAppointment: any;
-  setNewAppointment: any;
   pet: any;
 }
 
-export default function Appointments({
-  newAppointment,
-  setNewAppointment,
-  pet,
-}: Data) {
+export default function Appointments({ pet }: Data) {
   const [showForm, setShowForm] = useState(false);
+  const [newAppointment, setNewAppointment] = useState({
+    title: "",
+    doctor: "",
+    date: "",
+    notes: "",
+  });
+  const handleNewAppointment = () => {
+    addAppointment(1, pet.name, newAppointment);
+  };
 
   return (
     <>
@@ -78,6 +82,7 @@ export default function Appointments({
                     }
                   />
                 </div>
+                <button onClick={() => handleNewAppointment()}>Submit</button>
               </form>
               <button
                 className="hide-form-btn"
@@ -95,9 +100,9 @@ export default function Appointments({
                       id="Vector"
                       d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18"
                       stroke="#000000"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                 </svg>
