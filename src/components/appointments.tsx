@@ -123,11 +123,17 @@ export default function Appointments({ pet }: Data) {
                   <tbody>
                     {pet.appointments.length > 0 ? (
                       pet.appointments.map((appointment: any, index: any) => (
-                        <tr key={index}>
-                          <td className="text-center">{appointment.title}</td>
-                          <td className="text-center">{appointment.doctor}</td>
-                          <td className="text-center">{appointment.date}</td>
-                          <td className="text-center">
+                        <tr key={index} className="border-b border-[#e5e7eb]">
+                          <td className="text-center py-3">
+                            {appointment.title}
+                          </td>
+                          <td className="text-center py-3">
+                            {appointment.doctor}
+                          </td>
+                          <td className="text-center py-3">
+                            {appointment.date}
+                          </td>
+                          <td className="text-center py-3">
                             {appointment.notes || "No notes"}
                           </td>
                         </tr>
