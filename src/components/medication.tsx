@@ -51,20 +51,6 @@ export default function Medication({ pet }: { pet: any }) {
                   />
                 </div>
                 <div>
-                  <label htmlFor="date">Date</label>
-                  <input
-                    type="date"
-                    id="date"
-                    value={newMedication.date}
-                    onChange={(e) =>
-                      setNewMedication({
-                        ...newMedication,
-                        date: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-                <div>
                   <label htmlFor="notes">Notes</label>
                   <textarea
                     id="notes"
@@ -111,7 +97,6 @@ export default function Medication({ pet }: { pet: any }) {
                     <tr>
                       <th>Medication Name</th>
                       <th>Dosage</th>
-                      <th>Date</th>
                       <th>Notes</th>
                     </tr>
                   </thead>
@@ -124,9 +109,6 @@ export default function Medication({ pet }: { pet: any }) {
                           </td>
                           <td className="text-center py-3">
                             {medication.dosage}
-                          </td>
-                          <td className="text-center py-3">
-                            {medication.date}
                           </td>
                           <td className="text-center py-3">
                             {medication.notes || "No notes"}

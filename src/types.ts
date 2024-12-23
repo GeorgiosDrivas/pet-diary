@@ -8,7 +8,6 @@ export interface AppointmentsType {
 export interface MedicationType {
   medicationName: string;
   dosage: string;
-  date: string;
   notes?: string;
 }
 
@@ -22,7 +21,7 @@ export interface Pet {
   }[];
   medications: {
     medicationName: string;
-    date: string;
+    dosage: string;
     notes?: string;
   }[];
 }
