@@ -13,6 +13,9 @@ export interface MedicationType {
 
 export interface Pet {
   name: string;
+  species: string;
+  breed: string;
+  age: string;
   appointments: {
     title: string;
     doctor: string;

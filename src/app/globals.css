@@ -77,3 +77,9 @@ label {
   border: 1px solid;
   border-radius: 3px;
 }
+
+.new-pet {
+  background-color: #ffffff;
+  padding: 50px 40px;
+  border-radius: 40px;
+}

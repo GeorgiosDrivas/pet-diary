@@ -100,13 +100,18 @@ export default function Dashboard() {
             {newPetBool ? (
               <NewPet />
             ) : (
-              <div className="grid grid-rows-12 gap-4 h-full py-3">
-                <div className="row-span-6">
-                  <Appointments pet={currentPet} />
+              <div className="grid grid-cols-12">
+                <div className="col-span-9">
+                  <div className="grid grid-rows-12 gap-4 h-full py-3">
+                    <div className="row-span-6">
+                      <Appointments pet={currentPet} />
+                    </div>
+                    <div className="row-span-6">
+                      <Medication pet={currentPet} />
+                    </div>
+                  </div>
                 </div>
-                <div className="row-span-6">
-                  <Medication pet={currentPet} />
-                </div>
+                <div className="col-span-3"></div>
               </div>
             )}
           </div>
