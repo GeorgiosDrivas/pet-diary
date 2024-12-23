@@ -11,6 +11,7 @@ import { useSearchParams } from "next/navigation";
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | any>(null);
   const [user, setUser] = useState<any>(null);
+  const [newPetBool, setNewPetBool] = useState<boolean>(false);
 
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
   const searchParams = useSearchParams();
@@ -34,6 +35,10 @@ export default function Dashboard() {
 
     return () => unsubscribe();
   }, []);
+
+  const newPet = () => {
+    setNewPetBool((prv) => !prv);
+  };
 
   const selectPet = (name: string) => {
     const pet = userData?.pets.find((pet: any) => pet.name === name);
@@ -66,6 +71,7 @@ export default function Dashboard() {
                   ))}
                 <svg
                   className="new-pet-svg cursor-pointer"
+                  onClick={() => newPet()}
                   xmlns="http://www.w3.org/2000/svg"
                   width="20px"
                   height="20px"
@@ -88,14 +94,40 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="col-span-10 pe-4">
-            <div className="grid grid-rows-12 gap-4 h-full py-3">
-              <div className="row-span-6">
-                <Appointments pet={currentPet} />
+            {newPetBool ? (
+              <div className="grid grid-rows-12 gap-4 h-full py-3">
+                <div className="row-span-6">
+                  <h1>Add a new pet</h1>
+                  <form>
+                    <label htmlFor="name">Name</label>
+                    <input type="text" id="name" name="name" />
+                    <label htmlFor="species">Species</label>
+                    <input type="text" id="species" name="species" />
+                    <label htmlFor="breed">Breed</label>
+                    <input type="text" id="breed" name="breed" />
+                    <label htmlFor="age">Age</label>
+                    <input type="text" id="age" name="age" />
+                    <button type="submit">Add Pet</button>
+                  </form>
+                </div>
+                <div className="row-span-6">
+                  <h1>Current Pets</h1>
+                  {userData &&
+                    userData.pets.map((pet: any) => (
+                      <p key={pet.name}>{pet.name}</p>
+                    ))}
+                </div>
               </div>
-              <div className="row-span-6">
-                <Medication pet={currentPet} />
+            ) : (
+              <div className="grid grid-rows-12 gap-4 h-full py-3">
+                <div className="row-span-6">
+                  <Appointments pet={currentPet} />
+                </div>
+                <div className="row-span-6">
+                  <Medication pet={currentPet} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
