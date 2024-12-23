@@ -64,6 +64,22 @@ export default function Dashboard() {
                       {pet.name}
                     </p>
                   ))}
+                <svg
+                  className="new-pet-svg cursor-pointer"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M6 12H18M12 6V18"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
               </div>
               <div className="flex justify-between items-center row-span-1">
                 <p>{user?.displayName || "Guest"}</p>
