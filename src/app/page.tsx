@@ -4,6 +4,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, writeUsers } from "../../firebase/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import React from "react";
 
 export default function Home() {
   const router = useRouter();

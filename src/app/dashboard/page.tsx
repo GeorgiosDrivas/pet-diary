@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
@@ -8,7 +8,6 @@ import { Pet, UserData } from "@/types";
 import Logout from "@/utils/logout";
 import { useSearchParams } from "next/navigation";
 import NewPet from "@/components/newPet";
-import { set } from "firebase/database";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | any>(null);
