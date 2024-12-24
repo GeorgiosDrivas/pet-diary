@@ -102,6 +102,28 @@ export async function addMedication(
   }
 }
 
+export async function addPet(userId: number, pet: Pet) {
+  const reference = ref(db, `users/${userId}`);
+  try {
+    // Fetch the user data
+    const snapshot = await get(reference);
+    if (snapshot.exists()) {
+      const userData: { username: string; pets: Pet[] } = snapshot.val();
+
+      // Add the new pet to the user's pet array
+      const updatedPets = [...(userData.pets || []), pet];
+
+      // Update the user's data in the database
+      await writeUsers(userId, userData.username, updatedPets);
+      console.log("Pet added successfully!");
+    } else {
+      console.error("User not found!");
+    }
+  } catch (error) {
+    console.error("Error adding pet:", error);
+  }
+}
+
 export const auth = getAuth(app);
 
 export default app;
