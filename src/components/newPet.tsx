@@ -1,17 +1,59 @@
+import { useState } from "react";
+import { addPet } from "../../firebase/client";
+import { Pet } from "@/types";
+
 export default function NewPet() {
+  const [name, setName] = useState("");
+  const [species, setSpecies] = useState("");
+  const [breed, setBreed] = useState("");
+  const [age, setAge] = useState("");
+
+  const newPet: Pet = {
+    name: name,
+    species: species,
+    breed: breed,
+    age: age,
+    appointments: [],
+    medications: [],
+  };
+
   return (
     <div className="grid grid-rows-12 gap-4 h-full py-3">
       <div className="new-pet row-span-6">
         <h1>Add a new pet</h1>
-        <form>
+        <form onSubmit={() => addPet(1, newPet)}>
           <label htmlFor="name">Name</label>
-          <input type="text" id="name" name="name" />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.currentTarget.value)}
+          />
           <label htmlFor="species">Species</label>
-          <input type="text" id="species" name="species" />
+          <input
+            type="text"
+            id="species"
+            name="species"
+            value={species}
+            onChange={(e) => setSpecies(e.currentTarget.value)}
+          />
           <label htmlFor="breed">Breed</label>
-          <input type="text" id="breed" name="breed" />
+          <input
+            type="text"
+            id="breed"
+            name="breed"
+            value={breed}
+            onChange={(e) => setBreed(e.currentTarget.value)}
+          />
           <label htmlFor="age">Age</label>
-          <input type="text" id="age" name="age" />
+          <input
+            type="text"
+            id="age"
+            name="age"
+            value={age}
+            onChange={(e) => setAge(e.currentTarget.value)}
+          />
           <button type="submit" className="mt-3">
             Add Pet
           </button>
