@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addMedication } from "../../firebase/client";
 import { MedicationType, Pet } from "@/types";
 
-export default function Medication({ pet }: { pet: Pet }) {
+export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
   const [newMedication, setNewMedication] = useState({
     medicationName: "",
@@ -12,7 +12,11 @@ export default function Medication({ pet }: { pet: Pet }) {
   });
 
   const handleNewMedication = () => {
-    addMedication(1, pet.name, newMedication);
+    if (pet) {
+      addMedication(1, pet.name, newMedication);
+    } else {
+      console.error("No pet selected for adding a medication.");
+    }
   };
 
   return (
