@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { addMedication } from "../../firebase/client";
+import { MedicationType, Pet } from "@/types";
 
-export default function Medication({ pet }: { pet: any }) {
+export default function Medication({ pet }: { pet: Pet }) {
   const [showForm, setShowForm] = useState(false);
   const [newMedication, setNewMedication] = useState({
     medicationName: "",
@@ -102,19 +103,21 @@ export default function Medication({ pet }: { pet: any }) {
                   </thead>
                   <tbody>
                     {pet.medications.length > 0 ? (
-                      pet.medications.map((medication: any, index: any) => (
-                        <tr key={index} className="border-b border-[#e5e7eb]">
-                          <td className="text-center py-3">
-                            {medication.medicationName}
-                          </td>
-                          <td className="text-center py-3">
-                            {medication.dosage}
-                          </td>
-                          <td className="text-center py-3">
-                            {medication.notes || "No notes"}
-                          </td>
-                        </tr>
-                      ))
+                      pet.medications.map(
+                        (medication: MedicationType, index: number) => (
+                          <tr key={index} className="border-b border-[#e5e7eb]">
+                            <td className="text-center py-3">
+                              {medication.medicationName}
+                            </td>
+                            <td className="text-center py-3">
+                              {medication.dosage}
+                            </td>
+                            <td className="text-center py-3">
+                              {medication.notes || "No notes"}
+                            </td>
+                          </tr>
+                        )
+                      )
                     ) : (
                       <tr>
                         <td colSpan={4} className="text-center">

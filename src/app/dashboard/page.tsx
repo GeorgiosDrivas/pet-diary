@@ -10,13 +10,11 @@ import { useSearchParams } from "next/navigation";
 import NewPet from "@/components/newPet";
 
 export default function Dashboard() {
-  const [userData, setUserData] = useState<UserData | any>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [user, setUser] = useState<any>(null);
   const [newPetBool, setNewPetBool] = useState<boolean>(false);
 
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
-  const searchParams = useSearchParams();
-  const userId = searchParams.get("user.uid");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -43,7 +41,7 @@ export default function Dashboard() {
 
   const selectPet = (name: string) => {
     setNewPetBool(false);
-    const pet = userData?.pets.find((pet: any) => pet.name === name);
+    const pet = userData?.pets.find((pet: Pet) => pet.name === name);
     setCurrentPet(pet || null);
   };
 
@@ -62,7 +60,7 @@ export default function Dashboard() {
               <div className="row-span-6">
                 <p className="mb-5">Your Pets</p>
                 {userData &&
-                  userData.pets.map((pet: any) => (
+                  userData.pets.map((pet: Pet) => (
                     <p
                       key={pet.name}
                       className="cursor-pointer single-pet"

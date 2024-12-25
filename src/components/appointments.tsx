@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { addAppointment } from "../../firebase/client";
+import { AppointmentsType, Pet } from "@/types";
 
 interface Data {
-  pet: any;
+  pet: Pet;
 }
 
 export default function Appointments({ pet }: Data) {
@@ -122,22 +123,24 @@ export default function Appointments({ pet }: Data) {
                   </thead>
                   <tbody>
                     {pet.appointments.length > 0 ? (
-                      pet.appointments.map((appointment: any, index: any) => (
-                        <tr key={index} className="border-b border-[#e5e7eb]">
-                          <td className="text-center py-3">
-                            {appointment.title}
-                          </td>
-                          <td className="text-center py-3">
-                            {appointment.doctor}
-                          </td>
-                          <td className="text-center py-3">
-                            {appointment.date}
-                          </td>
-                          <td className="text-center py-3">
-                            {appointment.notes || "No notes"}
-                          </td>
-                        </tr>
-                      ))
+                      pet.appointments.map(
+                        (appointment: AppointmentsType, index: number) => (
+                          <tr key={index} className="border-b border-[#e5e7eb]">
+                            <td className="text-center py-3">
+                              {appointment.title}
+                            </td>
+                            <td className="text-center py-3">
+                              {appointment.doctor}
+                            </td>
+                            <td className="text-center py-3">
+                              {appointment.date}
+                            </td>
+                            <td className="text-center py-3">
+                              {appointment.notes || "No notes"}
+                            </td>
+                          </tr>
+                        )
+                      )
                     ) : (
                       <tr>
                         <td colSpan={4} className="text-center">
