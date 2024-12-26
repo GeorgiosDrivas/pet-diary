@@ -121,50 +121,52 @@ export default function Appointments({ pet }: Data) {
         ) : (
           <>
             {pet ? (
-              <table className="w-full border-collapse border border-gray-200">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Doctor</th>
-                    <th>Date</th>
-                    <th>Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pet.appointments.length > 0 ? (
-                    pet.appointments.map(
-                      (appointment: AppointmentsType, index: number) => (
-                        <tr key={index} className="border-b border-[#e5e7eb]">
-                          <td className="text-center py-3">
-                            {appointment.title}
-                          </td>
-                          <td className="text-center py-3">
-                            {appointment.doctor}
-                          </td>
-                          <td className="text-center py-3">
-                            {appointment.date}
-                          </td>
-                          <td className="text-center py-3">
-                            {appointment.notes || "No notes"}
-                          </td>
-                        </tr>
-                      )
-                    )
-                  ) : (
+              <>
+                <table className="w-full border-collapse border border-gray-200">
+                  <thead>
                     <tr>
-                      <td colSpan={4} className="text-center">
-                        No appointments available.
-                      </td>
+                      <th>Title</th>
+                      <th>Doctor</th>
+                      <th>Date</th>
+                      <th>Notes</th>
                     </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {pet.appointments.length > 0 ? (
+                      pet.appointments.map(
+                        (appointment: AppointmentsType, index: number) => (
+                          <tr key={index} className="border-b border-[#e5e7eb]">
+                            <td className="text-center py-3">
+                              {appointment.title}
+                            </td>
+                            <td className="text-center py-3">
+                              {appointment.doctor}
+                            </td>
+                            <td className="text-center py-3">
+                              {appointment.date}
+                            </td>
+                            <td className="text-center py-3">
+                              {appointment.notes || "No notes"}
+                            </td>
+                          </tr>
+                        )
+                      )
+                    ) : (
+                      <tr>
+                        <td colSpan={4} className="text-center">
+                          No appointments available.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+                <button className="mt-4" onClick={() => setShowForm(true)}>
+                  Create an Appointment
+                </button>
+              </>
             ) : (
               <p>Please select a pet to view appointments.</p>
             )}
-            <button className="mt-4" onClick={() => setShowForm(true)}>
-              Create an Appointment
-            </button>
           </>
         )}
       </div>

@@ -13,8 +13,21 @@ export default function NewPet() {
     species: species,
     breed: breed,
     age: age,
-    appointments: [],
-    medications: [],
+    appointments: [
+      {
+        id: 1,
+        title: "Example",
+        doctor: "Dr. Example",
+        date: "10/10/2024",
+      },
+    ],
+    medications: [
+      {
+        id: 1,
+        medicationName: "Example",
+        dosage: "Dr. Example",
+      },
+    ],
   };
 
   return (

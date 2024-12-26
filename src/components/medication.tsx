@@ -97,46 +97,51 @@ export default function Medication({ pet }: { pet: Pet | null }) {
           ) : (
             <>
               {pet ? (
-                <table className="w-full border-collapse border border-gray-200">
-                  <thead>
-                    <tr>
-                      <th>Medication Name</th>
-                      <th>Dosage</th>
-                      <th>Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pet.medications.length > 0 ? (
-                      pet.medications.map(
-                        (medication: MedicationType, index: number) => (
-                          <tr key={index} className="border-b border-[#e5e7eb]">
-                            <td className="text-center py-3">
-                              {medication.medicationName}
-                            </td>
-                            <td className="text-center py-3">
-                              {medication.dosage}
-                            </td>
-                            <td className="text-center py-3">
-                              {medication.notes || "No notes"}
-                            </td>
-                          </tr>
-                        )
-                      )
-                    ) : (
+                <>
+                  <table className="w-full border-collapse border border-gray-200">
+                    <thead>
                       <tr>
-                        <td colSpan={4} className="text-center">
-                          No medications available.
-                        </td>
+                        <th>Medication Name</th>
+                        <th>Dosage</th>
+                        <th>Notes</th>
                       </tr>
-                    )}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {pet.medications.length > 0 ? (
+                        pet.medications.map(
+                          (medication: MedicationType, index: number) => (
+                            <tr
+                              key={index}
+                              className="border-b border-[#e5e7eb]"
+                            >
+                              <td className="text-center py-3">
+                                {medication.medicationName}
+                              </td>
+                              <td className="text-center py-3">
+                                {medication.dosage}
+                              </td>
+                              <td className="text-center py-3">
+                                {medication.notes || "No notes"}
+                              </td>
+                            </tr>
+                          )
+                        )
+                      ) : (
+                        <tr>
+                          <td colSpan={4} className="text-center">
+                            No medications available.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                  <button className="mt-4" onClick={() => setShowForm(true)}>
+                    Create an medication
+                  </button>
+                </>
               ) : (
                 <p>Please select a pet to view medications.</p>
               )}
-              <button className="mt-4" onClick={() => setShowForm(true)}>
-                Create an medication
-              </button>
             </>
           )}
         </div>

@@ -1,4 +1,5 @@
 export interface AppointmentsType {
+  id: number;
   title: string;
   doctor: string;
   date: string;
@@ -6,6 +7,7 @@ export interface AppointmentsType {
 }
 
 export interface MedicationType {
+  id: number;
   medicationName: string;
   dosage: string;
   notes?: string;
@@ -17,12 +19,14 @@ export interface Pet {
   breed: string;
   age: string;
   appointments: {
+    id: number;
     title: string;
     doctor: string;
     date: string;
     notes?: string;
   }[];
   medications: {
+    id: number;
     medicationName: string;
     dosage: string;
     notes?: string;
