@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 import { auth, readData } from "../../../firebase/client";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
-import { Pet, UserData } from "@/types";
+import { Pet, User, UserData } from "@/types";
 import Logout from "@/utils/logout";
 import NewPet from "@/components/newPet";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [newPetBool, setNewPetBool] = useState<boolean>(false);
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
 

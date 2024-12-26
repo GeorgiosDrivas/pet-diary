@@ -33,3 +33,9 @@ export interface UserData {
   pets: Pet[];
   displayName: string;
 }
+
+export interface User {
+  displayName: string | null;
+  email: string | null;
+  uid: string | null;
+}
