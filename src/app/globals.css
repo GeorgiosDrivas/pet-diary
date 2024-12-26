@@ -25,7 +25,8 @@ body.__variable_1e4310.__variable_c3aa02 {
 }
 
 .appointments,
-.medication {
+.medication,
+.details {
   background-color: #ffffff;
   border-radius: 40px;
 }
@@ -82,4 +83,7 @@ label {
   background-color: #ffffff;
   padding: 50px 40px;
   border-radius: 40px;
+}
+
+.details h2 {
 }

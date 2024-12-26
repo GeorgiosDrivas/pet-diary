@@ -7,6 +7,7 @@ import Medication from "@/components/medication";
 import { Pet, User, UserData } from "@/types";
 import Logout from "@/utils/logout";
 import NewPet from "@/components/newPet";
+import PetDetails from "@/components/petDetails";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -91,11 +92,11 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="col-span-10 pe-4">
+          <div className="col-span-10">
             {newPetBool ? (
               <NewPet />
             ) : (
-              <div className="grid grid-cols-12">
+              <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-9">
                   <div className="grid grid-rows-12 gap-4 h-full py-3">
                     <div className="row-span-6">
@@ -106,7 +107,9 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-3"></div>
+                <div className="col-span-3 flex p-0">
+                  <PetDetails pet={currentPet} />
+                </div>
               </div>
             )}
           </div>
