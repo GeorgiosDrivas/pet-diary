@@ -1,4 +1,5 @@
 import { Pet } from "@/types";
+import React from "react";
 
 export default function PetDetails({ pet }: { pet: Pet | null }) {
   return (
