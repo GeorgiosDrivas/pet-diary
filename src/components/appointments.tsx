@@ -11,6 +11,7 @@ interface Data {
 export default function Appointments({ pet }: Data) {
   const [showForm, setShowForm] = useState(false);
   const [newAppointment, setNewAppointment] = useState({
+    id: 1,
     title: "",
     doctor: "",
     date: "",
