@@ -21,9 +21,11 @@ jobs:
         with:
           node-version: "18"
 
-      # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      - name: EsLint Tests
+        run: npm run lint
 
     # Run tests
     # - name: Run tests
