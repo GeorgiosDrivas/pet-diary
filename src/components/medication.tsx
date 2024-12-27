@@ -5,6 +5,7 @@ import { MedicationType, Pet } from "@/types";
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
   const [newMedication, setNewMedication] = useState({
+    id: 1,
     medicationName: "",
     dosage: "",
     date: "",
