@@ -149,7 +149,7 @@ export default function Appointments({ pet }: Data) {
                             <td className="text-center py-3">
                               {appointment.notes || "No notes"}
                             </td>
-                            <button className="me-3 mt-2">
+                            <button className="me-3 my-2">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20px"
@@ -165,7 +165,7 @@ export default function Appointments({ pet }: Data) {
                                 />
                               </svg>
                             </button>
-                            <button className="mt-2">
+                            <button className="my-2">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20px"
