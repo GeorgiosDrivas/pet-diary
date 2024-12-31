@@ -24,6 +24,18 @@ export default function Medication({ pet }: { pet: Pet | null }) {
     }
   };
 
+  const stateChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+    value: string
+  ) => {
+    setNewMedication({
+      ...newMedication,
+      [value]: e.target.value,
+    });
+  };
+
   return (
     <>
       <div className="medication h-full px-8 py-5">
@@ -38,12 +50,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                     type="text"
                     id="medicationName"
                     value={newMedication.medicationName}
-                    onChange={(e) =>
-                      setNewMedication({
-                        ...newMedication,
-                        medicationName: e.target.value,
-                      })
-                    }
+                    onChange={(e) => stateChange(e, "medicationName")}
                   />
                 </div>
                 <div>
@@ -52,12 +59,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                     type="text"
                     id="dosage"
                     value={newMedication.dosage}
-                    onChange={(e) =>
-                      setNewMedication({
-                        ...newMedication,
-                        dosage: e.target.value,
-                      })
-                    }
+                    onChange={(e) => stateChange(e, "dosage")}
                   />
                 </div>
                 <div>
@@ -65,12 +67,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                   <textarea
                     id="notes"
                     value={newMedication.notes}
-                    onChange={(e) =>
-                      setNewMedication({
-                        ...newMedication,
-                        notes: e.target.value,
-                      })
-                    }
+                    onChange={(e) => stateChange(e, "notes")}
                   />
                 </div>
                 <button onClick={() => handleNewMedication()}>Submit</button>
