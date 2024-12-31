@@ -4,6 +4,7 @@ import { MedicationType, Pet } from "@/types";
 import EditSvg from "@/assets/editSvg";
 import DeleteSvg from "@/assets/deleteSvg";
 import CloseSvg from "@/assets/closeSvg";
+import CreateButton from "@/utils/createButton";
 
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
@@ -130,9 +131,10 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                       )}
                     </tbody>
                   </table>
-                  <button className="mt-4" onClick={() => setShowForm(true)}>
-                    Create an medication
-                  </button>
+                  <CreateButton
+                    showForm={setShowForm}
+                    text="Create a medication"
+                  />
                 </>
               ) : (
                 <p>Please select a pet to view medications.</p>

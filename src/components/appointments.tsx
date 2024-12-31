@@ -6,6 +6,7 @@ import { AppointmentsType, Pet } from "@/types";
 import DeleteSvg from "@/assets/deleteSvg";
 import EditSvg from "@/assets/editSvg";
 import CloseSvg from "@/assets/closeSvg";
+import CreateButton from "@/utils/createButton";
 
 interface Data {
   pet: Pet | null;
@@ -153,9 +154,10 @@ export default function Appointments({ pet }: Data) {
                     )}
                   </tbody>
                 </table>
-                <button className="mt-4" onClick={() => setShowForm(true)}>
-                  Create an Appointment
-                </button>
+                <CreateButton
+                  showForm={setShowForm}
+                  text="Create an appointment"
+                />
               </>
             ) : (
               <p>Please select a pet to view appointments.</p>
