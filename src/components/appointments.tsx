@@ -30,6 +30,18 @@ export default function Appointments({ pet }: Data) {
     }
   };
 
+  const stateChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+    value: string
+  ) => {
+    setNewAppointment({
+      ...newAppointment,
+      [value]: e.target.value,
+    });
+  };
+
   return (
     <div className="appointments h-full px-8 py-5">
       <h2>Appointments</h2>
@@ -48,12 +60,7 @@ export default function Appointments({ pet }: Data) {
                   type="text"
                   id="title"
                   value={newAppointment.title}
-                  onChange={(e) =>
-                    setNewAppointment({
-                      ...newAppointment,
-                      title: e.target.value,
-                    })
-                  }
+                  onChange={(e) => stateChange(e, "title")}
                 />
               </div>
               <div>
@@ -62,12 +69,7 @@ export default function Appointments({ pet }: Data) {
                   type="text"
                   id="doctor"
                   value={newAppointment.doctor}
-                  onChange={(e) =>
-                    setNewAppointment({
-                      ...newAppointment,
-                      doctor: e.target.value,
-                    })
-                  }
+                  onChange={(e) => stateChange(e, "doctor")}
                 />
               </div>
               <div>
@@ -76,12 +78,7 @@ export default function Appointments({ pet }: Data) {
                   type="date"
                   id="date"
                   value={newAppointment.date}
-                  onChange={(e) =>
-                    setNewAppointment({
-                      ...newAppointment,
-                      date: e.target.value,
-                    })
-                  }
+                  onChange={(e) => stateChange(e, "date")}
                 />
               </div>
               <div>
@@ -89,12 +86,7 @@ export default function Appointments({ pet }: Data) {
                 <textarea
                   id="notes"
                   value={newAppointment.notes}
-                  onChange={(e) =>
-                    setNewAppointment({
-                      ...newAppointment,
-                      notes: e.target.value,
-                    })
-                  }
+                  onChange={(e) => stateChange(e, "notes")}
                 />
               </div>
               <button type="submit">Submit</button>
