@@ -5,6 +5,7 @@ import EditSvg from "@/assets/editSvg";
 import DeleteSvg from "@/assets/deleteSvg";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
+import { stateChange } from "@/utils/stateChange";
 
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
@@ -24,18 +25,6 @@ export default function Medication({ pet }: { pet: Pet | null }) {
     }
   };
 
-  const stateChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-    value: string
-  ) => {
-    setNewMedication({
-      ...newMedication,
-      [value]: e.target.value,
-    });
-  };
-
   return (
     <>
       <div className="medication h-full px-8 py-5">
@@ -50,7 +39,14 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                     type="text"
                     id="medicationName"
                     value={newMedication.medicationName}
-                    onChange={(e) => stateChange(e, "medicationName")}
+                    onChange={(e) =>
+                      stateChange(
+                        e,
+                        "medicationName",
+                        setNewMedication,
+                        newMedication
+                      )
+                    }
                   />
                 </div>
                 <div>
@@ -59,7 +55,9 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                     type="text"
                     id="dosage"
                     value={newMedication.dosage}
-                    onChange={(e) => stateChange(e, "dosage")}
+                    onChange={(e) =>
+                      stateChange(e, "dosage", setNewMedication, newMedication)
+                    }
                   />
                 </div>
                 <div>
@@ -67,7 +65,9 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                   <textarea
                     id="notes"
                     value={newMedication.notes}
-                    onChange={(e) => stateChange(e, "notes")}
+                    onChange={(e) =>
+                      stateChange(e, "notes", setNewMedication, newMedication)
+                    }
                   />
                 </div>
                 <button onClick={() => handleNewMedication()}>Submit</button>

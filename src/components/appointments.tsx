@@ -2,15 +2,12 @@
 
 import React, { useState } from "react";
 import { addAppointment } from "../../firebase/client";
-import { AppointmentsType, Pet } from "@/types";
+import { AppointmentsType, Data } from "@/types";
 import DeleteSvg from "@/assets/deleteSvg";
 import EditSvg from "@/assets/editSvg";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
-
-interface Data {
-  pet: Pet | null;
-}
+import { stateChange } from "@/utils/stateChange";
 
 export default function Appointments({ pet }: Data) {
   const [showForm, setShowForm] = useState(false);
@@ -28,18 +25,6 @@ export default function Appointments({ pet }: Data) {
     } else {
       console.error("No pet selected for adding an appointment.");
     }
-  };
-
-  const stateChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-    value: string
-  ) => {
-    setNewAppointment({
-      ...newAppointment,
-      [value]: e.target.value,
-    });
   };
 
   return (
@@ -60,7 +45,9 @@ export default function Appointments({ pet }: Data) {
                   type="text"
                   id="title"
                   value={newAppointment.title}
-                  onChange={(e) => stateChange(e, "title")}
+                  onChange={(e) =>
+                    stateChange(e, "title", setNewAppointment, newAppointment)
+                  }
                 />
               </div>
               <div>
@@ -69,7 +56,9 @@ export default function Appointments({ pet }: Data) {
                   type="text"
                   id="doctor"
                   value={newAppointment.doctor}
-                  onChange={(e) => stateChange(e, "doctor")}
+                  onChange={(e) =>
+                    stateChange(e, "doctor", setNewAppointment, newAppointment)
+                  }
                 />
               </div>
               <div>
@@ -78,7 +67,9 @@ export default function Appointments({ pet }: Data) {
                   type="date"
                   id="date"
                   value={newAppointment.date}
-                  onChange={(e) => stateChange(e, "date")}
+                  onChange={(e) =>
+                    stateChange(e, "date", setNewAppointment, newAppointment)
+                  }
                 />
               </div>
               <div>
@@ -86,7 +77,9 @@ export default function Appointments({ pet }: Data) {
                 <textarea
                   id="notes"
                   value={newAppointment.notes}
-                  onChange={(e) => stateChange(e, "notes")}
+                  onChange={(e) =>
+                    stateChange(e, "notes", setNewAppointment, newAppointment)
+                  }
                 />
               </div>
               <button type="submit">Submit</button>
