@@ -18,19 +18,8 @@ export interface Pet {
   species: string;
   breed: string;
   age: string;
-  appointments: {
-    id: number;
-    title: string;
-    doctor: string;
-    date: string;
-    notes?: string;
-  }[];
-  medications: {
-    id: number;
-    medicationName: string;
-    dosage: string;
-    notes?: string;
-  }[];
+  appointments: AppointmentsType[];
+  medications: MedicationType[];
 }
 
 export interface UserData {
