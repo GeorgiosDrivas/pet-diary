@@ -6,6 +6,7 @@ import DeleteSvg from "@/assets/deleteSvg";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
 import { stateChange } from "@/utils/stateChange";
+import { handleNewItem } from "@/utils/newItem";
 
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
@@ -17,14 +18,6 @@ export default function Medication({ pet }: { pet: Pet | null }) {
     notes: "",
   });
 
-  const handleNewMedication = () => {
-    if (pet) {
-      addMedication(1, pet.name, newMedication);
-    } else {
-      console.error("No pet selected for adding a medication.");
-    }
-  };
-
   return (
     <>
       <div className="medication h-full px-8 py-5">
@@ -32,7 +25,11 @@ export default function Medication({ pet }: { pet: Pet | null }) {
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <form>
+              <form
+                onSubmit={() =>
+                  handleNewItem(pet, addMedication, newMedication)
+                }
+              >
                 <div>
                   <label htmlFor="medicationName">Medication Name</label>
                   <input
@@ -70,7 +67,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                     }
                   />
                 </div>
-                <button onClick={() => handleNewMedication()}>Submit</button>
+                <button type="submit">Submit</button>
               </form>
               <button
                 className="hide-form-btn"

@@ -8,6 +8,7 @@ import EditSvg from "@/assets/editSvg";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
 import { stateChange } from "@/utils/stateChange";
+import { handleNewItem } from "@/utils/newItem";
 
 export default function Appointments({ pet }: Data) {
   const [showForm, setShowForm] = useState(false);
@@ -19,14 +20,6 @@ export default function Appointments({ pet }: Data) {
     notes: "",
   });
 
-  const handleNewAppointment = () => {
-    if (pet) {
-      addAppointment(1, pet.name, newAppointment);
-    } else {
-      console.error("No pet selected for adding an appointment.");
-    }
-  };
-
   return (
     <div className="appointments h-full px-8 py-5">
       <h2>Appointments</h2>
@@ -36,7 +29,7 @@ export default function Appointments({ pet }: Data) {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleNewAppointment();
+                handleNewItem(pet, addAppointment, newAppointment);
               }}
             >
               <div>
