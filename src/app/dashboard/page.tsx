@@ -18,7 +18,6 @@ export default function Dashboard() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        console.log("User is signed in:", user);
         setUser(user);
         try {
           const data = await readData(1);
