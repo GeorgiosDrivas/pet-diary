@@ -92,28 +92,28 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                       {pet.medications.length > 0 ? (
                         pet.medications.map(
                           (medication: MedicationType, index: number) => (
-                            <>
-                              <tr
-                                key={index}
-                                className="border-b border-[#e5e7eb]"
-                              >
-                                <td className="text-center py-3">
-                                  {medication.medicationName}
-                                </td>
-                                <td className="text-center py-3">
-                                  {medication.dosage}
-                                </td>
-                                <td className="text-center py-3">
-                                  {medication.notes || "No notes"}
-                                </td>
+                            <tr
+                              key={index}
+                              className="border-b border-[#e5e7eb]"
+                            >
+                              <td className="text-center py-3">
+                                {medication.medicationName}
+                              </td>
+                              <td className="text-center py-3">
+                                {medication.dosage}
+                              </td>
+                              <td className="text-center py-3">
+                                {medication.notes || "No notes"}
+                              </td>
+                              <td className="text-center py-3">
                                 <button className="me-3 my-2">
                                   <EditSvg />
                                 </button>
                                 <button className="my-2">
                                   <DeleteSvg />
                                 </button>
-                              </tr>
-                            </>
+                              </td>
+                            </tr>
                           )
                         )
                       ) : (

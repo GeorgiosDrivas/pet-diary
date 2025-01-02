@@ -27,8 +27,7 @@ export default function Appointments({ pet }: Data) {
         {showForm ? (
           <div className="relative w-[300px]">
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
+              onSubmit={() => {
                 handleNewItem(pet, addAppointment, newAppointment);
               }}
             >
@@ -114,12 +113,14 @@ export default function Appointments({ pet }: Data) {
                             <td className="text-center py-3">
                               {appointment.notes || "No notes"}
                             </td>
-                            <button className="me-3 my-2">
-                              <EditSvg />
-                            </button>
-                            <button className="my-2">
-                              <DeleteSvg />
-                            </button>
+                            <td className="text-center py-3">
+                              <button className="me-3 my-2">
+                                <EditSvg />
+                              </button>
+                              <button className="my-2">
+                                <DeleteSvg />
+                              </button>
+                            </td>
                           </tr>
                         )
                       )
