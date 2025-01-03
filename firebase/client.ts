@@ -118,6 +118,38 @@ export async function addPet(userId: number, pet: Pet) {
   }
 }
 
+export async function removeAppointment(
+  userId: number,
+  petName: string,
+  appointmentId: number
+) {
+  const reference = ref(db, `users/${userId}`);
+  try {
+    const snapshot = await get(reference);
+    if (snapshot.exists()) {
+      const userData: { username: string; pets: Pet[] } = snapshot.val();
+
+      const updatedPets = userData.pets.map((pet) => {
+        if (pet.name === petName) {
+          return {
+            ...pet,
+            appointments: pet.appointments?.filter(
+              (appointment) => appointment.id !== appointmentId
+            ),
+          };
+        }
+        return pet;
+      });
+
+      await writeUsers(userId, userData.username, updatedPets);
+    } else {
+      console.error("User not found!");
+    }
+  } catch (error) {
+    console.error("Error removing appointment:", error);
+  }
+}
+
 export const auth = getAuth(app);
 
 export default app;
