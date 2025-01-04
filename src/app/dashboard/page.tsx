@@ -39,7 +39,7 @@ export default function Dashboard() {
 
   const selectPet = (name: string) => {
     setNewPetBool(false);
-    const pet = userData?.pets.find((pet: Pet) => pet.name === name);
+    const pet = userData?.pets.find((pet: Pet) => pet?.name === name);
     setCurrentPet(pet || null);
   };
 
