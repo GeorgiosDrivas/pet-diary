@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { addAppointment } from "../../firebase/client";
-import { AppointmentsType, Data } from "@/types";
+import { addAppointment, removeAppointment } from "../../firebase/client";
+import { AppointmentsType, Data, Pet } from "@/types";
 import DeleteSvg from "@/assets/deleteSvg";
 import EditSvg from "@/assets/editSvg";
 import CloseSvg from "@/assets/closeSvg";
@@ -19,6 +19,12 @@ export default function Appointments({ pet }: Data) {
     date: "",
     notes: "",
   });
+
+  const removeAppointmentFn = (pet: Pet, index: number) => {
+    window.location.reload();
+    removeAppointment(1, pet?.name, index);
+    alert("Appointment removed successfully.");
+  };
 
   return (
     <div className="appointments h-full px-8 py-5">
@@ -117,7 +123,10 @@ export default function Appointments({ pet }: Data) {
                               <button className="me-3 my-2">
                                 <EditSvg />
                               </button>
-                              <button className="my-2">
+                              <button
+                                className="my-2"
+                                onClick={() => removeAppointmentFn(pet, index)}
+                              >
                                 <DeleteSvg />
                               </button>
                             </td>
