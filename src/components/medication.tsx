@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { addMedication, removeMedication } from "../../firebase/client";
+import { addMedication } from "../../firebase/client";
+import { removeMedication } from "../../firebase/deleteMethods";
 import { MedicationType, Pet } from "@/types";
 import EditSvg from "@/assets/editSvg";
 import DeleteSvg from "@/assets/deleteSvg";
@@ -18,11 +19,11 @@ export default function Medication({ pet }: { pet: Pet | null }) {
     notes: "",
   });
 
-    const removeMedicationFn = (pet: Pet, index: number) => {
-      window.location.reload();
-      removeMedication(1, pet?.name, index);
-      alert("Medication removed successfully.");
-    };
+  const removeMedicationFn = (pet: Pet, index: number) => {
+    window.location.reload();
+    removeMedication(1, pet?.name, index);
+    alert("Medication removed successfully.");
+  };
 
   return (
     <>
@@ -115,7 +116,10 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                                 <button className="me-3 my-2">
                                   <EditSvg />
                                 </button>
-                                <button className="my-2" onClick={() => removeMedicationFn(pet, index)}>
+                                <button
+                                  className="my-2"
+                                  onClick={() => removeMedicationFn(pet, index)}
+                                >
                                   <DeleteSvg />
                                 </button>
                               </td>

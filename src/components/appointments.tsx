@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { addAppointment, removeAppointment } from "../../firebase/client";
+import { addAppointment } from "../../firebase/client";
+import { removeAppointment } from "../../firebase/deleteMethods";
 import { AppointmentsType, Data, Pet } from "@/types";
 import DeleteSvg from "@/assets/deleteSvg";
 import EditSvg from "@/assets/editSvg";

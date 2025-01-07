@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
+export const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
 
 export function writeUsers(userId: number, name: string | null, pets: Pet[]) {
   const reference = ref(db, "users/" + userId);
@@ -115,70 +115,6 @@ export async function addPet(userId: number, pet: Pet) {
     }
   } catch (error) {
     console.error("Error adding pet:", error);
-  }
-}
-
-export async function removeAppointment(
-  userId: number,
-  petName: string,
-  appointmentId: number
-) {
-  const reference = ref(db, `users/${userId}`);
-  try {
-    const snapshot = await get(reference);
-    if (snapshot.exists()) {
-      const userData: { username: string; pets: Pet[] } = snapshot.val();
-
-      const updatedPets = userData.pets.map((pet) => {
-        if (pet.name === petName) {
-          return {
-            ...pet,
-            appointments: pet.appointments?.filter(
-              (appointment) => appointment.id !== appointmentId
-            ),
-          };
-        }
-        return pet;
-      });
-
-      await writeUsers(userId, userData.username, updatedPets);
-    } else {
-      console.error("User not found!");
-    }
-  } catch (error) {
-    console.error("Error removing appointment:", error);
-  }
-}
-
-export async function removeMedication(
-  userId: number,
-  petName: string,
-  medicationId: number
-) {
-  const reference = ref(db, `users/${userId}`);
-  try {
-    const snapshot = await get(reference);
-    if (snapshot.exists()) {
-      const userData: { username: string; pets: Pet[] } = snapshot.val();
-
-      const updatedPets = userData.pets.map((pet) => {
-        if (pet.name === petName) {
-          return {
-            ...pet,
-            medications: pet.medications?.filter(
-              (medication) => medication.id !== medicationId
-            ),
-          };
-        }
-        return pet;
-      });
-
-      await writeUsers(userId, userData.username, updatedPets);
-    } else {
-      console.error("User not found!");
-    }
-  } catch (error) {
-    console.error("Error removing medication:", error);
   }
 }
 
