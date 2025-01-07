@@ -1,7 +1,7 @@
 import { Pet } from "@/types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, onValue, ref, set } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -21,22 +21,6 @@ export function writeUsers(userId: number, name: string | null, pets: Pet[]) {
   set(reference, {
     username: name,
     pets: pets,
-  });
-}
-
-export function readData(userId: number): Promise<any> {
-  return new Promise((resolve, reject) => {
-    const userRef = ref(db, "users/" + userId);
-    onValue(
-      userRef,
-      (snapshot) => {
-        const data = snapshot.val();
-        resolve(data);
-      },
-      (error) => {
-        reject(error);
-      }
-    );
   });
 }
 

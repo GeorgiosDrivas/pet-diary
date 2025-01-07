@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { auth, readData } from "../../../firebase/client";
+import { auth } from "../../../firebase/client";
+import { readData } from "../../../firebase/readMethods";
 import Appointments from "@/components/appointments";
 import Medication from "@/components/medication";
 import { Pet, User, UserData } from "@/types";
