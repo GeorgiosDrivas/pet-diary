@@ -1,7 +1,7 @@
-import { AppointmentsType, MedicationType, Pet } from "@/types";
+import { Pet } from "@/types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { get, getDatabase, onValue, ref, set } from "firebase/database";
+import { getDatabase, onValue, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -24,36 +24,6 @@ export function writeUsers(userId: number, name: string | null, pets: Pet[]) {
   });
 }
 
-export async function addAppointment(
-  userId: number,
-  petName: string,
-  newAppointment: AppointmentsType
-) {
-  const reference = ref(db, `users/${userId}`);
-  try {
-    const snapshot = await get(reference);
-    if (snapshot.exists()) {
-      const userData: { username: string; pets: Pet[] } = snapshot.val();
-
-      const updatedPets = userData.pets.map((pet) => {
-        if (pet.name === petName) {
-          return {
-            ...pet,
-            appointments: [...(pet.appointments || []), newAppointment],
-          };
-        }
-        return pet;
-      });
-
-      await writeUsers(userId, userData.username, updatedPets);
-    } else {
-      console.error("User not found!");
-    }
-  } catch (error) {
-    console.error("Error adding appointment:", error);
-  }
-}
-
 export function readData(userId: number): Promise<any> {
   return new Promise((resolve, reject) => {
     const userRef = ref(db, "users/" + userId);
@@ -68,54 +38,6 @@ export function readData(userId: number): Promise<any> {
       }
     );
   });
-}
-
-export async function addMedication(
-  userId: number,
-  petName: string,
-  newMedication: MedicationType
-) {
-  const reference = ref(db, `users/${userId}`);
-  try {
-    const snapshot = await get(reference);
-    if (snapshot.exists()) {
-      const userData: { username: string; pets: Pet[] } = snapshot.val();
-
-      const updatedPets = userData.pets.map((pet) => {
-        if (pet.name === petName) {
-          return {
-            ...pet,
-            medications: [...(pet.medications || []), newMedication],
-          };
-        }
-        return pet;
-      });
-
-      await writeUsers(userId, userData.username, updatedPets);
-    } else {
-      console.error("User not found!");
-    }
-  } catch (error) {
-    console.error("Error adding medication:", error);
-  }
-}
-
-export async function addPet(userId: number, pet: Pet) {
-  const reference = ref(db, `users/${userId}`);
-  try {
-    const snapshot = await get(reference);
-    if (snapshot.exists()) {
-      const userData: { username: string; pets: Pet[] } = snapshot.val();
-
-      const updatedPets = [...(userData.pets || []), pet];
-
-      await writeUsers(userId, userData.username, updatedPets);
-    } else {
-      console.error("User not found!");
-    }
-  } catch (error) {
-    console.error("Error adding pet:", error);
-  }
 }
 
 export const auth = getAuth(app);

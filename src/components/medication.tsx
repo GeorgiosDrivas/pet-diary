@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addMedication } from "../../firebase/client";
+import { addMedication } from "../../firebase/addMethods";
 import { removeMedication } from "../../firebase/deleteMethods";
 import { MedicationType, Pet } from "@/types";
 import EditSvg from "@/assets/editSvg";

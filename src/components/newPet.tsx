@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addPet } from "../../firebase/client";
+import { addPet } from "../../firebase/addMethods";
 import { Pet } from "@/types";
 
 export default function NewPet() {
