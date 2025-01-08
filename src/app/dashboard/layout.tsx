@@ -30,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div id="root" className="position-relative">
+          {children}
+        </div>
       </body>
     </html>
   );
