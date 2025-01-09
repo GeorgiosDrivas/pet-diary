@@ -3,7 +3,7 @@ import EditSvg from "@/assets/editSvg";
 import { AppointmentsType, Pet } from "@/types";
 import { removeAppointment } from "../../../firebase/deleteMethods";
 import React, { useState } from "react";
-import EditItem from "../editItem";
+import EditAppointment from "./editAppointment";
 
 export default function AppointmentsTable({ pet }: { pet: Pet }) {
   const [editItem, setEditItem] = useState(false);
@@ -24,7 +24,10 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
   return (
     <>
       {editItem ? (
-        <EditItem appointment={editableAppointment} />
+        <EditAppointment
+          appointment={editableAppointment}
+          setEditable={setEditItem}
+        />
       ) : (
         <table className="w-full border-collapse border border-gray-200">
           <thead>

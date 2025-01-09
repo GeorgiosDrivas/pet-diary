@@ -1,10 +1,13 @@
+import CloseSvg from "@/assets/closeSvg";
 import { AppointmentsType } from "@/types";
 import React from "react";
 
-export default function EditItem({
+export default function EditAppointment({
   appointment,
+  setEditable,
 }: {
   appointment: AppointmentsType | null;
+  setEditable: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <>
@@ -28,6 +31,12 @@ export default function EditItem({
           </div>
           <button type="submit">Submit</button>
         </form>
+        <button
+          className="hide-form-btn"
+          onClick={() => setEditable((prv) => !prv)}
+        >
+          <CloseSvg />
+        </button>
       </div>
     </>
   );
