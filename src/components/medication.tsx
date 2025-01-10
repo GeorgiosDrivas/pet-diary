@@ -1,21 +1,18 @@
 import React, { useState } from "react";
-import { addMedication } from "../../firebase/addMethods";
 import { removeMedication } from "../../firebase/deleteMethods";
 import { MedicationType, Pet } from "@/types";
 import EditSvg from "@/assets/editSvg";
 import DeleteSvg from "@/assets/deleteSvg";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
-import { stateChange } from "@/utils/stateChange";
-import { handleNewItem } from "@/utils/newItem";
+import NewMedicationForm from "./medications/newMedicationForm";
 
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
-  const [newMedication, setNewMedication] = useState({
+  const [newMedication, setNewMedication] = useState<MedicationType>({
     id: "1",
     medicationName: "",
     dosage: "",
-    date: "",
     notes: "",
   });
 
@@ -32,50 +29,11 @@ export default function Medication({ pet }: { pet: Pet | null }) {
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <form
-                onSubmit={() =>
-                  handleNewItem(pet, addMedication, newMedication)
-                }
-              >
-                <div>
-                  <label htmlFor="medicationName">Medication Name</label>
-                  <input
-                    type="text"
-                    id="medicationName"
-                    value={newMedication.medicationName}
-                    onChange={(e) =>
-                      stateChange(
-                        e,
-                        "medicationName",
-                        setNewMedication,
-                        newMedication
-                      )
-                    }
-                  />
-                </div>
-                <div>
-                  <label htmlFor="dosage">Dosage</label>
-                  <input
-                    type="text"
-                    id="dosage"
-                    value={newMedication.dosage}
-                    onChange={(e) =>
-                      stateChange(e, "dosage", setNewMedication, newMedication)
-                    }
-                  />
-                </div>
-                <div>
-                  <label htmlFor="notes">Notes</label>
-                  <textarea
-                    id="notes"
-                    value={newMedication.notes}
-                    onChange={(e) =>
-                      stateChange(e, "notes", setNewMedication, newMedication)
-                    }
-                  />
-                </div>
-                <button type="submit">Submit</button>
-              </form>
+              <NewMedicationForm
+                newMedication={newMedication}
+                setNewMedication={setNewMedication}
+                pet={pet}
+              />
               <button
                 className="hide-form-btn"
                 onClick={() => setShowForm((prv: boolean) => !prv)}
