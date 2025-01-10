@@ -15,7 +15,7 @@ export default function NewPet() {
     age: age,
     appointments: [
       {
-        id: 1,
+        id: "1",
         title: "Example",
         doctor: "Dr. Example",
         date: "10/10/2024",
@@ -23,7 +23,7 @@ export default function NewPet() {
     ],
     medications: [
       {
-        id: 1,
+        id: "1",
         medicationName: "Example",
         dosage: "Dr. Example",
       },

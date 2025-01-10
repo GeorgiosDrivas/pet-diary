@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { MedicationType, Pet } from "@/types";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
-import NewMedicationForm from "./medications/newMedicationForm";
-import MedicationsTable from "./medications/medicationsTable";
+import NewMedicationForm from "./newMedicationForm";
+import MedicationsTable from "./medicationsTable";
 
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
