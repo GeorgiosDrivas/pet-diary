@@ -25,6 +25,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
     <>
       {editItem ? (
         <EditAppointment
+          pet={pet}
           appointment={editableAppointment}
           setAppointment={setEditableAppointment}
           setEditable={setEditItem}

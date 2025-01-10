@@ -1,24 +1,28 @@
 import CloseSvg from "@/assets/closeSvg";
-import { AppointmentsType } from "@/types";
+import { AppointmentsType, Pet } from "@/types";
 import React from "react";
 import { convertDateToInputFormat } from "@/utils/formatDate";
+import { editAppointment } from "../../../firebase/editMethods";
 
 export default function EditAppointment({
+  pet,
   appointment,
   setEditable,
   setAppointment,
 }: {
+  pet: Pet;
   appointment: AppointmentsType | null;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
   setAppointment: React.Dispatch<React.SetStateAction<AppointmentsType | null>>;
 }) {
-  console.log(appointment);
   return (
     <>
       <div className="relative w-[300px]">
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
+          onSubmit={() => {
+            if (appointment) {
+              editAppointment(1, pet.name, appointment.title, appointment); // Needs refactor, appointment title cannot change right now
+            }
           }}
         >
           <div>
