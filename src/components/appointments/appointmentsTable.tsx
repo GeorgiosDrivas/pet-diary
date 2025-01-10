@@ -10,9 +10,9 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
   const [editableAppointment, setEditableAppointment] =
     useState<AppointmentsType | null>(null);
 
-  const removeAppointmentFn = (pet: Pet, index: number) => {
+  const removeAppointmentFn = (pet: Pet, appointmentId: string) => {
     window.location.reload();
-    removeAppointment(1, pet?.name, index);
+    removeAppointment(1, pet?.name, appointmentId);
     alert("Appointment removed successfully.");
   };
 
@@ -60,7 +60,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
                       </button>
                       <button
                         className="my-2"
-                        onClick={() => removeAppointmentFn(pet, index)}
+                        onClick={() => removeAppointmentFn(pet, appointment.id)}
                       >
                         <DeleteSvg />
                       </button>

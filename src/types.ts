@@ -1,5 +1,5 @@
 export interface AppointmentsType {
-  id: number;
+  id: string;
   title: string;
   doctor: string;
   date: string;

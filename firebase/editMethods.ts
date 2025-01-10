@@ -5,7 +5,7 @@ import { get, ref } from "firebase/database";
 export async function editAppointment(
   userId: number,
   petName: string,
-  appointmentTitle: string,
+  appointmentId: string,
   updatedAppointment: AppointmentsType
 ) {
   const reference = ref(db, `users/${userId}`);
@@ -19,7 +19,7 @@ export async function editAppointment(
           return {
             ...pet,
             appointments: pet.appointments.map((appointment) => {
-              if (appointment.title === appointmentTitle) {
+              if (appointment.id === appointmentId) {
                 return updatedAppointment;
               }
               return appointment;

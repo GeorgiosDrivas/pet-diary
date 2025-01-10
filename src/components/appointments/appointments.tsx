@@ -10,7 +10,7 @@ import AppointmentsForm from "./appointmentsForm";
 export default function Appointments({ pet }: Data) {
   const [showForm, setShowForm] = useState(false);
   const [newAppointment, setNewAppointment] = useState<AppointmentsType>({
-    id: 1,
+    id: "1",
     title: "",
     doctor: "",
     date: "",

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { get, ref } from "firebase/database";
 import { db, writeUsers } from "./client";
 import { AppointmentsType, MedicationType, Pet } from "@/types";
@@ -65,7 +66,13 @@ export async function addAppointment(
         if (pet.name === petName) {
           return {
             ...pet,
-            appointments: [...(pet.appointments || []), newAppointment],
+            appointments: [
+              ...(pet.appointments || []),
+              {
+                ...newAppointment,
+                id: uuidv4(),
+              },
+            ],
           };
         }
         return pet;

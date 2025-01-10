@@ -5,7 +5,7 @@ import { get, ref } from "firebase/database";
 export async function removeAppointment(
   userId: number,
   petName: string,
-  appointmentId: number
+  appointmentId: string
 ) {
   const reference = ref(db, `users/${userId}`);
   try {

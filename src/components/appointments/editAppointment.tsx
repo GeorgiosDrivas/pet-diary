@@ -21,7 +21,7 @@ export default function EditAppointment({
         <form
           onSubmit={() => {
             if (appointment) {
-              editAppointment(1, pet.name, appointment.title, appointment); // Needs refactor, appointment title cannot change right now
+              editAppointment(1, pet.name, appointment.id, appointment); // Needs refactor, appointment title cannot change right now
             }
           }}
         >
