@@ -37,7 +37,7 @@ export async function removeAppointment(
 export async function removeMedication(
   userId: number,
   petName: string,
-  medicationId: number
+  medicationId: string
 ) {
   const reference = ref(db, `users/${userId}`);
   try {

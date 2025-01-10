@@ -12,14 +12,14 @@ import { handleNewItem } from "@/utils/newItem";
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
   const [newMedication, setNewMedication] = useState({
-    id: 1,
+    id: "1",
     medicationName: "",
     dosage: "",
     date: "",
     notes: "",
   });
 
-  const removeMedicationFn = (pet: Pet, index: number) => {
+  const removeMedicationFn = (pet: Pet, index: string) => {
     window.location.reload();
     removeMedication(1, pet?.name, index);
     alert("Medication removed successfully.");
@@ -118,7 +118,9 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                                 </button>
                                 <button
                                   className="my-2"
-                                  onClick={() => removeMedicationFn(pet, index)}
+                                  onClick={() =>
+                                    removeMedicationFn(pet, medication.id)
+                                  }
                                 >
                                   <DeleteSvg />
                                 </button>

@@ -7,7 +7,7 @@ export interface AppointmentsType {
 }
 
 export interface MedicationType {
-  id: number;
+  id: string;
   medicationName: string;
   dosage: string;
   notes?: string;

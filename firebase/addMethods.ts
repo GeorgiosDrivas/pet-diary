@@ -36,7 +36,13 @@ export async function addMedication(
         if (pet.name === petName) {
           return {
             ...pet,
-            medications: [...(pet.medications || []), newMedication],
+            medications: [
+              ...(pet.medications || []),
+              {
+                ...newMedication,
+                id: uuidv4(),
+              },
+            ],
           };
         }
         return pet;
