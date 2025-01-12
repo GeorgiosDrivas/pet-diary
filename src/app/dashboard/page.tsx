@@ -11,6 +11,7 @@ import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
 import DeleteSvg from "@/assets/deleteSvg";
 import { removePet } from "../../../firebase/deleteMethods";
+import NewSvg from "@/assets/newSvg";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -83,23 +84,7 @@ export default function Dashboard() {
                       </button>
                     </div>
                   ))}
-                <svg
-                  className="new-pet-svg cursor-pointer"
-                  onClick={() => newPet()}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20px"
-                  height="20px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M6 12H18M12 6V18"
-                    stroke="#000000"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <NewSvg onClick={newPet} />
               </div>
               <div className="flex justify-between items-center row-span-1">
                 <p>{user?.displayName || "Guest"}</p>
