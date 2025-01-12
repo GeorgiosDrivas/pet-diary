@@ -65,3 +65,22 @@ export async function removeMedication(
     console.error("Error removing medication:", error);
   }
 }
+
+export async function removePet(userId: number, petName: string) {
+  const reference = ref(db, `users/${userId}`);
+
+  try {
+    const snapshot = await get(reference);
+    if (snapshot.exists()) {
+      const userData: { username: string; pets: Pet[] } = snapshot.val();
+
+      const updatedPets = userData.pets.filter((pet) => pet.name !== petName);
+
+      await writeUsers(userId, userData.username, updatedPets);
+    } else {
+      console.error("User not found!");
+    }
+  } catch (error) {
+    console.error("Error removing pet:", error);
+  }
+}
