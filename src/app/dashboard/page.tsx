@@ -9,6 +9,8 @@ import { Pet, User, UserData } from "@/types";
 import Logout from "@/utils/logout";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
+import DeleteSvg from "@/assets/deleteSvg";
+import { removePet } from "../../../firebase/deleteMethods";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -44,6 +46,11 @@ export default function Dashboard() {
     setCurrentPet(pet || null);
   };
 
+  const removePetFn = (userId: number, petName: string) => {
+    window.location.reload();
+    removePet(userId, petName);
+  };
+
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
       <div className="w-full h-screen">
@@ -59,14 +66,22 @@ export default function Dashboard() {
               <div className="row-span-6">
                 <p className="mb-5">Your Pets</p>
                 {userData &&
+                  userData.pets &&
                   userData.pets.map((pet: Pet) => (
-                    <p
+                    <div
+                      className="flex justify-between items-center mb-3 pe-2"
                       key={pet.name}
-                      className="cursor-pointer single-pet"
-                      onClick={() => selectPet(pet.name)}
                     >
-                      {pet.name}
-                    </p>
+                      <p
+                        className="cursor-pointer single-pet m-0 p-0"
+                        onClick={() => selectPet(pet.name)}
+                      >
+                        {pet.name}
+                      </p>
+                      <button onClick={() => removePetFn(1, pet.name)}>
+                        <DeleteSvg />
+                      </button>
+                    </div>
                   ))}
                 <svg
                   className="new-pet-svg cursor-pointer"
