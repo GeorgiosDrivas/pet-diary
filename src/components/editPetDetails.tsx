@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import CloseSvg from "@/assets/closeSvg";
 import { Pet } from "@/types";
 import { editPetDetails } from "../../firebase/editMethods";
 
@@ -71,11 +70,11 @@ export default function EditPetDetails({
               }
             />
           </div>
-          <button type="submit">Submit</button>
+          <div className="flex justify-between mt-2">
+            <button type="submit">Submit</button>
+            <button onClick={() => setEdit(false)}>Close</button>
+          </div>
         </form>
-        <button className="hide-form-btn" onClick={() => setEdit(false)}>
-          <CloseSvg />
-        </button>
       </div>
     </>
   );

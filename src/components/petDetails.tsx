@@ -9,7 +9,7 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
     <div className="py-3 details px-8 h-[50%] self-center ">
       {pet && (
         <>
-          <div>
+          <div className="relative">
             {edit ? (
               <EditPetDetails setEdit={setEdit} pet={pet} />
             ) : (
