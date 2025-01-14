@@ -73,3 +73,30 @@ export async function editMedication(
     console.error("Error editing appointment:", error);
   }
 }
+
+export async function editPetDetails(
+  userId: number,
+  petName: string,
+  updatedPet: Pet
+) {
+  const reference = ref(db, `users/${userId}`);
+  try {
+    const snapshot = await get(reference);
+    if (snapshot.exists()) {
+      const userData: { username: string; pets: Pet[] } = snapshot.val();
+
+      const updatedPets = userData.pets.map((pet) => {
+        if (pet.name === petName) {
+          return updatedPet;
+        }
+        return pet;
+      });
+
+      await writeUsers(userId, userData.username, updatedPets);
+    } else {
+      console.error("User not found!");
+    }
+  } catch (error) {
+    console.error("Error editing pet details:", error);
+  }
+}
