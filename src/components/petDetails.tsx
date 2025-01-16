@@ -19,7 +19,10 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
                 <p>Species: {pet.species}</p>
                 <p>Breed: {pet.breed}</p>
                 <p>Age: {pet.age}</p>
-                <button className="mt-3" onClick={() => setEdit((prv) => !prv)}>
+                <button
+                  className="mt-3 edit-btn"
+                  onClick={() => setEdit((prv) => !prv)}
+                >
                   Edit pet details
                 </button>
               </>
