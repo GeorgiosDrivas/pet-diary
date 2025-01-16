@@ -53,7 +53,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
                     </td>
                     <td className="text-center py-3">
                       <button
-                        className="me-3 my-2"
+                        className="me-3 my-2 edit-btn"
                         onClick={() => editAppointment(appointment)}
                       >
                         <EditSvg />

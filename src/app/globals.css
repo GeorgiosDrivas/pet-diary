@@ -86,3 +86,7 @@ label {
 .remove-btn:hover {
   background-color: #ff4545;
 }
+
+.edit-btn:hover {
+  background-color: #80c4e9;
+}
