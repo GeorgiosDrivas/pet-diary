@@ -81,7 +81,7 @@ export default function Dashboard() {
                       </p>
                       <button
                         onClick={() => removePetFn(1, pet.name)}
-                        className="remove-pet-btn"
+                        className="remove-btn"
                       >
                         <DeleteSvg />
                       </button>

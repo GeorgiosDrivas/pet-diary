@@ -59,7 +59,7 @@ export default function MedicationsTable({ pet }: { pet: Pet }) {
                         <EditSvg />
                       </button>
                       <button
-                        className="my-2"
+                        className="my-2 remove-btn"
                         onClick={() => removeMedicationFn(pet, medication.id)}
                       >
                         <DeleteSvg />

@@ -83,6 +83,6 @@ label {
   border-radius: 40px;
 }
 
-.remove-pet-btn:hover {
+.remove-btn:hover {
   background-color: #ff4545;
 }

@@ -59,7 +59,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
                         <EditSvg />
                       </button>
                       <button
-                        className="my-2"
+                        className="remove-btn my-2"
                         onClick={() => removeAppointmentFn(pet, appointment.id)}
                       >
                         <DeleteSvg />
