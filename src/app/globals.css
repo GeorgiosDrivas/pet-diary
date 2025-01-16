@@ -82,3 +82,7 @@ label {
   padding: 50px 40px;
   border-radius: 40px;
 }
+
+.remove-pet-btn:hover {
+  background-color: #ff4545;
+}

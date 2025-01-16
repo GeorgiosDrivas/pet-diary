@@ -79,7 +79,10 @@ export default function Dashboard() {
                       >
                         {pet.name}
                       </p>
-                      <button onClick={() => removePetFn(1, pet.name)}>
+                      <button
+                        onClick={() => removePetFn(1, pet.name)}
+                        className="remove-pet-btn"
+                      >
                         <DeleteSvg />
                       </button>
                     </div>
