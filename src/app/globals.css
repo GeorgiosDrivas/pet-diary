@@ -80,3 +80,7 @@ label {
 .edit-btn:hover {
   background-color: #80c4e9;
 }
+
+.create-item-button {
+  margin-top: 20px;
+}
