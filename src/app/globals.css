@@ -67,16 +67,6 @@ label {
   font-size: 12px;
 }
 
-.single-pet {
-  border: 1px solid transparent;
-  transition: all, 0.3s;
-}
-
-.single-pet:hover {
-  border: 1px solid;
-  border-radius: 3px;
-}
-
 .new-pet {
   background-color: #ffffff;
   padding: 50px 40px;

@@ -70,7 +70,7 @@ export default function Dashboard() {
                   userData.pets &&
                   userData.pets.map((pet: Pet) => (
                     <div
-                      className="flex justify-between items-center mb-3 pe-2"
+                      className="flex justify-between items-center mb-3 pe-2 single-pet-wrap"
                       key={pet.name}
                     >
                       <p
