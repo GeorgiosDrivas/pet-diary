@@ -6,7 +6,7 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
   const [edit, setEdit] = useState(false);
 
   return (
-    <div className="py-3 details px-8 h-[50%] self-center ">
+    <div className="py-3 details px-8 self-center ">
       {pet && (
         <>
           <div className="relative">
@@ -15,7 +15,7 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
             ) : (
               <>
                 <h2>Pet Details</h2>
-                <h2>Name: {pet.name}</h2>
+                <p>Name: {pet.name}</p>
                 <p>Species: {pet.species}</p>
                 <p>Breed: {pet.breed}</p>
                 <p>Age: {pet.age}</p>
