@@ -8,7 +8,7 @@ import Medication from "@/components/medications/medication";
 import { Pet, User, UserData } from "@/types";
 import Logout from "@/utils/logout";
 import NewPet from "@/components/newPet";
-import PetDetails from "@/components/petDetails";
+// import PetDetails from "@/components/petDetails";
 import DeleteSvg from "@/assets/deleteSvg";
 import { removePet } from "../../../firebase/deleteMethods";
 import NewSvg from "@/assets/newSvg";
