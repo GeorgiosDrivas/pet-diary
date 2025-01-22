@@ -10,16 +10,28 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
   const [editableAppointment, setEditableAppointment] =
     useState<AppointmentsType | null>(null);
 
-  const removeAppointmentFn = (pet: Pet, appointmentId: string) => {
-    window.location.reload();
-    removeAppointment(1, pet?.name, appointmentId);
-    alert("Appointment removed successfully.");
+  const removeAppointmentFn = (appointmentId: string) => {
+    removeAppointment(1, pet?.name, appointmentId)
+      .then(() => {
+        // Filter out the removed appointment
+        pet.appointments = pet.appointments.filter(
+          (appointment) => appointment.id !== appointmentId
+        );
+        alert("Appointment removed successfully.");
+      })
+      .catch((err) => {
+        console.error("Error removing appointment:", err);
+      });
   };
 
   const editAppointment = (appointment: AppointmentsType) => {
     setEditItem(true);
     setEditableAppointment(appointment);
   };
+
+  const hasNotes = pet.appointments.some(
+    (appointment) => appointment.notes && appointment.notes.trim() !== ""
+  );
 
   return (
     <>
@@ -37,7 +49,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
               <th>Title</th>
               <th>Doctor</th>
               <th>Date</th>
-              <th>Notes</th>
+              {hasNotes && <th>Notes</th>}
             </tr>
           </thead>
           <tbody>
@@ -48,9 +60,9 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
                     <td className="text-center py-3">{appointment.title}</td>
                     <td className="text-center py-3">{appointment.doctor}</td>
                     <td className="text-center py-3">{appointment.date}</td>
-                    <td className="text-center py-3">
-                      {appointment.notes || "No notes"}
-                    </td>
+                    {appointment.notes && (
+                      <td className="text-center py-3">{appointment.notes}</td>
+                    )}
                     <td className="text-center py-3">
                       <button
                         className="me-3 my-2 edit-btn"
@@ -60,7 +72,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
                       </button>
                       <button
                         className="remove-btn my-2"
-                        onClick={() => removeAppointmentFn(pet, appointment.id)}
+                        onClick={() => removeAppointmentFn(appointment.id)}
                       >
                         <DeleteSvg />
                       </button>
