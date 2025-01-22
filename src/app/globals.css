@@ -84,3 +84,24 @@ label {
 .create-item-button {
   margin-top: 20px;
 }
+
+.details {
+  position: fixed;
+  z-index: 9999;
+  width: 62.5%;
+}
+
+.details div:first-child {
+  display: inline-flex;
+}
+
+.details div:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  margin-top: 100px;
+}

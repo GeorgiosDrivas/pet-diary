@@ -8,7 +8,7 @@ import Medication from "@/components/medications/medication";
 import { Pet, User, UserData } from "@/types";
 import Logout from "@/utils/logout";
 import NewPet from "@/components/newPet";
-// import PetDetails from "@/components/petDetails";
+import PetDetails from "@/components/petDetails";
 import DeleteSvg from "@/assets/deleteSvg";
 import { removePet } from "../../../firebase/deleteMethods";
 import NewSvg from "@/assets/newSvg";
@@ -95,12 +95,15 @@ export default function Dashboard() {
               <NewPet />
             ) : (
               <div className="grid grid-cols-12 gap-4">
-                <div className="col-span-9">
-                  <div className="grid grid-rows-12 gap-4 h-full py-3">
-                    <div className="row-span-6">
+                <div className="col-span-9 mt-4">
+                  <div className="details px-10 py-3">
+                    <PetDetails pet={currentPet} />
+                  </div>
+                  <div className="content grid grid-rows-6 gap-4 py-3">
+                    <div className="row-span-3">
                       <Appointments pet={currentPet} />
                     </div>
-                    <div className="row-span-6">
+                    <div className="row-span-3">
                       <Medication pet={currentPet} />
                     </div>
                   </div>
@@ -111,9 +114,6 @@ export default function Dashboard() {
                     <Logout />
                   </div>
                 </div>
-                {/* <div className="col-span-3 flex p-0">
-                  <PetDetails pet={currentPet} />
-                </div> */}
               </div>
             )}
           </div>
