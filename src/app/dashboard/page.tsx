@@ -96,9 +96,11 @@ export default function Dashboard() {
             ) : (
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-9 mt-4">
-                  <div className="details px-10 py-3">
-                    <PetDetails pet={currentPet} />
-                  </div>
+                  {currentPet && (
+                    <div className="details px-10 py-3">
+                      <PetDetails pet={currentPet} />
+                    </div>
+                  )}
                   <div className="content grid grid-rows-6 gap-4 py-3">
                     <div className="row-span-3">
                       <Appointments pet={currentPet} />
