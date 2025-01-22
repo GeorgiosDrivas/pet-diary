@@ -61,8 +61,8 @@ export default function Dashboard() {
               id="sidebar"
               className="bg-[#ffffff] h-full grid grid-rows-12 ps-5"
             >
-              <div className="row-span-11 mt-5">
-                <p className="mb-5">Your Pets</p>
+              <div className="row-span-12 mt-5">
+                <h2 className="mb-5 text-center">Your Pets</h2>
                 {userData &&
                   userData.pets &&
                   userData.pets.map((pet: Pet) => (
@@ -88,10 +88,6 @@ export default function Dashboard() {
                   <NewSvg onClick={newPet} />
                 </div>
               </div>
-              <div className="flex justify-between items-center row-span-1">
-                <p>{user?.displayName || "Guest"}</p>
-                <Logout />
-              </div>
             </div>
           </div>
           <div className="col-span-10">
@@ -109,9 +105,15 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-3 flex p-0">
-                  <PetDetails pet={currentPet} />
+                <div className="flex justify-end items-start flex-row col-span-3">
+                  <div className="flex justify-between items-center me-3">
+                    <p className="me-3">{user?.displayName || "Guest"}</p>
+                    <Logout />
+                  </div>
                 </div>
+                {/* <div className="col-span-3 flex p-0">
+                  <PetDetails pet={currentPet} />
+                </div> */}
               </div>
             )}
           </div>
