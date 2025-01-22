@@ -57,8 +57,8 @@ export default function EditAppointment({
               type="date"
               id="date"
               value={
-                appointment?.date
-                  ? convertDateToInputFormat(appointment.date)
+                appointment?.start
+                  ? convertDateToInputFormat(appointment.start)
                   : ""
               }
               onChange={(e) =>
@@ -69,13 +69,13 @@ export default function EditAppointment({
             />
           </div>
           <div>
-            <label htmlFor="notes">Notes</label>
+            <label htmlFor="notes">Description</label>
             <textarea
               id="notes"
-              value={appointment?.notes || ""}
+              value={appointment?.description || ""}
               onChange={(e) =>
                 setAppointment((prv) =>
-                  prv ? { ...prv, notes: e.target.value } : null
+                  prv ? { ...prv, description: e.target.value } : null
                 )
               }
             />

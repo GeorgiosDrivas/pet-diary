@@ -2,8 +2,9 @@ export interface AppointmentsType {
   id: string;
   title: string;
   doctor: string;
-  date: string;
-  notes?: string;
+  start: string;
+  end: string;
+  description?: string;
 }
 
 export interface MedicationType {

@@ -13,6 +13,18 @@ export default function AppointmentsForm({
   setNewAppointment: React.Dispatch<React.SetStateAction<AppointmentsType>>;
   pet: Pet | null;
 }) {
+  const dateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = e.target.value;
+
+    if (selectedDate) {
+      setNewAppointment((prevState) => ({
+        ...prevState,
+        start: selectedDate,
+        end: selectedDate,
+      }));
+    }
+  };
+
   return (
     <>
       <form
@@ -47,19 +59,17 @@ export default function AppointmentsForm({
           <input
             type="date"
             id="date"
-            value={newAppointment.date}
-            onChange={(e) =>
-              stateChange(e, "date", setNewAppointment, newAppointment)
-            }
+            value={newAppointment.start}
+            onChange={(e) => dateChange(e)}
           />
         </div>
         <div>
-          <label htmlFor="notes">Notes</label>
+          <label htmlFor="notes">Description</label>
           <textarea
             id="notes"
-            value={newAppointment.notes}
+            value={newAppointment.description}
             onChange={(e) =>
-              stateChange(e, "notes", setNewAppointment, newAppointment)
+              stateChange(e, "description", setNewAppointment, newAppointment)
             }
           />
         </div>

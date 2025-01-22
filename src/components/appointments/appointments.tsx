@@ -13,8 +13,9 @@ export default function Appointments({ pet }: Data) {
     id: "1",
     title: "",
     doctor: "",
-    date: "",
-    notes: "",
+    start: "",
+    end: "",
+    description: "",
   });
 
   return (
