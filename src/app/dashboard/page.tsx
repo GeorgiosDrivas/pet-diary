@@ -70,12 +70,19 @@ export default function Dashboard() {
                       className="flex justify-between items-center mb-3 pe-2 single-pet-wrap"
                       key={pet.name}
                     >
-                      <p
-                        className="cursor-pointer single-pet m-0 p-0"
-                        onClick={() => selectPet(pet.name)}
-                      >
-                        {pet.name}
-                      </p>
+                      <div className="flex justify-center items-center">
+                        <img
+                          src={`/${pet.species.toLowerCase()}.svg`}
+                          alt="Pet logo"
+                          className="species-img me-3"
+                        />
+                        <p
+                          className="cursor-pointer single-pet m-0 p-0"
+                          onClick={() => selectPet(pet.name)}
+                        >
+                          {pet.name}
+                        </p>
+                      </div>
                       <button
                         onClick={() => removePetFn(1, pet.name)}
                         className="remove-btn"

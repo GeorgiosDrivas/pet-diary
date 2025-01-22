@@ -105,3 +105,8 @@ label {
 .content {
   margin-top: 100px;
 }
+
+.species-img {
+  width: 20px;
+  height: 20px;
+}
