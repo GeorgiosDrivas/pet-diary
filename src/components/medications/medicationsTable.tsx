@@ -21,6 +21,10 @@ export default function MedicationsTable({ pet }: { pet: Pet }) {
     setEditableMedication(medication);
   };
 
+  const hasNotes = pet.medications.some(
+    (medication) => medication.notes && medication.notes.trim() !== ""
+  );
+
   return (
     <>
       {editItem ? (
@@ -36,7 +40,7 @@ export default function MedicationsTable({ pet }: { pet: Pet }) {
             <tr>
               <th>Medication Name</th>
               <th>Dosage</th>
-              <th>Notes</th>
+              {hasNotes && <th>Notes</th>}
             </tr>
           </thead>
           <tbody>
@@ -48,9 +52,7 @@ export default function MedicationsTable({ pet }: { pet: Pet }) {
                       {medication.medicationName}
                     </td>
                     <td className="text-center py-3">{medication.dosage}</td>
-                    <td className="text-center py-3">
-                      {medication.notes || "No notes"}
-                    </td>
+                    <td className="text-center py-3">{medication.notes}</td>
                     <td className="text-center py-3">
                       <button
                         className="me-3 my-2 edit-btn"
