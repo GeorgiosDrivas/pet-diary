@@ -6,45 +6,39 @@ import {
   createViewMonthAgenda,
   createViewMonthGrid,
 } from "@schedule-x/calendar";
-import { createEventsServicePlugin } from "@schedule-x/events-service";
 import "@schedule-x/theme-default/dist/index.css";
 import { createEventModalPlugin } from "@schedule-x/event-modal";
+import { removeAppointment } from "../../../firebase/deleteMethods";
+import EventModal from "@/utils/eventModal";
 
 export default function AppointmentsTable({ pet }: { pet: Pet }) {
   const [editItem, setEditItem] = useState(false);
   const [editableAppointment, setEditableAppointment] =
     useState<AppointmentsType | null>(null);
   const calendarEvents = pet.appointments;
-  const eventsService = useState(() => createEventsServicePlugin())[0];
 
-  // const removeAppointmentFn = (appointmentId: string) => {
-  //   removeAppointment(1, pet?.name, appointmentId)
-  //     .then(() => {
-  //       // Filter out the removed appointment
-  //       pet.appointments = pet.appointments.filter(
-  //         (appointment) => appointment.id !== appointmentId
-  //       );
-  //       alert("Appointment removed successfully.");
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error removing appointment:", err);
-  //     });
-  // };
+  const removeAppointmentFn = (appointmentId: string) => {
+    removeAppointment(1, pet?.name, appointmentId)
+      .then(() => {
+        pet.appointments = pet.appointments.filter(
+          (appointment) => appointment.id !== appointmentId
+        );
+        alert("Appointment removed successfully.");
+      })
+      .catch((err) => {
+        console.error("Error removing appointment:", err);
+      });
+  };
 
-  // const editAppointment = (appointment: AppointmentsType) => {
-  //   setEditItem(true);
-  //   setEditableAppointment(appointment);
-  // };
+  const editAppointment = (appointment: AppointmentsType) => {
+    setEditItem(true);
+    setEditableAppointment(appointment);
+  };
 
   const calendar = useCalendarApp({
-    views: [
-      // createViewDay(),
-      // createViewWeek(),
-      createViewMonthGrid(),
-      createViewMonthAgenda(),
-    ],
+    views: [createViewMonthGrid(), createViewMonthAgenda()],
     events: calendarEvents,
-    plugins: [eventsService, createEventModalPlugin()],
+    plugins: [createEventModalPlugin()],
   });
 
   return (
@@ -57,7 +51,20 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
           setEditable={setEditItem}
         />
       ) : (
-        <ScheduleXCalendar calendarApp={calendar} />
+        <ScheduleXCalendar
+          calendarApp={calendar}
+          customComponents={{
+            eventModal: (props: { calendarEvent: AppointmentsType }) => {
+              return (
+                <EventModal
+                  calendarEvent={props.calendarEvent}
+                  edit={editAppointment}
+                  deleteFn={removeAppointmentFn}
+                />
+              );
+            },
+          }}
+        />
       )}
     </>
   );
