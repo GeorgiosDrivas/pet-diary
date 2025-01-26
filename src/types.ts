@@ -37,3 +37,10 @@ export interface User {
 export interface Data {
   pet: Pet | null;
 }
+
+export interface CalendarEvent {
+  id: string;
+  title: string;
+  start: string;
+  description: string;
+}

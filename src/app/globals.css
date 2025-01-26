@@ -110,3 +110,10 @@ label {
   width: 20px;
   height: 20px;
 }
+
+.event-time-wrap {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 30px 1fr;
+  margin-bottom: 20px;
+}
