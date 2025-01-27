@@ -45,11 +45,6 @@ export default function Dashboard() {
     setCurrentPet(pet || null);
   };
 
-  // const removePetFn = (userId: number, petName: string) => {
-  //   window.location.reload();
-  //   removePet(userId, petName);
-  // };
-
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
       <div className="w-full h-screen">
@@ -67,16 +62,16 @@ export default function Dashboard() {
                       className="flex justify-between items-center mb-3 pe-2 single-pet-wrap"
                       key={pet.name}
                     >
-                      <button className="single-pet-btn flex items-center gap-2">
+                      <button
+                        className="single-pet-btn flex items-center gap-2"
+                        onClick={() => selectPet(pet.name)}
+                      >
                         <img
                           src={`/${pet.species.toLowerCase()}.svg`}
                           alt="Pet logo"
                           className="species-img me-3"
                         />
-                        <p
-                          className="cursor-pointer single-pet m-0 p-0"
-                          onClick={() => selectPet(pet.name)}
-                        >
+                        <p className="cursor-pointer single-pet m-0 p-0">
                           {pet.name}
                         </p>
                       </button>
