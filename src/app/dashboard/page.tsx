@@ -9,8 +9,6 @@ import { Pet, User, UserData } from "@/types";
 import Logout from "@/utils/logout";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
-import DeleteSvg from "@/assets/deleteSvg";
-import { removePet } from "../../../firebase/deleteMethods";
 import NewSvg from "@/assets/newSvg";
 
 export default function Dashboard() {
@@ -47,10 +45,10 @@ export default function Dashboard() {
     setCurrentPet(pet || null);
   };
 
-  const removePetFn = (userId: number, petName: string) => {
-    window.location.reload();
-    removePet(userId, petName);
-  };
+  // const removePetFn = (userId: number, petName: string) => {
+  //   window.location.reload();
+  //   removePet(userId, petName);
+  // };
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -62,7 +60,6 @@ export default function Dashboard() {
               className="bg-[#ffffff] h-full grid grid-rows-12 ps-5"
             >
               <div className="row-span-12 mt-5">
-                <h2 className="mb-5 text-center">Your Pets</h2>
                 {userData &&
                   userData.pets &&
                   userData.pets.map((pet: Pet) => (
@@ -70,7 +67,7 @@ export default function Dashboard() {
                       className="flex justify-between items-center mb-3 pe-2 single-pet-wrap"
                       key={pet.name}
                     >
-                      <div className="flex justify-center items-center">
+                      <button className="single-pet-btn flex items-center gap-2">
                         <img
                           src={`/${pet.species.toLowerCase()}.svg`}
                           alt="Pet logo"
@@ -82,12 +79,6 @@ export default function Dashboard() {
                         >
                           {pet.name}
                         </p>
-                      </div>
-                      <button
-                        onClick={() => removePetFn(1, pet.name)}
-                        className="remove-btn"
-                      >
-                        <DeleteSvg />
                       </button>
                     </div>
                   ))}
