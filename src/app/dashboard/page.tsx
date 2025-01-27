@@ -104,7 +104,7 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="flex justify-end items-start flex-row col-span-3">
-                  <div className="flex justify-between items-center me-3">
+                  <div className="flex justify-between items-center me-3 cursor-pointer">
                     <p className="me-3">{user?.displayName || "Guest"}</p>
                     <Logout />
                   </div>
