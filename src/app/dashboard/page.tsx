@@ -52,9 +52,9 @@ export default function Dashboard() {
           <div className="col-span-2">
             <div
               id="sidebar"
-              className="bg-[#ffffff] h-full grid grid-rows-12 ps-5"
+              className="bg-[#ffffff] h-screen grid grid-rows-12 ps-5"
             >
-              <div className="row-span-12 mt-5">
+              <div className="row-span-12 mt-5 flex justify-center items-start flex-col">
                 {userData &&
                   userData.pets &&
                   userData.pets.map((pet: Pet) => (
@@ -77,7 +77,7 @@ export default function Dashboard() {
                       </button>
                     </div>
                   ))}
-                <div className="flex justify-center">
+                <div className="flex justify-center w-full ">
                   <NewSvg onClick={newPet} />
                 </div>
               </div>
