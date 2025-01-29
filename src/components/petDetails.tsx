@@ -19,10 +19,13 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
         <>
           <div>
             <h2 className="me-2">{pet.name}</h2>
-            <button onClick={() => setEdit((prv) => !prv)}>
+            <button onClick={() => setEdit((prv) => !prv)} className="edit-btn">
               <EditSvg />
             </button>
-            <button onClick={() => removePetFn(1, pet.name)} className="ms-3">
+            <button
+              onClick={() => removePetFn(1, pet.name)}
+              className="ms-2 remove-btn"
+            >
               <DeleteSvg />
             </button>
           </div>
