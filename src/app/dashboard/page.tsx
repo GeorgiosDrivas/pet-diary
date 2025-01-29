@@ -77,7 +77,7 @@ export default function Dashboard() {
                       </button>
                     </div>
                   ))}
-                <div className="flex justify-center w-full ">
+                <div>
                   <NewSvg onClick={newPet} />
                 </div>
               </div>
@@ -89,19 +89,26 @@ export default function Dashboard() {
             ) : (
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-9 mt-4">
-                  {currentPet && (
-                    <div className="details px-10 py-3">
-                      <PetDetails pet={currentPet} />
-                    </div>
+                  {currentPet ? (
+                    <>
+                      <div className="details px-10 py-3">
+                        <PetDetails pet={currentPet} />
+                      </div>
+                      <div className="content grid grid-rows-6 gap-4 py-3">
+                        <div className="row-span-3">
+                          <Appointments pet={currentPet} />
+                        </div>
+                        <div className="row-span-3">
+                          <Medication pet={currentPet} />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <h1 className="select-pet-msg text-center">
+                      Select a pet to view it&apos;s appointments, medication
+                      and details
+                    </h1>
                   )}
-                  <div className="content grid grid-rows-6 gap-4 py-3">
-                    <div className="row-span-3">
-                      <Appointments pet={currentPet} />
-                    </div>
-                    <div className="row-span-3">
-                      <Medication pet={currentPet} />
-                    </div>
-                  </div>
                 </div>
                 <div className="flex justify-end items-start flex-row col-span-3">
                   <div className="flex justify-between items-center me-3 cursor-pointer">
