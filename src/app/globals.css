@@ -79,10 +79,12 @@ label {
 
 .remove-btn:hover {
   background-color: #ff4545;
+  border: none;
 }
 
 .edit-btn:hover {
   background-color: rgb(255, 147, 0);
+  border: none;
 }
 
 .create-item-button {
@@ -104,6 +106,8 @@ label {
   position: fixed;
   z-index: 9999;
   width: 62.5%;
+  background-color: #ebebeb;
+  border-radius: 17px;
 }
 
 .details div:first-child {
@@ -156,4 +160,9 @@ label {
 
 .select-pet-msg {
   font-size: 18px;
+}
+
+.edit-btn,
+.remove-btn {
+  border: none;
 }
