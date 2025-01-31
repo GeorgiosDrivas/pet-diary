@@ -21,7 +21,7 @@ export default function EditAppointment({
         <form
           onSubmit={() => {
             if (appointment) {
-              editAppointment(1, pet.name, appointment.id, appointment); // Needs refactor, appointment title cannot change right now
+              editAppointment(1, pet.name, appointment.id, appointment);
             }
           }}
         >
@@ -80,10 +80,12 @@ export default function EditAppointment({
               }
             />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="submit-btn">
+            Submit
+          </button>
         </form>
         <button
-          className="hide-form-btn"
+          className="hide-form-btn remove-btn"
           onClick={() => setEditable((prv) => !prv)}
         >
           <CloseSvg />

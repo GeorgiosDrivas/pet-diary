@@ -31,7 +31,7 @@ export default function Appointments({ pet }: Data) {
                 pet={pet}
               />
               <button
-                className="hide-form-btn"
+                className="hide-form-btn remove-btn"
                 onClick={() => setShowForm((prv) => !prv)}
               >
                 <CloseSvg />

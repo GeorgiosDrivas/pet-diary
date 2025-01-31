@@ -1,4 +1,4 @@
-import { AppointmentsType, Pet } from "@/types";
+import { AppointmentsType, CalendarEvent, Pet } from "@/types";
 import React, { useState } from "react";
 import EditAppointment from "./editAppointment";
 import { ScheduleXCalendar, useCalendarApp } from "@schedule-x/react";
@@ -14,7 +14,7 @@ import EventModal from "@/utils/eventModal";
 export default function AppointmentsTable({ pet }: { pet: Pet }) {
   const [editItem, setEditItem] = useState(false);
   const [editableAppointment, setEditableAppointment] =
-    useState<AppointmentsType | null>(null);
+    useState<CalendarEvent | null>(null);
   const calendarEvents = pet.appointments;
 
   const removeAppointmentFn = (appointmentId: string) => {
@@ -30,7 +30,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
       });
   };
 
-  const editAppointment = (appointment: AppointmentsType) => {
+  const editAppointment = (appointment: CalendarEvent) => {
     setEditItem(true);
     setEditableAppointment(appointment);
   };
@@ -54,7 +54,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
         <ScheduleXCalendar
           calendarApp={calendar}
           customComponents={{
-            eventModal: (props: { calendarEvent: AppointmentsType }) => {
+            eventModal: (props: { calendarEvent: CalendarEvent }) => {
               return (
                 <EventModal
                   calendarEvent={props.calendarEvent}
