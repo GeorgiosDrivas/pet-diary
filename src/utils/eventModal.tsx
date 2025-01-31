@@ -1,16 +1,16 @@
 import React from "react";
-import { CalendarEvent } from "@/types";
 import EditSvg from "@/assets/editSvg";
 import DeleteSvg from "@/assets/deleteSvg";
 import EventTimeSvg from "@/assets/EventTimeSvg";
+import { AppointmentsType } from "@/types";
 
 export default function EventModal({
   calendarEvent,
   edit,
   deleteFn,
 }: {
-  calendarEvent: CalendarEvent;
-  edit: (appointment: CalendarEvent) => void;
+  calendarEvent: AppointmentsType;
+  edit: (appointment: AppointmentsType) => void;
   deleteFn: (id: string) => void;
 }) {
   return (

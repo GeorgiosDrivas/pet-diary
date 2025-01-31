@@ -14,13 +14,20 @@ export async function editAppointment(
     if (snapshot.exists()) {
       const userData: { username: string; pets: Pet[] } = snapshot.val();
 
+      const sanitizedAppointment: AppointmentsType = {
+        ...updatedAppointment,
+        people: updatedAppointment.people ?? [],
+        calendarId: updatedAppointment.calendarId ?? null,
+        location: updatedAppointment.location ?? "",
+      };
+
       const updatedPets = userData.pets.map((pet) => {
         if (pet.name === petName) {
           return {
             ...pet,
             appointments: pet.appointments.map((appointment) => {
               if (appointment.id === appointmentId) {
-                return updatedAppointment;
+                return sanitizedAppointment; // Use the cleaned appointment object
               }
               return appointment;
             }),

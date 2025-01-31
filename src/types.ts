@@ -1,3 +1,7 @@
+export interface AppointmentOptions {
+  [key: string]: string | number | boolean;
+}
+
 export interface AppointmentsType {
   id: string;
   title: string;
@@ -5,6 +9,10 @@ export interface AppointmentsType {
   start: string;
   end: string;
   description?: string;
+  people?: string[];
+  calendarId?: string | null;
+  location?: string;
+  _options?: AppointmentOptions;
 }
 
 export interface MedicationType {
@@ -36,11 +44,4 @@ export interface User {
 
 export interface Data {
   pet: Pet | null;
-}
-
-export interface CalendarEvent {
-  id: string;
-  title: string;
-  start: string;
-  description: string;
 }

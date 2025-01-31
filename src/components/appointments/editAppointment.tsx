@@ -21,6 +21,7 @@ export default function EditAppointment({
         <form
           onSubmit={() => {
             if (appointment) {
+              console.log("Editing appointment:", appointment);
               editAppointment(1, pet.name, appointment.id, appointment);
             }
           }}
@@ -52,10 +53,10 @@ export default function EditAppointment({
             />
           </div>
           <div>
-            <label htmlFor="date">Date</label>
+            <label htmlFor="start">Date</label>
             <input
-              type="date"
-              id="date"
+              type="start"
+              id="start"
               value={
                 appointment?.start
                   ? convertDateToInputFormat(appointment.start)
@@ -63,7 +64,7 @@ export default function EditAppointment({
               }
               onChange={(e) =>
                 setAppointment((prv) =>
-                  prv ? { ...prv, date: e.target.value } : null
+                  prv ? { ...prv, start: e.target.value } : null
                 )
               }
             />
