@@ -62,10 +62,12 @@ export default function EditMedication({
               }
             />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="submit-btn">
+            Submit
+          </button>
         </form>
         <button
-          className="hide-form-btn"
+          className="hide-form-btn remove-btn"
           onClick={() => setEditable((prv) => !prv)}
         >
           <CloseSvg />

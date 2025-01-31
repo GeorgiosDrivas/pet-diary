@@ -22,14 +22,11 @@ export default function EventModal({
       </div>
       <div className="event-description-wrap">{calendarEvent.description}</div>
       <div>
-        <button
-          className="create-item-button me-4"
-          onClick={() => edit(calendarEvent)}
-        >
+        <button className="edit-btn me-4" onClick={() => edit(calendarEvent)}>
           <EditSvg />
         </button>
         <button
-          className="create-item-button"
+          className="remove-btn"
           onClick={() => deleteFn(calendarEvent.id)}
         >
           <DeleteSvg />
