@@ -184,3 +184,8 @@ label {
 .remove-btn {
   border: none;
 }
+
+.new-pet-title {
+  font-weight: bold;
+  font-size: 30px;
+}

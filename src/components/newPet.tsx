@@ -35,9 +35,10 @@ export default function NewPet() {
   };
 
   return (
-    <div className="grid grid-rows-12 gap-4 h-full py-3">
-      <div className="new-pet row-span-6">
-        <h1>Add a new pet</h1>
+    <div className="h-full py-3 new-pet flex justify-center items-center flex-col">
+      <h1 className="new-pet-title">Add your pet&apos;s details</h1>
+      <p>Don&apos;t worry. You can always change them</p>
+      <div className="mt-5 w-[25%]">
         <form onSubmit={() => addPet(1, newPet)}>
           <label htmlFor="name">Name</label>
           <input
@@ -56,7 +57,10 @@ export default function NewPet() {
             name="species"
             value={newPetState.species}
             onChange={(e) =>
-              setNewPetState({ ...newPetState, species: e.currentTarget.value })
+              setNewPetState({
+                ...newPetState,
+                species: e.currentTarget.value,
+              })
             }
           />
           <label htmlFor="breed">Breed</label>
@@ -79,9 +83,11 @@ export default function NewPet() {
               setNewPetState({ ...newPetState, age: e.currentTarget.value })
             }
           />
-          <button type="submit" className="mt-3">
-            Add Pet
-          </button>
+          <div className="text-center">
+            <button type="submit" className="mt-3 submit-btn">
+              Add new pet
+            </button>
+          </div>
         </form>
       </div>
     </div>
