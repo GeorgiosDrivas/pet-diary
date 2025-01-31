@@ -24,58 +24,56 @@ export default function EditPetDetails({
 
   return (
     <>
-      <div>
-        <form onSubmit={() => editPetDetails(1, pet.name, updatedPet)}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              value={updatedPet.name || ""}
-              onChange={(e) =>
-                setUpdatedPet((prv) => ({ ...prv, name: e.target.value }))
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor="species">Species</label>
-            <input
-              type="text"
-              id="species"
-              value={updatedPet.species || ""}
-              onChange={(e) =>
-                setUpdatedPet((prv) => ({ ...prv, species: e.target.value }))
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor="breed">Breed</label>
-            <input
-              type="text"
-              id="breed"
-              value={updatedPet.breed || ""}
-              onChange={(e) =>
-                setUpdatedPet((prv) => ({ ...prv, breed: e.target.value }))
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor="age">Age</label>
-            <input
-              type="text"
-              id="age"
-              value={updatedPet.age || ""}
-              onChange={(e) =>
-                setUpdatedPet((prv) => ({ ...prv, age: e.target.value }))
-              }
-            />
-          </div>
-          <div className="flex justify-between mt-2">
-            <button type="submit">Submit</button>
-            <button onClick={() => setEdit(false)}>Close</button>
-          </div>
-        </form>
-      </div>
+      <form onSubmit={() => editPetDetails(1, pet.name, updatedPet)}>
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            value={updatedPet.name || ""}
+            onChange={(e) =>
+              setUpdatedPet((prv) => ({ ...prv, name: e.target.value }))
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="species">Species</label>
+          <input
+            type="text"
+            id="species"
+            value={updatedPet.species || ""}
+            onChange={(e) =>
+              setUpdatedPet((prv) => ({ ...prv, species: e.target.value }))
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="breed">Breed</label>
+          <input
+            type="text"
+            id="breed"
+            value={updatedPet.breed || ""}
+            onChange={(e) =>
+              setUpdatedPet((prv) => ({ ...prv, breed: e.target.value }))
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Age</label>
+          <input
+            type="text"
+            id="age"
+            value={updatedPet.age || ""}
+            onChange={(e) =>
+              setUpdatedPet((prv) => ({ ...prv, age: e.target.value }))
+            }
+          />
+        </div>
+        <div className="flex justify-between mt-2">
+          <button type="submit">Submit</button>
+          <button onClick={() => setEdit(false)}>Close</button>
+        </div>
+      </form>
     </>
   );
 }
