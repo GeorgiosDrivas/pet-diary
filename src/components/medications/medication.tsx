@@ -27,7 +27,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                 pet={pet}
               />
               <button
-                className="hide-form-btn"
+                className="hide-form-btn remove-btn"
                 onClick={() => setShowForm((prv: boolean) => !prv)}
               >
                 <CloseSvg />

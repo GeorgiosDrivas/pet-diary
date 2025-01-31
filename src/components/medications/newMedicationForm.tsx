@@ -48,7 +48,9 @@ export default function NewMedicationForm({
             }
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit-btn">
+          Submit
+        </button>
       </form>
     </>
   );
