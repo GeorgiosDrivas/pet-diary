@@ -8,11 +8,6 @@ import DeleteSvg from "@/assets/deleteSvg";
 export default function PetDetails({ pet }: { pet: Pet | null }) {
   const [edit, setEdit] = useState(false);
 
-  const removePetFn = (userId: number, petName: string) => {
-    window.location.reload();
-    removePet(userId, petName);
-  };
-
   return (
     <>
       {pet && (
@@ -23,7 +18,7 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
               <EditSvg />
             </button>
             <button
-              onClick={() => removePetFn(1, pet.name)}
+              onClick={() => removePet(1, pet.name)}
               className="ms-2 remove-btn"
             >
               <DeleteSvg />
