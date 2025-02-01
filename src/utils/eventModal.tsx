@@ -16,7 +16,7 @@ export default function EventModal({
   return (
     <div className="sx__event-modal sx__event-modal-default is-open">
       {calendarEvent.title}
-      <div className="event-time-wrap">
+      <div className="event-time-wrap grid items-start">
         <EventTimeSvg />
         {calendarEvent.start}
       </div>

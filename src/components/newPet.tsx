@@ -35,8 +35,8 @@ export default function NewPet() {
   };
 
   return (
-    <div className="h-full py-3 new-pet flex justify-center items-center flex-col">
-      <h1 className="new-pet-title">Add your pet&apos;s details</h1>
+    <div className="h-full py-3 new-pet bg-white rounded-[40px] flex justify-center items-center flex-col">
+      <h1 className="new-pet-title font-bold">Add your pet&apos;s details</h1>
       <p>Don&apos;t worry. You can always change them</p>
       <div className="mt-5 w-[25%]">
         <form onSubmit={() => addPet(1, newPet)}>

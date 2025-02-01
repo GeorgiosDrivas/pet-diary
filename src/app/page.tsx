@@ -27,7 +27,7 @@ export default function Home() {
         <div>
           <h1 className="text-center text-3xl mb-5">Pet Diary</h1>
           <p>
-            Manage your pet&apos;s medication and doctor apointments easily!
+            Manage your pet&apos;s medication and doctor appointments easily!
           </p>
         </div>
         <div className="flex justify-center items-center w-full">

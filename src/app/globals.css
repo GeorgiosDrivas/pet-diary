@@ -27,12 +27,7 @@ body.__variable_1e4310.__variable_c3aa02 {
 .appointments,
 .medication,
 .details {
-  border-radius: 40px;
   color: rgb(41, 88, 124);
-}
-
-#sidebar {
-  background-color: transparent;
 }
 
 h2 {
@@ -72,9 +67,7 @@ label {
 }
 
 .new-pet {
-  background-color: #ffffff;
   padding: 50px 40px;
-  border-radius: 40px;
 }
 
 .remove-btn:hover {
@@ -103,22 +96,8 @@ label {
 }
 
 .details {
-  position: fixed;
-  z-index: 9999;
   width: 62.5%;
   background-color: #ebebeb;
-  border-radius: 17px;
-}
-
-.details div:first-child:not(form div) {
-  display: inline-flex;
-}
-
-.details div:last-child {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .details form button,
@@ -159,20 +138,16 @@ label {
 }
 
 .event-time-wrap {
-  display: grid;
-  align-items: start;
   grid-template-columns: 30px 1fr;
   margin-bottom: 20px;
 }
 
 .single-pet-btn {
   width: 43px;
-  overflow: hidden;
   transition: all 0.3s ease-in-out;
 }
 
 .single-pet-btn:hover {
-  width: auto;
   overflow: auto;
 }
 
@@ -186,6 +161,5 @@ label {
 }
 
 .new-pet-title {
-  font-weight: bold;
   font-size: 30px;
 }

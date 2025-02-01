@@ -52,7 +52,7 @@ export default function Dashboard() {
           <div className="col-span-2">
             <div
               id="sidebar"
-              className="bg-[#ffffff] h-screen grid grid-rows-12 ps-5"
+              className="bg-transparent h-screen grid grid-rows-12 ps-5"
             >
               <div className="row-span-12 mt-5 flex justify-center items-start flex-col">
                 {userData &&
@@ -63,7 +63,7 @@ export default function Dashboard() {
                       key={pet.name}
                     >
                       <button
-                        className="single-pet-btn flex items-center gap-2"
+                        className="single-pet-btn overflow-hidden flex items-center gap-2 hover:w-auto"
                         onClick={() => selectPet(pet.name)}
                       >
                         <img
@@ -91,7 +91,7 @@ export default function Dashboard() {
                 <div className="col-span-9 mt-4">
                   {currentPet ? (
                     <>
-                      <div className="details px-10 py-3">
+                      <div className="details fixed z-999 rounded-[17px] px-10 py-3">
                         <PetDetails pet={currentPet} />
                       </div>
                       <div className="content grid grid-rows-6 gap-4 py-3">

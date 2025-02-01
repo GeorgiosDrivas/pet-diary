@@ -16,7 +16,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
 
   return (
     <>
-      <div className="medication h-full px-8 py-5">
+      <div className="medication rounded-[40px] h-full px-8 py-5">
         <h2>Medication</h2>
         <div className="mt-8">
           {showForm ? (

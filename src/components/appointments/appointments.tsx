@@ -20,7 +20,7 @@ export default function Appointments({ pet }: Data) {
 
   return (
     <>
-      <div className="appointments h-full px-8 py-5">
+      <div className="appointments rounded-[40px] h-full px-8 py-5">
         <h2>Appointments</h2>
         <div className="mt-8">
           {showForm ? (

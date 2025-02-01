@@ -17,7 +17,7 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
     <>
       {pet && (
         <>
-          <div>
+          <div className="inline-flex">
             <h2 className="me-2">{pet.name}</h2>
             <button onClick={() => setEdit((prv) => !prv)} className="edit-btn">
               <EditSvg />
@@ -29,7 +29,7 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
               <DeleteSvg />
             </button>
           </div>
-          <div>
+          <div className="flex flex-row justify-between items-center">
             {edit ? (
               <EditPetDetails setEdit={setEdit} pet={pet} />
             ) : (
