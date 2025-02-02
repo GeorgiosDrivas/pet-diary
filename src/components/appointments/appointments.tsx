@@ -6,6 +6,7 @@ import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
 import AppointmentsTable from "./appointmentsTable";
 import AppointmentsForm from "./appointmentsForm";
+import SelectPetMessage from "../selectPet";
 
 export default function Appointments({ pet }: Data) {
   const [showForm, setShowForm] = useState(false);
@@ -48,7 +49,7 @@ export default function Appointments({ pet }: Data) {
                   />
                 </>
               ) : (
-                <p>Please select a pet to view appointments.</p>
+                <SelectPetMessage message="Please select a pet to view appointments." />
               )}
             </>
           )}

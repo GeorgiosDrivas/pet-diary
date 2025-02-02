@@ -4,6 +4,7 @@ import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/utils/createButton";
 import NewMedicationForm from "./newMedicationForm";
 import MedicationsTable from "./medicationsTable";
+import SelectPetMessage from "../selectPet";
 
 export default function Medication({ pet }: { pet: Pet | null }) {
   const [showForm, setShowForm] = useState(false);
@@ -44,7 +45,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
                   />
                 </>
               ) : (
-                <p>Please select a pet to view medications.</p>
+                <SelectPetMessage message="Please select a pet to view medications." />
               )}
             </>
           )}
