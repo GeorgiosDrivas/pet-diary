@@ -22,14 +22,14 @@ export default function EditPetDetails({
     setUpdatedPet(pet);
   }, [pet]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async () => {
     await editPetDetails(1, pet.name, updatedPet);
     setEdit(false);
   };
 
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={() => handleSubmit()}>
         <div>
           <label htmlFor="name">Name</label>
           <input
