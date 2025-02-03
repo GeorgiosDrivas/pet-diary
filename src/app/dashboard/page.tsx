@@ -22,7 +22,7 @@ export default function Dashboard() {
       if (user) {
         setUser(user);
         try {
-          const data = await readData(1);
+          const data = await readData(user.uid);
           setUserData(data);
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -84,8 +84,8 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="col-span-10">
-            {newPetBool ? (
-              <NewPet />
+            {newPetBool && user ? (
+              <NewPet userId={user?.uid} />
             ) : (
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-9 mt-4">

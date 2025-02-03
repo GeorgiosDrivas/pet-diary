@@ -3,7 +3,7 @@ import { get, ref } from "firebase/database";
 import { db, writeUsers } from "./client";
 import { AppointmentsType, MedicationType, Pet } from "@/types";
 
-export async function addPet(userId: number, pet: Pet) {
+export async function addPet(userId: string, pet: Pet) {
   const reference = ref(db, `users/${userId}`);
   try {
     const snapshot = await get(reference);
@@ -22,7 +22,7 @@ export async function addPet(userId: number, pet: Pet) {
 }
 
 export async function addMedication(
-  userId: number,
+  userId: string,
   petName: string,
   newMedication: MedicationType
 ) {
@@ -58,7 +58,7 @@ export async function addMedication(
 }
 
 export async function addAppointment(
-  userId: number,
+  userId: string,
   petName: string,
   newAppointment: AppointmentsType
 ) {

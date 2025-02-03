@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addPet } from "../../firebase/addMethods";
 import { Pet } from "@/types";
 
-export default function NewPet() {
+export default function NewPet({ userId }: { userId: string }) {
   const [newPetState, setNewPetState] = useState({
     name: "",
     species: "",
@@ -39,7 +39,12 @@ export default function NewPet() {
       <h1 className="new-pet-title font-bold">Add your pet&apos;s details</h1>
       <p>Don&apos;t worry. You can always change them</p>
       <div className="mt-5 w-[25%]">
-        <form onSubmit={() => addPet(1, newPet)}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // Prevent page reload
+            if (userId) addPet(userId, newPet);
+          }}
+        >
           <label htmlFor="name">Name</label>
           <input
             type="text"

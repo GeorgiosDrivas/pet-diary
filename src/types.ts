@@ -39,7 +39,7 @@ export interface UserData {
 export interface User {
   displayName: string | null;
   email: string | null;
-  uid: string | null;
+  uid: string;
 }
 
 export interface Data {
