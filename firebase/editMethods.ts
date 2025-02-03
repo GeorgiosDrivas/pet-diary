@@ -3,7 +3,7 @@ import { db, writeUsers } from "./client";
 import { get, ref } from "firebase/database";
 
 export async function editAppointment(
-  userId: number,
+  userId: string,
   petName: string,
   appointmentId: string,
   updatedAppointment: AppointmentsType
@@ -46,7 +46,7 @@ export async function editAppointment(
 }
 
 export async function editMedication(
-  userId: number,
+  userId: string,
   petName: string,
   medicationId: string,
   updatedMedication: MedicationType
@@ -82,7 +82,7 @@ export async function editMedication(
 }
 
 export async function editPetDetails(
-  userId: number,
+  userId: string,
   petName: string,
   updatedPet: Pet
 ) {

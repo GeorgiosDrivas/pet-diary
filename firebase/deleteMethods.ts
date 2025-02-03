@@ -3,7 +3,7 @@ import { db, writeUsers } from "./client";
 import { get, ref } from "firebase/database";
 
 export async function removeAppointment(
-  userId: number,
+  userId: string,
   petName: string,
   appointmentId: string
 ) {
@@ -35,7 +35,7 @@ export async function removeAppointment(
 }
 
 export async function removeMedication(
-  userId: number,
+  userId: string,
   petName: string,
   medicationId: string
 ) {
@@ -66,7 +66,7 @@ export async function removeMedication(
   }
 }
 
-export async function removePet(userId: number, petName: string) {
+export async function removePet(userId: string, petName: string) {
   const reference = ref(db, `users/${userId}`);
 
   try {
