@@ -91,7 +91,7 @@ export default function Dashboard() {
                 <div className="col-span-9 mt-4">
                   {currentPet ? (
                     <>
-                      <div className="details fixed z-999 rounded-[17px] px-10 py-3">
+                      <div className="details fixed rounded-[17px] px-10 py-3">
                         <PetDetails pet={currentPet} />
                       </div>
                       <div className="content grid grid-rows-6 gap-4 py-3">

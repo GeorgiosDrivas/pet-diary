@@ -97,6 +97,7 @@ label {
 
 .details {
   width: 62.5%;
+  z-index: 99999;
   background-color: #ebebeb;
 }
 
