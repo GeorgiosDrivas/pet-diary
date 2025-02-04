@@ -41,7 +41,7 @@ export default function NewPet({ userId }: { userId: string }) {
       <div className="mt-5 w-[25%]">
         <form
           onSubmit={(e) => {
-            e.preventDefault(); // Prevent page reload
+            e.preventDefault();
             if (userId) addPet(userId, newPet);
           }}
         >

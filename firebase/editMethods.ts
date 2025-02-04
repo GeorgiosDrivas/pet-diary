@@ -27,7 +27,7 @@ export async function editAppointment(
             ...pet,
             appointments: pet.appointments.map((appointment) => {
               if (appointment.id === appointmentId) {
-                return sanitizedAppointment; // Use the cleaned appointment object
+                return sanitizedAppointment;
               }
               return appointment;
             }),
