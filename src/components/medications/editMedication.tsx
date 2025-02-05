@@ -4,11 +4,13 @@ import React from "react";
 import { editMedication } from "../../../firebase/editMethods";
 
 export default function EditMedication({
+  userId,
   pet,
   medication,
   setEditable,
   setMedication,
 }: {
+  userId: string;
   pet: Pet;
   medication: MedicationType | null;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +22,7 @@ export default function EditMedication({
         <form
           onSubmit={() => {
             if (medication) {
-              editMedication(1, pet.name, medication.id, medication);
+              editMedication(userId, pet.name, medication.id, medication);
             }
           }}
         >

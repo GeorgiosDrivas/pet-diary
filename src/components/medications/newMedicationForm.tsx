@@ -5,17 +5,23 @@ import { stateChange } from "@/utils/stateChange";
 import { addMedication } from "../../../firebase/addMethods";
 
 export default function NewMedicationForm({
+  userId,
   newMedication,
   setNewMedication,
   pet,
 }: {
+  userId: string;
   newMedication: MedicationType;
   setNewMedication: React.Dispatch<React.SetStateAction<MedicationType>>;
   pet: Pet | null;
 }) {
   return (
     <>
-      <form onSubmit={() => handleNewItem(pet, addMedication, newMedication)}>
+      <form
+        onSubmit={() =>
+          handleNewItem(userId, pet, addMedication, newMedication)
+        }
+      >
         <div>
           <label htmlFor="medicationName">Medication Name</label>
           <input

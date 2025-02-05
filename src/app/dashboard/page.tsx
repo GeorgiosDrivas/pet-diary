@@ -102,7 +102,10 @@ export default function Dashboard() {
                           />
                         </div>
                         <div className="row-span-3">
-                          <Medication pet={currentPet} />
+                          <Medication
+                            pet={currentPet}
+                            userId={user?.uid || ""}
+                          />
                         </div>
                       </div>
                     </>

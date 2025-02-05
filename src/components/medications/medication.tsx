@@ -6,7 +6,13 @@ import NewMedicationForm from "./newMedicationForm";
 import MedicationsTable from "./medicationsTable";
 import SelectPetMessage from "../selectPet";
 
-export default function Medication({ pet }: { pet: Pet | null }) {
+export default function Medication({
+  pet,
+  userId,
+}: {
+  pet: Pet | null;
+  userId: string;
+}) {
   const [showForm, setShowForm] = useState(false);
   const [newMedication, setNewMedication] = useState<MedicationType>({
     id: "1",
@@ -23,6 +29,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
           {showForm ? (
             <div className="relative w-[300px]">
               <NewMedicationForm
+                userId={userId}
                 newMedication={newMedication}
                 setNewMedication={setNewMedication}
                 pet={pet}
@@ -38,7 +45,7 @@ export default function Medication({ pet }: { pet: Pet | null }) {
             <>
               {pet ? (
                 <>
-                  <MedicationsTable pet={pet} />
+                  <MedicationsTable pet={pet} userId={userId} />
                   <CreateButton
                     showForm={setShowForm}
                     text="Create a medication"

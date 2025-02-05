@@ -5,14 +5,20 @@ import { MedicationType, Pet } from "@/types";
 import { removeMedication } from "../../../firebase/deleteMethods";
 import EditMedication from "./editMedication";
 
-export default function MedicationsTable({ pet }: { pet: Pet }) {
+export default function MedicationsTable({
+  pet,
+  userId,
+}: {
+  pet: Pet;
+  userId: string;
+}) {
   const [editItem, setEditItem] = useState(false);
   const [editableMedication, setEditableMedication] =
     useState<MedicationType | null>(null);
 
   const removeMedicationFn = (pet: Pet, index: string) => {
     window.location.reload();
-    removeMedication(1, pet?.name, index);
+    removeMedication(userId, pet?.name, index);
     alert("Medication removed successfully.");
   };
 
@@ -21,9 +27,11 @@ export default function MedicationsTable({ pet }: { pet: Pet }) {
     setEditableMedication(medication);
   };
 
-  const hasNotes = pet.medications.some(
-    (medication) => medication.notes && medication.notes.trim() !== ""
-  );
+  const hasNotes =
+    pet.medications &&
+    pet.medications.some(
+      (medication) => medication.notes && medication.notes.trim() !== ""
+    );
 
   return (
     <>
@@ -33,6 +41,7 @@ export default function MedicationsTable({ pet }: { pet: Pet }) {
           medication={editableMedication}
           setMedication={setEditableMedication}
           setEditable={setEditItem}
+          userId={userId}
         />
       ) : (
         <table className="w-full border-collapse border border-gray-200">
@@ -44,7 +53,7 @@ export default function MedicationsTable({ pet }: { pet: Pet }) {
             </tr>
           </thead>
           <tbody>
-            {pet.medications.length > 0 ? (
+            {pet.medications && pet.medications.length > 0 ? (
               pet.medications.map(
                 (medication: MedicationType, index: number) => (
                   <tr key={index} className="border-b border-[#e5e7eb]">
