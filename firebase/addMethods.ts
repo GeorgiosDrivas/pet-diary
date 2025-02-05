@@ -89,8 +89,6 @@ export async function addAppointment(
         return pet;
       });
 
-      console.log("Updated pets before writing to Firebase:", updatedPets);
-
       await writeUsers(userId, userData.username, updatedPets);
     } else {
       console.error("User not found!");

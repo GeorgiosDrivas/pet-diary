@@ -25,8 +25,6 @@ export async function writeUsers(
   try {
     const snapshot = await get(reference);
     if (snapshot.exists()) {
-      console.log("User already exists, updating pets...");
-
       const existingData = snapshot.val();
       const existingPets = Array.isArray(existingData.pets)
         ? existingData.pets
@@ -39,7 +37,6 @@ export async function writeUsers(
 
       await update(reference, { pets: updatedPets });
 
-      console.log("User's pets updated successfully.");
       return;
     }
 
@@ -47,8 +44,6 @@ export async function writeUsers(
       username: name,
       pets: pets.map(sanitizePet),
     });
-
-    console.log("User profile created successfully.");
   } catch (error) {
     console.error("Error checking/creating/updating user profile:", error);
   }

@@ -23,7 +23,6 @@ export default function EditAppointment({
         <form
           onSubmit={() => {
             if (appointment) {
-              console.log("Editing appointment:", appointment);
               editAppointment(userId, pet.name, appointment.id, appointment);
             }
           }}
