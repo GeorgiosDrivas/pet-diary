@@ -92,7 +92,7 @@ export default function Dashboard() {
                   {currentPet ? (
                     <>
                       <div className="details fixed rounded-[17px] px-10 py-3">
-                        <PetDetails pet={currentPet} />
+                        <PetDetails pet={currentPet} userId={user?.uid || ""} />
                       </div>
                       <div className="content grid grid-rows-6 gap-4 py-3">
                         <div className="row-span-3">

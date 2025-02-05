@@ -5,7 +5,13 @@ import EditSvg from "@/assets/editSvg";
 import { removePet } from "../../firebase/deleteMethods";
 import DeleteSvg from "@/assets/deleteSvg";
 
-export default function PetDetails({ pet }: { pet: Pet | null }) {
+export default function PetDetails({
+  pet,
+  userId,
+}: {
+  pet: Pet | null;
+  userId: string;
+}) {
   const [edit, setEdit] = useState(false);
 
   return (
@@ -18,7 +24,7 @@ export default function PetDetails({ pet }: { pet: Pet | null }) {
               <EditSvg />
             </button>
             <button
-              onClick={() => removePet(1, pet.name)}
+              onClick={() => removePet(userId, pet.name)}
               className="ms-2 remove-btn"
             >
               <DeleteSvg />
