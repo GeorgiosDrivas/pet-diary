@@ -68,12 +68,17 @@ export async function addAppointment(
     if (snapshot.exists()) {
       const userData: { username: string; pets: Pet[] } = snapshot.val();
 
-      const updatedPets = userData.pets.map((pet) => {
+      // Ensure pets is always an array
+      const petsArray = Array.isArray(userData.pets)
+        ? userData.pets
+        : Object.values(userData.pets || {});
+
+      const updatedPets = petsArray.map((pet: any) => {
         if (pet.name === petName) {
           return {
             ...pet,
             appointments: [
-              ...(pet.appointments || []),
+              ...(Array.isArray(pet.appointments) ? pet.appointments : []),
               {
                 ...newAppointment,
                 id: uuidv4(),
@@ -83,6 +88,8 @@ export async function addAppointment(
         }
         return pet;
       });
+
+      console.log("Updated pets before writing to Firebase:", updatedPets);
 
       await writeUsers(userId, userData.username, updatedPets);
     } else {

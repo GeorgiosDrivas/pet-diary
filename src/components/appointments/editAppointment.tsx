@@ -9,11 +9,13 @@ export default function EditAppointment({
   appointment,
   setEditable,
   setAppointment,
+  userId,
 }: {
   pet: Pet;
   appointment: AppointmentsType | null;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
   setAppointment: React.Dispatch<React.SetStateAction<AppointmentsType | null>>;
+  userId: string;
 }) {
   return (
     <>
@@ -22,7 +24,7 @@ export default function EditAppointment({
           onSubmit={() => {
             if (appointment) {
               console.log("Editing appointment:", appointment);
-              editAppointment(1, pet.name, appointment.id, appointment);
+              editAppointment(userId, pet.name, appointment.id, appointment);
             }
           }}
         >

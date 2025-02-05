@@ -28,9 +28,15 @@ export async function writeUsers(
       console.log("User already exists, updating pets...");
 
       const existingData = snapshot.val();
-      const existingPets = existingData.pets || [];
+      const existingPets = Array.isArray(existingData.pets)
+        ? existingData.pets
+        : Object.values(existingData.pets || {});
 
-      const updatedPets = [...existingPets, ...pets.map(sanitizePet)];
+      const updatedPets = existingPets.map((existingPet: Pet) => {
+        const updatedPet = pets.find((p) => p.name === existingPet.name);
+        return updatedPet ? sanitizePet(updatedPet) : existingPet;
+      });
+
       await update(reference, { pets: updatedPets });
 
       console.log("User's pets updated successfully.");
@@ -50,7 +56,7 @@ export async function writeUsers(
 
 const sanitizePet = (pet: Pet) => ({
   ...pet,
-  appointments: pet.appointments.map(sanitizeAppointment),
+  appointments: pet.appointments?.map(sanitizeAppointment) || [],
 });
 
 const sanitizeAppointment = (appointment: AppointmentsType) => {

@@ -8,10 +8,12 @@ export default function AppointmentsForm({
   newAppointment,
   setNewAppointment,
   pet,
+  userId,
 }: {
   newAppointment: AppointmentsType;
   setNewAppointment: React.Dispatch<React.SetStateAction<AppointmentsType>>;
   pet: Pet | null;
+  userId: string;
 }) {
   const dateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = e.target.value;
@@ -29,7 +31,7 @@ export default function AppointmentsForm({
     <>
       <form
         onSubmit={() => {
-          handleNewItem(pet, addAppointment, newAppointment);
+          handleNewItem(userId, pet, addAppointment, newAppointment);
         }}
       >
         <div>

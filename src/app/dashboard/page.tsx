@@ -96,7 +96,10 @@ export default function Dashboard() {
                       </div>
                       <div className="content grid grid-rows-6 gap-4 py-3">
                         <div className="row-span-3">
-                          <Appointments pet={currentPet} />
+                          <Appointments
+                            pet={currentPet}
+                            userId={user?.uid || ""}
+                          />
                         </div>
                         <div className="row-span-3">
                           <Medication pet={currentPet} />

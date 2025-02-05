@@ -11,7 +11,13 @@ import { createEventModalPlugin } from "@schedule-x/event-modal";
 import { removeAppointment } from "../../../firebase/deleteMethods";
 import EventModal from "@/utils/eventModal";
 
-export default function AppointmentsTable({ pet }: { pet: Pet }) {
+export default function AppointmentsTable({
+  pet,
+  userId,
+}: {
+  pet: Pet;
+  userId: string;
+}) {
   const [editItem, setEditItem] = useState(false);
   const [editableAppointment, setEditableAppointment] =
     useState<AppointmentsType | null>(null);
@@ -21,7 +27,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
   }));
 
   const removeAppointmentFn = (appointmentId: string) => {
-    removeAppointment(1, pet?.name, appointmentId)
+    removeAppointment(userId, pet?.name, appointmentId)
       .then(() => {
         pet.appointments = pet.appointments.filter(
           (appointment) => appointment.id !== appointmentId
@@ -52,6 +58,7 @@ export default function AppointmentsTable({ pet }: { pet: Pet }) {
           appointment={editableAppointment}
           setAppointment={setEditableAppointment}
           setEditable={setEditItem}
+          userId={userId}
         />
       ) : (
         <ScheduleXCalendar
