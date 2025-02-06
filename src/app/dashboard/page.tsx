@@ -6,7 +6,6 @@ import { readData } from "../../../firebase/readMethods";
 import Appointments from "@/components/appointments/appointments";
 import Medication from "@/components/medications/medication";
 import { Pet, User, UserData } from "@/types";
-import Logout from "@/utils/logout";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
 import NewSvg from "@/assets/newSvg";
@@ -38,7 +37,6 @@ export default function Dashboard() {
   const newPet = () => {
     setNewPetBool((prv) => !prv);
   };
-
   const selectPet = (name: string) => {
     setNewPetBool(false);
     const pet = userData?.pets.find((pet: Pet) => pet?.name === name);
@@ -54,6 +52,7 @@ export default function Dashboard() {
               id="sidebar"
               className="bg-transparent h-screen grid grid-rows-12 ps-5"
             >
+              <h1>Pet Diary</h1>
               <div className="row-span-12 mt-5 flex justify-center items-start flex-col">
                 {userData &&
                   userData.pets &&
@@ -87,8 +86,8 @@ export default function Dashboard() {
             {newPetBool && user ? (
               <NewPet userId={user?.uid} />
             ) : (
-              <div className="grid grid-cols-12 gap-4">
-                <div className="col-span-9 mt-4">
+              <div className="grid grid-cols-12">
+                <div className="col-span-9">
                   {currentPet ? (
                     <>
                       <div className="details fixed rounded-[17px] px-10 py-3">
@@ -116,10 +115,29 @@ export default function Dashboard() {
                     </h1>
                   )}
                 </div>
-                <div className="flex justify-end items-start flex-row col-span-3">
-                  <div className="flex justify-between items-center me-3 cursor-pointer">
-                    <p className="me-3">{user?.displayName || "Guest"}</p>
-                    <Logout />
+                <div className="flex justify-center items-start col-span-3">
+                  <div className="flex justify-center items-center user-info flex-col fixed">
+                    <img
+                      src={user?.photoURL ? user.photoURL : "/user.svg"}
+                      alt="User logo"
+                      className="user-img mb-3"
+                    />
+                    <p className="m-0 mb-5">
+                      {user?.displayName || "User Name"}
+                    </p>
+                    <div className="flex justify-center items-center flex-col mb-3">
+                      <p>Pets</p>
+                      <p>{userData?.pets.length}</p>
+                    </div>
+                    <div className="flex justify-center items-center flex-col mb-3">
+                      <p>Appointments</p>
+                      <p>{userData?.pets.length}</p>
+                    </div>
+                    <div className="flex justify-center items-center flex-col mb-3">
+                      <p>Medications</p>
+                      <p>{userData?.pets.length}</p>
+                    </div>
+                    <button className="logout mt-5">Logout</button>
                   </div>
                 </div>
               </div>
