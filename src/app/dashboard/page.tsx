@@ -54,7 +54,9 @@ export default function Dashboard() {
               className="bg-transparent h-screen grid grid-rows-12 ps-5"
             >
               <h1>Pet Diary</h1>
+              <p>Your pet&apos;s online agenda</p>
               <div className="row-span-12 mt-5 flex justify-center items-start flex-col">
+                <h2>Your pets</h2>
                 {userData &&
                   userData.pets &&
                   userData.pets.map((pet: Pet) => (
