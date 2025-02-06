@@ -129,10 +129,6 @@ label {
   height: 19px;
 }
 
-.content {
-  margin-top: 100px;
-}
-
 .species-img {
   width: 20px;
   height: 20px;
@@ -193,6 +189,6 @@ label {
 }
 
 .user-info {
-  margin-top: 100px;
+  margin-top: 140px;
   max-height: 230px;
 }

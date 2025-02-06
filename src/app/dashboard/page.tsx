@@ -9,6 +9,7 @@ import { Pet, User, UserData } from "@/types";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
 import NewSvg from "@/assets/newSvg";
+import Logout from "@/utils/logout";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -90,9 +91,6 @@ export default function Dashboard() {
                 <div className="col-span-9">
                   {currentPet ? (
                     <>
-                      <div className="details fixed rounded-[17px] px-10 py-3">
-                        <PetDetails pet={currentPet} userId={user?.uid || ""} />
-                      </div>
                       <div className="content grid grid-rows-6 gap-4 py-3">
                         <div className="row-span-3">
                           <Appointments
@@ -120,24 +118,14 @@ export default function Dashboard() {
                     <img
                       src={user?.photoURL ? user.photoURL : "/user.svg"}
                       alt="User logo"
-                      className="user-img mb-3"
+                      className="user-img mb-1"
                     />
-                    <p className="m-0 mb-5">
-                      {user?.displayName || "User Name"}
-                    </p>
-                    <div className="flex justify-center items-center flex-col mb-3">
-                      <p>Pets</p>
-                      <p>{userData?.pets.length}</p>
+                    <p className="m-0">{user?.displayName || "User Name"}</p>
+                    <Logout />
+                    <hr className="w-full my-3" />
+                    <div>
+                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
                     </div>
-                    <div className="flex justify-center items-center flex-col mb-3">
-                      <p>Appointments</p>
-                      <p>{userData?.pets.length}</p>
-                    </div>
-                    <div className="flex justify-center items-center flex-col mb-3">
-                      <p>Medications</p>
-                      <p>{userData?.pets.length}</p>
-                    </div>
-                    <button className="logout mt-5">Logout</button>
                   </div>
                 </div>
               </div>
