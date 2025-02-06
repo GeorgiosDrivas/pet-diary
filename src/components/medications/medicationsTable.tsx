@@ -17,9 +17,7 @@ export default function MedicationsTable({
     useState<MedicationType | null>(null);
 
   const removeMedicationFn = (pet: Pet, index: string) => {
-    window.location.reload();
     removeMedication(userId, pet?.name, index);
-    alert("Medication removed successfully.");
   };
 
   const editMedication = (medication: MedicationType) => {

@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import { AppointmentsType, Pet } from "@/types";
-import CloseSvg from "@/assets/closeSvg";
+import React from "react";
 import CreateButton from "@/utils/createButton";
 import AppointmentsTable from "./appointmentsTable";
-import AppointmentsForm from "./appointmentsForm";
 import SelectPetMessage from "../selectPet";
+import CloseSvg from "@/assets/closeSvg";
+import AppointmentsForm from "./appointmentsForm";
+import { useEffect, useState } from "react";
+import { AppointmentsType, Pet } from "@/types";
 
 export default function Appointments({
   pet,
@@ -16,6 +17,7 @@ export default function Appointments({
   userId: string;
 }) {
   const [showForm, setShowForm] = useState(false);
+  const [appointments, setAppointments] = useState(pet.appointments);
   const [newAppointment, setNewAppointment] = useState<AppointmentsType>({
     id: "1",
     title: "",
@@ -24,6 +26,10 @@ export default function Appointments({
     end: "",
     description: "",
   });
+
+  useEffect(() => {
+    setAppointments([...pet.appointments]);
+  }, [pet.appointments]);
 
   return (
     <>
@@ -40,7 +46,7 @@ export default function Appointments({
               />
               <button
                 className="hide-form-btn remove-btn"
-                onClick={() => setShowForm((prv) => !prv)}
+                onClick={() => setShowForm((prv: boolean) => !prv)}
               >
                 <CloseSvg />
               </button>
@@ -49,7 +55,12 @@ export default function Appointments({
             <>
               {pet ? (
                 <>
-                  <AppointmentsTable pet={pet} userId={userId} />
+                  <AppointmentsTable
+                    pet={pet}
+                    userId={userId}
+                    appointments={appointments}
+                    setAppointments={setAppointments}
+                  />
                   <CreateButton
                     showForm={setShowForm}
                     text="Create an appointment"
