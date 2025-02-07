@@ -95,7 +95,7 @@ export default function Dashboard() {
               <NewPet userId={user?.uid} />
             ) : (
               <div className="grid grid-cols-12">
-                <div className="col-span-9">
+                <div className="col-span-10">
                   {currentPet ? (
                     <>
                       <div className="content grid grid-rows-6 gap-4 py-3">
@@ -120,7 +120,7 @@ export default function Dashboard() {
                     </h1>
                   )}
                 </div>
-                <div className="flex justify-center items-start col-span-3">
+                <div className="flex justify-center items-start col-span-2">
                   <div className="flex justify-center items-center user-info flex-col fixed">
                     {user?.photoURL && (
                       <img
