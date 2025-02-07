@@ -48,13 +48,14 @@ export default function Dashboard() {
       <div className="w-full h-screen">
         <div className="grid grid-cols-12 gap-4 h-full">
           <div className="col-span-2">
+            <div className="logo">
+              <img src="./logo.png" alt="Logo" />
+            </div>
             <div
               id="sidebar"
               className="bg-transparent h-screen grid grid-rows-12 ps-5"
             >
-              <h1>Pet Diary</h1>
-              <p>Your pet&apos;s online agenda</p>
-              <div className="row-span-12 mt-5 flex justify-center items-start flex-col">
+              <div className="row-span-12 mt-5 flex justify-start items-start flex-col">
                 <h2>Your pets</h2>
                 {userData &&
                   userData.pets &&
@@ -83,10 +84,14 @@ export default function Dashboard() {
                     Add new pet
                   </button>
                 </div>
-                <hr className="w-full my-4" />
-                <div>
-                  <PetDetails pet={currentPet} userId={user?.uid || ""} />
-                </div>
+                {currentPet && (
+                  <>
+                    <hr className="w-full my-4" />
+                    <div>
+                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
