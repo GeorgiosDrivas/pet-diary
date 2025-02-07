@@ -32,7 +32,7 @@ export default function PetDetails({
           </div>
           <div className="flex flex-col justify-between items-start">
             {edit ? (
-              <EditPetDetails setEdit={setEdit} pet={pet} />
+              <EditPetDetails setEdit={setEdit} pet={pet} userId={userId} />
             ) : (
               <>
                 <p>Species: {pet.species}</p>

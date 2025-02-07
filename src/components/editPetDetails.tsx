@@ -5,9 +5,11 @@ import { editPetDetails } from "../../firebase/editMethods";
 export default function EditPetDetails({
   setEdit,
   pet,
+  userId,
 }: {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   pet: Pet;
+  userId: string;
 }) {
   const [updatedPet, setUpdatedPet] = useState<Pet>({
     name: pet.name,
@@ -23,7 +25,7 @@ export default function EditPetDetails({
   }, [pet]);
 
   const handleSubmit = async () => {
-    await editPetDetails(1, pet.name, updatedPet);
+    await editPetDetails(userId, pet.name, updatedPet);
     setEdit(false);
   };
 
