@@ -8,7 +8,6 @@ import Medication from "@/components/medications/medication";
 import { Pet, User, UserData } from "@/types";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
-import NewSvg from "@/assets/newSvg";
 import Logout from "@/utils/logout";
 
 export default function Dashboard() {
@@ -80,7 +79,13 @@ export default function Dashboard() {
                     </div>
                   ))}
                 <div>
-                  <NewSvg onClick={newPet} />
+                  <button className="create-item-button" onClick={newPet}>
+                    Add new pet
+                  </button>
+                </div>
+                <hr className="w-full my-4" />
+                <div>
+                  <PetDetails pet={currentPet} userId={user?.uid || ""} />
                 </div>
               </div>
             </div>
@@ -117,17 +122,16 @@ export default function Dashboard() {
                 </div>
                 <div className="flex justify-center items-start col-span-3">
                   <div className="flex justify-center items-center user-info flex-col fixed">
-                    <img
-                      src={user?.photoURL ? user.photoURL : "/user.svg"}
-                      alt="User logo"
-                      className="user-img mb-1"
-                    />
+                    {user?.photoURL && (
+                      <img
+                        src={user?.photoURL}
+                        alt="User logo"
+                        className="user-img mb-1"
+                      />
+                    )}
                     <p className="m-0">{user?.displayName || "User Name"}</p>
+                    <p>Total pets: {userData?.pets.length}</p>
                     <Logout />
-                    <hr className="w-full my-3" />
-                    <div>
-                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
-                    </div>
                   </div>
                 </div>
               </div>
