@@ -28,12 +28,14 @@ export default function EventModal({
           Doctor: <span>{calendarEvent.doctor}</span>
         </p>
       </div>
-      <div className="event-description-wrap">
-        <p>
-          Description
-          <span>{calendarEvent.description}</span>
-        </p>
-      </div>
+      {calendarEvent.description && (
+        <div className="event-description-wrap">
+          <p>
+            Description
+            <span>{calendarEvent.description}</span>
+          </p>
+        </div>
+      )}
       <div>
         <button className="edit-btn me-4" onClick={() => edit(calendarEvent)}>
           <EditSvg />
