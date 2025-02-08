@@ -9,7 +9,10 @@ export default function CreateButton({
 }) {
   return (
     <>
-      <button className="create-item-button" onClick={() => showForm(true)}>
+      <button
+        className="create-item-button mt-3"
+        onClick={() => showForm(true)}
+      >
         {text}
       </button>
     </>

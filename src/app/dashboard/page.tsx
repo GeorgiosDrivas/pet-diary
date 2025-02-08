@@ -19,7 +19,12 @@ export default function Dashboard() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        setUser(user);
+        setUser({
+          uid: user.uid,
+          email: user.email || "",
+          displayName: user.displayName || "",
+          photoURL: user.photoURL || undefined,
+        });
         try {
           const data = await readData(user.uid);
           setUserData(data);
@@ -127,13 +132,13 @@ export default function Dashboard() {
                 </div>
                 <div className="flex justify-center items-start col-span-2">
                   <div className="flex justify-center items-center user-info flex-col fixed">
-                    {user?.photoURL && (
+                    {
                       <img
                         src={user?.photoURL}
                         alt="User logo"
                         className="user-img mb-1"
                       />
-                    )}
+                    }
                     <p className="m-0">{user?.displayName || "User Name"}</p>
                     <p>Total pets: {userData?.pets.length}</p>
                     <Logout />

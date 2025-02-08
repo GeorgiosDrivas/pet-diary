@@ -19,7 +19,6 @@ export default function Logout() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      console.log("Signed out successfully.");
     } catch (error) {
       console.error("Error signing out:", error);
     }
