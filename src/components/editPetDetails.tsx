@@ -77,8 +77,12 @@ export default function EditPetDetails({
           />
         </div>
         <div className="flex justify-between mt-2">
-          <button type="submit">Submit</button>
-          <button onClick={() => setEdit(false)}>Close</button>
+          <button type="submit" className="create-item-button m-0">
+            Submit
+          </button>
+          <button onClick={() => setEdit(false)} className="remove-btn">
+            Close
+          </button>
         </div>
       </form>
     </>
