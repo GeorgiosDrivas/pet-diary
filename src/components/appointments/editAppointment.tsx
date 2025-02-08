@@ -71,6 +71,19 @@ export default function EditAppointment({
             />
           </div>
           <div>
+            <label htmlFor="time">Time</label>
+            <input
+              type="time"
+              id="time"
+              value={appointment?.time || ""}
+              onChange={(e) =>
+                setAppointment((prv) =>
+                  prv ? { ...prv, time: e.target.value } : null
+                )
+              }
+            />
+          </div>
+          <div>
             <label htmlFor="notes">Description</label>
             <textarea
               id="notes"

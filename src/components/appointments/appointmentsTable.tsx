@@ -41,7 +41,6 @@ export default function AppointmentsTable({
       await removeAppointment(userId, pet?.name, appointmentId);
     } catch (err) {
       console.error("Error removing appointment:", err);
-      // Rollback in case of error
       setAppointments((prev) => [
         ...prev,
         pet.appointments.find((a) => a.id === appointmentId)!,

@@ -8,6 +8,7 @@ export interface AppointmentsType {
   doctor: string;
   start: string;
   end: string;
+  time: string;
   description?: string;
   people?: string[];
   calendarId?: string | null;

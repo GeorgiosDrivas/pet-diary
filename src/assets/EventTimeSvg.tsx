@@ -7,7 +7,7 @@ export default function EventTimeSvg() {
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="sx__event-icon"
+        className="sx__event-icon me-3"
       >
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
         <g

@@ -24,6 +24,7 @@ export default function Appointments({
     doctor: "",
     start: "",
     end: "",
+    time: "",
     description: "",
   });
 
