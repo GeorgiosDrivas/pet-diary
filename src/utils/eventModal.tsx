@@ -31,8 +31,8 @@ export default function EventModal({
       {calendarEvent.description && (
         <div className="event-description-wrap">
           <p>
-            Description
-            <span>{calendarEvent.description}</span>
+            Description:
+            <span className="block">{calendarEvent.description}</span>
           </p>
         </div>
       )}

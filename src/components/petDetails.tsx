@@ -38,7 +38,7 @@ export default function PetDetails({
                 <p>Species: {pet.species}</p>
                 <p>Breed: {pet.breed}</p>
                 <p>Age: {pet.age}</p>
-                <p>Appointments: {pet.appointments.length}</p>
+                <p>Appointments: {pet.appointments?.length}</p>
                 <p>Medications: {pet.medications.length}</p>
               </>
             )}

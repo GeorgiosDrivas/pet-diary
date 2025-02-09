@@ -29,7 +29,9 @@ export default function Appointments({
   });
 
   useEffect(() => {
-    setAppointments([...pet.appointments]);
+    if (pet.appointments) {
+      setAppointments([...pet.appointments]);
+    }
   }, [pet.appointments]);
 
   return (
@@ -56,16 +58,25 @@ export default function Appointments({
             <>
               {pet ? (
                 <>
-                  <AppointmentsTable
-                    pet={pet}
-                    userId={userId}
-                    appointments={appointments}
-                    setAppointments={setAppointments}
-                  />
-                  <CreateButton
-                    showForm={setShowForm}
-                    text="Create an appointment"
-                  />
+                  {pet.appointments ? (
+                    <>
+                      <AppointmentsTable
+                        pet={pet}
+                        userId={userId}
+                        appointments={appointments}
+                        setAppointments={setAppointments}
+                      />
+                      <CreateButton
+                        showForm={setShowForm}
+                        text="Create an appointment"
+                      />
+                    </>
+                  ) : (
+                    <CreateButton
+                      showForm={setShowForm}
+                      text="Create an appointment"
+                    />
+                  )}
                 </>
               ) : (
                 <SelectPetMessage message="Please select a pet to view appointments." />
