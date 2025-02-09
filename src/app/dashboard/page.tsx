@@ -9,12 +9,14 @@ import { Pet, User, UserData } from "@/types";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
 import Logout from "@/utils/logout";
+import ProfileSvg from "@/assets/profileSvg";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [newPetBool, setNewPetBool] = useState<boolean>(false);
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
+  const [profileModal, setProfileModal] = useState<boolean>(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -130,19 +132,35 @@ export default function Dashboard() {
                     </h1>
                   )}
                 </div>
-                <div className="flex justify-center items-start col-span-2">
-                  <div className="flex justify-center items-center user-info flex-col fixed">
-                    {
-                      <img
-                        src={user?.photoURL}
-                        alt="User logo"
-                        className="user-img mb-1"
-                      />
-                    }
-                    <p className="m-0">{user?.displayName || "User Name"}</p>
-                    <p>Total pets: {userData?.pets.length}</p>
+                <div className="col-span-2">
+                  <div className="flex justify-center items-center">
+                    <button
+                      className="profile-icon"
+                      onClick={() => setProfileModal((prv) => !prv)}
+                    >
+                      <ProfileSvg />
+                    </button>
                     <Logout />
                   </div>
+                  {profileModal && (
+                    <div className="user-info">
+                      {
+                        <img
+                          src={user?.photoURL}
+                          alt="User logo"
+                          className="user-img me-3"
+                        />
+                      }
+                      <div className="usr-details">
+                        <p className="m-0">
+                          {user?.displayName || "User Name"}
+                        </p>
+                        <p className="m-0">
+                          Total pets: {userData?.pets.length}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
