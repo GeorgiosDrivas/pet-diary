@@ -1,4 +1,6 @@
-export default function ProfileSvg({}) {
+import React from "react";
+
+export default function ProfileSvg() {
   return (
     <>
       <svg
@@ -9,7 +11,7 @@ export default function ProfileSvg({}) {
         fill="none"
         className="profile-svg"
       >
-        <g clip-path="url(#clip0_15_82)">
+        <g clipPath="url(#clip0_15_82)">
           <rect width="24" height="24" fill="white" />
           <g filter="url(#filter0_d_15_82)">
             <path
@@ -26,9 +28,9 @@ export default function ProfileSvg({}) {
             width="18.8911"
             height="19"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"
