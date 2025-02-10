@@ -231,11 +231,13 @@ label {
   cursor: pointer;
 }
 
-.profile-icon {
+.profile-icon,
+.logout-btn {
   border: none;
 }
 
-#root button.profile-icon:hover {
+.profile-icon:hover,
+.logout-btn:hover {
   border: none;
   background-color: transparent;
 }

@@ -25,7 +25,7 @@ export default function Logout() {
   };
 
   return (
-    <div>
+    <button className="logout-btn">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20px"
@@ -42,6 +42,6 @@ export default function Logout() {
           strokeLinejoin="round"
         />
       </svg>
-    </div>
+    </button>
   );
 }
