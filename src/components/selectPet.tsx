@@ -1,8 +1,14 @@
 import React from "react";
-export default function SelectPetMessage({ message }: { message: string }) {
+export default function SelectPetMessage({
+  message,
+  cls,
+}: {
+  message: string;
+  cls: string;
+}) {
   return (
     <>
-      <p>{message}</p>
+      <p className={cls}>{message}</p>
     </>
   );
 }

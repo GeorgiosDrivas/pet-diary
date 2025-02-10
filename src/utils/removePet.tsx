@@ -1,6 +1,6 @@
 import { removePet } from "../../firebase/deleteMethods";
 
-export const handleRemovePet = async (userId: number, petName: string) => {
+export const handleRemovePet = async (userId: string, petName: string) => {
   try {
     await removePet(userId, petName);
   } catch (error) {

@@ -22,6 +22,7 @@ export default function NewPet({ userId }: { userId: string }) {
         doctor: "Dr. Example",
         start: "2024-10-10",
         end: "2024-10-10",
+        time: "",
         description: "This is an example appointment",
       },
     ],

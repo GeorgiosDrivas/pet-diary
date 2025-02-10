@@ -10,6 +10,8 @@ import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
 import Logout from "@/utils/logout";
 import ProfileSvg from "@/assets/profileSvg";
+import SelectPetMessage from "@/components/selectPet";
+import CreateButton from "@/utils/createButton";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -41,9 +43,6 @@ export default function Dashboard() {
     return () => unsubscribe();
   }, []);
 
-  const newPet = () => {
-    setNewPetBool((prv) => !prv);
-  };
   const selectPet = (name: string) => {
     setNewPetBool(false);
     const pet = userData?.pets.find((pet: Pet) => pet?.name === name);
@@ -87,9 +86,7 @@ export default function Dashboard() {
                     </div>
                   ))}
                 <div>
-                  <button className="create-item-button" onClick={newPet}>
-                    Add new pet
-                  </button>
+                  <CreateButton showForm={setNewPetBool} text="Add new pet" />
                 </div>
                 {currentPet && (
                   <>
@@ -126,10 +123,11 @@ export default function Dashboard() {
                       </div>
                     </>
                   ) : (
-                    <h1 className="select-pet-msg text-center">
-                      Select a pet to view it&apos;s appointments, medication
-                      and details
-                    </h1>
+                    <SelectPetMessage
+                      message="Select a pet to view it's appointments, medication
+                      and details"
+                      cls="select-pet-msg text-center"
+                    />
                   )}
                 </div>
                 <div className="col-span-2">
@@ -144,14 +142,12 @@ export default function Dashboard() {
                   </div>
                   {profileModal && (
                     <div className="user-info">
-                      {
-                        <img
-                          src={user?.photoURL}
-                          alt="User logo"
-                          className="user-img me-3"
-                        />
-                      }
-                      <div className="usr-details">
+                      <img
+                        src={user?.photoURL}
+                        alt="User logo"
+                        className="user-img me-3"
+                      />
+                      <div className="user-details">
                         <p className="m-0">
                           {user?.displayName || "User Name"}
                         </p>
