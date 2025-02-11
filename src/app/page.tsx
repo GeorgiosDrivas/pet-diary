@@ -32,6 +32,7 @@ export default function Home() {
       <main>
         <div className="flex flex-row justify-around items-center">
           <div>
+            <h1 className="text-center">Pet Diary</h1>
             <p className="landing-text">
               Keep track of your pet&apos;s health with ease! <br />
               Pet Diary helps you manage vet visits, medications, and daily care
