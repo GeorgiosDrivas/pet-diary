@@ -241,3 +241,19 @@ label {
   border: none;
   background-color: transparent;
 }
+
+.landing-page-img {
+  width: 700px;
+  height: auto;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 1px 1px 18px #000;
+  transition: all 0.3s ease-in-out;
+}
+
+.landing-page-img:hover {
+  transform: scale(1.05);
+}

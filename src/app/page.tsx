@@ -23,15 +23,24 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div>
-          <h1 className="text-center text-3xl mb-5">Pet Diary</h1>
-          <p>
-            Manage your pet&apos;s medication and doctor appointments easily!
-          </p>
+    <>
+      <header>
+        <div className="logo">
+          <img src="./logo.png" alt="Logo" />
         </div>
-        <div className="flex justify-center items-center w-full">
+      </header>
+      <main>
+        <div className="flex flex-row justify-around items-center">
+          <div>
+            <p>
+              Manage your pet&apos;s medication and doctor appointments easily!
+            </p>
+          </div>
+          <div className="landing-page-img">
+            <img src="./landing-page.png" alt="Landing page image" />
+          </div>
+        </div>
+        <div>
           <button
             onClick={() => handleGoogle()}
             className="flex flex-row justify-center items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-200 rounded shadow"
@@ -47,6 +56,6 @@ export default function Home() {
           </button>
         </div>
       </main>
-    </div>
+    </>
   );
 }
