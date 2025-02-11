@@ -257,3 +257,13 @@ label {
 .landing-page-img:hover {
   transform: scale(1.05);
 }
+
+.landing-text {
+  font-size: 18px;
+  text-align: center;
+}
+
+.bottom-txt {
+  bottom: 1px;
+  left: calc(100% - 57%);
+}
