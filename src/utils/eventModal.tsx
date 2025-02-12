@@ -17,7 +17,7 @@ export default function EventModal({
     <div className="sx__event-modal sx__event-modal-default is-open">
       <h3>{calendarEvent.title}</h3>
       <div className="event-time-wrap">
-        <div className="flex flex-row items-center justify-around">
+        <div className="flex flex-row items-center justify-start">
           <EventTimeSvg />
           <p>{calendarEvent.time}</p>
         </div>

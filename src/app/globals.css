@@ -170,27 +170,6 @@ label {
   font-size: 30px;
 }
 
-#sidebar {
-  position: fixed;
-}
-
-.user {
-  margin-top: 10px;
-  position: fixed;
-}
-
-.logout {
-  background-color: #ff4545;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-}
-
-.logout:hover {
-  border: none;
-  color: #000;
-}
-
 .user-img {
   width: 60px;
   height: 60px;
@@ -202,16 +181,11 @@ label {
   padding: 10px 20px;
   border: 1px solid #e5e7eb;
   max-height: 230px;
-  display: flex;
   border-radius: 20px;
 }
 
 .logo {
   height: 150px;
-  position: relative;
-  display: flex;
-  justify-content: start;
-  align-items: start;
   width: 150px;
   margin-top: -21px;
   margin-left: -26px;

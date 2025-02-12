@@ -54,7 +54,7 @@ export default function Dashboard() {
       <div className="w-full h-screen">
         <div className="grid grid-cols-12 gap-4 h-full">
           <div className="col-span-2">
-            <div className="logo">
+            <div className="logo relative flex justify-start items-start">
               <img
                 src="./logo.png"
                 className="absolute w-full h-full"
@@ -63,7 +63,7 @@ export default function Dashboard() {
             </div>
             <div
               id="sidebar"
-              className="bg-transparent h-screen grid grid-rows-12 ps-5"
+              className="bg-transparent fixed h-screen grid grid-rows-12 ps-5"
             >
               <div className="row-span-12 mt-5 flex justify-start items-start flex-col">
                 <h2>Your pets</h2>
@@ -145,7 +145,7 @@ export default function Dashboard() {
                     <Logout />
                   </div>
                   {profileModal && (
-                    <div className="user-info">
+                    <div className="user-info flex">
                       <img
                         src={user?.photoURL}
                         alt="User logo"
