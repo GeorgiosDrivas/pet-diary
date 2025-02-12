@@ -217,23 +217,8 @@ label {
   margin-left: -26px;
 }
 
-.logo img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
 .user-details {
   font-size: 15px;
-}
-
-.profile-svg {
-  cursor: pointer;
-}
-
-.profile-icon,
-.logout-btn {
-  border: none;
 }
 
 .profile-icon:hover,
@@ -244,23 +229,13 @@ label {
 
 .landing-page-img {
   width: 700px;
-  height: auto;
-  display: flex;
-  justify-content: end;
-  align-items: end;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 1px 1px 18px #000;
   transition: all 0.3s ease-in-out;
 }
 
 .landing-page-img:hover {
   transform: scale(1.05);
-}
-
-.landing-text {
-  font-size: 18px;
-  text-align: center;
 }
 
 .bottom-txt {

@@ -55,7 +55,11 @@ export default function Dashboard() {
         <div className="grid grid-cols-12 gap-4 h-full">
           <div className="col-span-2">
             <div className="logo">
-              <img src="./logo.png" alt="Logo" />
+              <img
+                src="./logo.png"
+                className="absolute w-full h-full"
+                alt="Logo"
+              />
             </div>
             <div
               id="sidebar"
@@ -133,7 +137,7 @@ export default function Dashboard() {
                 <div className="col-span-2">
                   <div className="flex justify-center items-center">
                     <button
-                      className="profile-icon"
+                      className="profile-icon border-none"
                       onClick={() => setProfileModal((prv) => !prv)}
                     >
                       <ProfileSvg />

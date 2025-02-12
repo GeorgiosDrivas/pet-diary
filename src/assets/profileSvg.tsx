@@ -9,7 +9,7 @@ export default function ProfileSvg() {
         height="20px"
         viewBox="0 0 24 24"
         fill="none"
-        className="profile-svg"
+        className="profile-svg cursor-pointer"
       >
         <g clipPath="url(#clip0_15_82)">
           <rect width="24" height="24" fill="white" />
