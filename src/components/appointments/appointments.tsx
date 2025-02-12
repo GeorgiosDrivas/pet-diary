@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import CreateButton from "@/utils/createButton";
+import CreateButton from "@/components/createButton";
 import AppointmentsTable from "./appointmentsTable";
 import SelectPetMessage from "../selectPet";
 import CloseSvg from "@/assets/closeSvg";

@@ -1,6 +1,6 @@
 import { AppointmentsType, Pet } from "@/types";
 import React from "react";
-import EventModal from "@/utils/eventModal";
+import EventModal from "@/components/eventModal";
 import { ScheduleXCalendar, useCalendarApp } from "@schedule-x/react";
 import EditAppointment from "./editAppointment";
 import { removeAppointment } from "../../../firebase/deleteMethods";

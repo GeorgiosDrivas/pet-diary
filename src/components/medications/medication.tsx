@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MedicationType, Pet } from "@/types";
 import CloseSvg from "@/assets/closeSvg";
-import CreateButton from "@/utils/createButton";
+import CreateButton from "@/components/createButton";
 import NewMedicationForm from "./newMedicationForm";
 import MedicationsTable from "./medicationsTable";
 import SelectPetMessage from "../selectPet";

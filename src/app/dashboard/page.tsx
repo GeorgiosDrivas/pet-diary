@@ -8,10 +8,10 @@ import Medication from "@/components/medications/medication";
 import { Pet, User, UserData } from "@/types";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
-import Logout from "@/utils/logout";
+import Logout from "@/components/logout";
 import ProfileSvg from "@/assets/profileSvg";
 import SelectPetMessage from "@/components/selectPet";
-import CreateButton from "@/utils/createButton";
+import CreateButton from "@/components/createButton";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);

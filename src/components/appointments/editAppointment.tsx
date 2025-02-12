@@ -1,7 +1,7 @@
 import CloseSvg from "@/assets/closeSvg";
 import { AppointmentsType, Pet } from "@/types";
 import React from "react";
-import { convertDateToInputFormat } from "@/utils/formatDate";
+import { convertDateToInputFormat } from "@/components/formatDate";
 import { editAppointment } from "../../../firebase/editMethods";
 
 export default function EditAppointment({
