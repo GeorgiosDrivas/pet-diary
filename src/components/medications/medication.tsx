@@ -52,7 +52,10 @@ export default function Medication({
                   />
                 </>
               ) : (
-                <SelectPetMessage message="Please select a pet to view medications." />
+                <SelectPetMessage
+                  message="Please select a pet to view medications."
+                  cls="select-pet-msg text-center"
+                />
               )}
             </>
           )}

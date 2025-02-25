@@ -79,7 +79,10 @@ export default function Appointments({
                   )}
                 </>
               ) : (
-                <SelectPetMessage message="Please select a pet to view appointments." />
+                <SelectPetMessage
+                  message="Please select a pet to view appointments."
+                  cls="select-pet-msg text-center"
+                />
               )}
             </>
           )}
