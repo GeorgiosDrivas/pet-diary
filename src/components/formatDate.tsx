@@ -12,7 +12,7 @@ export function convertDateToInputFormat(date: string): string {
     }
 
     const [day, month, year] = parts;
-    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    return `${year}-${month?.padStart(2, "0")}-${day?.padStart(2, "0")}`;
   } else if (date.includes("-")) {
     return date;
   }
