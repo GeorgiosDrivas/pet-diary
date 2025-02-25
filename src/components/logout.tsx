@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/client";
 import { useRouter } from "next/navigation";
+import { handleLogout } from "@/utils/handleLogout";
 
 export default function Logout() {
   const router = useRouter();
@@ -15,14 +16,6 @@ export default function Logout() {
 
     return () => unsubscribe();
   }, [router]);
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
 
   return (
     <button className="logout-btn border-none">
