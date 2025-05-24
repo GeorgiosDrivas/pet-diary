@@ -10,16 +10,22 @@ export default function Home() {
   const router = useRouter();
 
   const handleGoogle = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-
-      await writeUsers(user.uid, user.displayName, []);
-      router.push(`/dashboard?${user.uid}`);
-    } catch (error) {
-      console.error("Error during Google sign-in:", error);
+    if (auth.currentUser) {
+      console.log("Already signed in:", auth.currentUser);
+      return;
     }
+
+    const provider = new GoogleAuthProvider();
+    provider.addScope("profile");
+    provider.addScope("email");
+
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    writeUsers(user.uid, user.displayName, []);
+
+    // router.push(`/dashboard?${user.uid}`);
+    console.log("User signed in:", user);
   };
 
   return (
@@ -45,7 +51,7 @@ export default function Home() {
         </div>
         <div className="flex flex-row justify-center items-center mt-20">
           <button
-            onClick={() => handleGoogle()}
+            onClick={handleGoogle}
             className="flex flex-row justify-center items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-200 rounded shadow"
           >
             <Image
