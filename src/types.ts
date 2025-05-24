@@ -1,8 +1,8 @@
-export interface AppointmentOptions {
+export type AppointmentOptions = {
   [key: string]: string | number | boolean;
-}
+};
 
-export interface AppointmentsType {
+export type AppointmentsType = {
   id: string;
   title: string;
   doctor: string;
@@ -14,36 +14,36 @@ export interface AppointmentsType {
   calendarId?: string | null;
   location?: string;
   _options?: AppointmentOptions;
-}
+};
 
-export interface MedicationType {
+export type MedicationType = {
   id: string;
   medicationName: string;
   dosage: string;
   notes?: string;
-}
+};
 
-export interface Pet {
+export type Pet = {
   name: string;
   species: string;
   breed: string;
   age: string;
   appointments: AppointmentsType[];
   medications: MedicationType[];
-}
+};
 
-export interface UserData {
+export type UserData = {
   pets: Pet[];
   displayName: string;
-}
+};
 
-export interface User {
+export type User = {
   displayName: string | null;
   email: string | null;
   photoURL?: string;
   uid: string;
-}
+};
 
-export interface Data {
+export type Data = {
   pet: Pet | null;
-}
+};
