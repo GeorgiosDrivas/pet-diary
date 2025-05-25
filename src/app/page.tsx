@@ -12,6 +12,7 @@ export default function Home() {
   const handleGoogle = async () => {
     if (auth.currentUser) {
       console.log("Already signed in:", auth.currentUser);
+      router.push(`/dashboard?${auth.currentUser.uid}`);
       return;
     }
 
@@ -24,7 +25,7 @@ export default function Home() {
 
     writeUsers(user.uid, user.displayName, []);
 
-    // router.push(`/dashboard?${user.uid}`);
+    router.push(`/dashboard?${user.uid}`);
     console.log("User signed in:", user);
   };
 
