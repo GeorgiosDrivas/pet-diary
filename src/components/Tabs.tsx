@@ -2,13 +2,16 @@ import { Pet } from "@/types";
 import React, { useState } from "react";
 import Appointments from "./appointments/appointments";
 import Medication from "./medications/medication";
+import PetDetails from "./petDetails";
 
 export default function Tabs({ pet, userId }: { pet: Pet; userId: string }) {
   const [activeTab, setActiveTab] = useState<string>("Appointments");
-  const tabs = ["Appointments", "Medication"];
+  const tabs = ["Pet Details", "Appointments", "Medication"];
 
   const renderTabContent = () => {
     switch (activeTab) {
+      case "Pet Details":
+        return <PetDetails pet={pet} userId={userId} />;
       case "Appointments":
         return <Appointments pet={pet} userId={userId} />;
       case "Medication":

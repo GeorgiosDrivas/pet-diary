@@ -91,14 +91,6 @@ export default function Dashboard() {
                 <div>
                   <CreateButton showForm={setNewPetBool} text="Add new pet" />
                 </div>
-                {currentPet && (
-                  <>
-                    <hr className="w-full my-4" />
-                    <div>
-                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
-                    </div>
-                  </>
-                )}
               </div>
             </div>
           </div>
