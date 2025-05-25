@@ -12,6 +12,7 @@ import Logout from "@/components/logout";
 import ProfileSvg from "@/assets/profileSvg";
 import SelectPetMessage from "@/components/selectPet";
 import CreateButton from "@/components/createButton";
+import Tabs from "@/components/Tabs";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -116,22 +117,7 @@ export default function Dashboard() {
                   }
                 >
                   {currentPet ? (
-                    <>
-                      <div className="content grid grid-rows-6 gap-4 py-3">
-                        <div className="row-span-3">
-                          <Appointments
-                            pet={currentPet}
-                            userId={user?.uid || ""}
-                          />
-                        </div>
-                        <div className="row-span-3">
-                          <Medication
-                            pet={currentPet}
-                            userId={user?.uid || ""}
-                          />
-                        </div>
-                      </div>
-                    </>
+                    <Tabs pet={currentPet} userId={user?.uid || ""} />
                   ) : (
                     <SelectPetMessage
                       message="Select a pet to view it's appointments, medication

@@ -23,8 +23,7 @@ export default function Medication({
 
   return (
     <>
-      <div className="medication rounded-[40px] h-full px-8 py-5">
-        <h3>Medication</h3>
+      <div className="medication rounded-[40px] h-full">
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">

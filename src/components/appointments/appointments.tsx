@@ -36,8 +36,7 @@ export default function Appointments({
 
   return (
     <>
-      <div className="appointments rounded-[40px] h-full px-8 py-5">
-        <h3>Appointments</h3>
+      <div className="appointments rounded-[40px] h-full">
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
