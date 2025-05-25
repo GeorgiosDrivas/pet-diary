@@ -1,5 +1,5 @@
 import { Pet } from "@/types";
-import { useState } from "react";
+import React, { useState } from "react";
 import Appointments from "./appointments/appointments";
 import Medication from "./medications/medication";
 

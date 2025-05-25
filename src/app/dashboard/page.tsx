@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../../../firebase/client";
 import { readData } from "../../../firebase/readMethods";
-import Appointments from "@/components/appointments/appointments";
-import Medication from "@/components/medications/medication";
 import { Pet, User, UserData } from "@/types";
 import NewPet from "@/components/newPet";
 import PetDetails from "@/components/petDetails";
