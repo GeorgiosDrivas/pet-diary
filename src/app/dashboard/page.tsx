@@ -63,7 +63,7 @@ export default function Dashboard() {
             </div>
             <div
               id="sidebar"
-              className="bg-transparent fixed h-screen grid grid-rows-12 ps-5"
+              className="bg-transparent h-screen grid grid-rows-12 ps-5"
             >
               <div className="row-span-12 mt-5 flex justify-start items-start flex-col">
                 <h2>Your pets</h2>
@@ -108,7 +108,13 @@ export default function Dashboard() {
               <NewPet userId={user?.uid} />
             ) : (
               <div className="grid grid-cols-12">
-                <div className="col-span-10">
+                <div
+                  className={
+                    currentPet
+                      ? "col-span-10"
+                      : "col-span-10 h-screen flex justify-center items-center"
+                  }
+                >
                   {currentPet ? (
                     <>
                       <div className="content grid grid-rows-6 gap-4 py-3">
