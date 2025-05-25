@@ -18,8 +18,8 @@ export default function PetDetails({
     <>
       {pet && (
         <>
-          <div className="inline-flex">
-            <h2 className="me-2">{pet.name}</h2>
+          <div className="inline-flex mt-8">
+            <h1 className="me-2">{pet.name}</h1>
             <button onClick={() => setEdit((prv) => !prv)} className="edit-btn">
               <EditSvg />
             </button>
@@ -34,13 +34,26 @@ export default function PetDetails({
             {edit ? (
               <EditPetDetails setEdit={setEdit} pet={pet} userId={userId} />
             ) : (
-              <>
-                <p>Species: {pet.species}</p>
-                <p>Breed: {pet.breed}</p>
-                <p>Age: {pet.age}</p>
-                <p>Appointments: {pet.appointments?.length}</p>
-                <p>Medications: {pet.medications.length}</p>
-              </>
+              <table className="w-full mt-4">
+                <thead>
+                  <tr>
+                    <th className="text-start">Species</th>
+                    <th className="text-start">Breed</th>
+                    <th className="text-start">Age</th>
+                    <th className="text-start">Appointments</th>
+                    <th className="text-start">Medications</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{pet.species}</td>
+                    <td>{pet.breed}</td>
+                    <td>{pet.age}</td>
+                    <td>{pet.appointments?.length}</td>
+                    <td>{pet.medications.length}</td>
+                  </tr>
+                </tbody>
+              </table>
             )}
           </div>
         </>
