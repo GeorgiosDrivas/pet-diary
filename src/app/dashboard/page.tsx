@@ -5,7 +5,6 @@ import { auth } from "../../../firebase/client";
 import { readData } from "../../../firebase/readMethods";
 import { Pet, User, UserData } from "@/types";
 import NewPet from "@/components/newPet";
-import PetDetails from "@/components/petDetails";
 import Logout from "@/components/logout";
 import ProfileSvg from "@/assets/profileSvg";
 import SelectPetMessage from "@/components/selectPet";
