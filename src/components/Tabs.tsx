@@ -5,7 +5,7 @@ import Medication from "./medications/medication";
 import PetDetails from "./petDetails";
 
 export default function Tabs({ pet, userId }: { pet: Pet; userId: string }) {
-  const [activeTab, setActiveTab] = useState<string>("Appointments");
+  const [activeTab, setActiveTab] = useState<string>("Pet Details");
   const tabs = ["Pet Details", "Appointments", "Medication"];
 
   const renderTabContent = () => {
