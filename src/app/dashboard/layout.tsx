@@ -33,6 +33,19 @@ export default function RootLayout({
         <div id="root" className="position-relative">
           {children}
         </div>
+        <div className="bottom-txt absolute">
+          <p>
+            Developed by
+            <a
+              href="https://www.linkedin.com/in/drivasgeorgios/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {" "}
+              Georgios Drivas
+            </a>
+          </p>
+        </div>
       </body>
     </html>
   );
