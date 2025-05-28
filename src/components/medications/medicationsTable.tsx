@@ -42,7 +42,7 @@ export default function MedicationsTable({
           userId={userId}
         />
       ) : (
-        <table className="w-full border-collapse border border-gray-200">
+        <table className="w-full border-none">
           <thead>
             <tr>
               <th>Medication Name</th>

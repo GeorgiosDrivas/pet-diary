@@ -73,6 +73,10 @@ label {
   display: block;
 }
 
+table{
+  border-collapse: unset;
+}
+
 .hide-form-btn {
   position: absolute;
   top: 0;
