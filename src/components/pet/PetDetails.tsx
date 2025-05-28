@@ -1,6 +1,6 @@
 import { Pet } from "@/types";
 import React, { useState } from "react";
-import EditPetDetails from "./editPetDetails";
+import EditPetDetails from "./EditPetDetails";
 import EditSvg from "@/assets/editSvg";
 import { removePet } from "../../../firebase/deleteMethods";
 import DeleteSvg from "@/assets/deleteSvg";

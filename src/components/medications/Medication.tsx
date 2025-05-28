@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { MedicationType, Pet } from "@/types";
 import CloseSvg from "@/assets/closeSvg";
-import CreateButton from "@/components/createButton";
-import NewMedicationForm from "./newMedicationForm";
-import MedicationsTable from "./medicationsTable";
-import SelectPetMessage from "../pet/selectPet";
+import CreateButton from "@/components/CreateButton";
+import NewMedicationForm from "./NewMedicationForm";
+import MedicationsTable from "./MedicationsTable";
+import SelectPetMessage from "../pet/SelectPet";
 
 export default function Medication({
   pet,

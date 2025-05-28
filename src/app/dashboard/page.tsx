@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../../../firebase/client";
 import { readData } from "../../../firebase/readMethods";
 import { Pet, User, UserData } from "@/types";
-import NewPet from "@/components/pet/newPet";
-import Logout from "@/components/logout";
+import NewPet from "@/components/pet/NewPet";
+import Logout from "@/components/Logout";
 import ProfileSvg from "@/assets/profileSvg";
-import SelectPetMessage from "@/components/pet/selectPet";
-import CreateButton from "@/components/createButton";
+import SelectPetMessage from "@/components/pet/SelectPet";
+import CreateButton from "@/components/CreateButton";
 import Tabs from "@/components/Tabs";
 
 export default function Dashboard() {

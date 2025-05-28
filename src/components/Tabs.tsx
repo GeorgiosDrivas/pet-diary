@@ -1,8 +1,8 @@
 import { Pet } from "@/types";
 import React, { useState } from "react";
-import Appointments from "./appointments/appointments";
-import Medication from "./medications/medication";
-import PetDetails from "./pet/petDetails";
+import Appointments from "./appointments/Appointments";
+import Medication from "./medications/Medication";
+import PetDetails from "./pet/PetDetails";
 
 export default function Tabs({ pet, userId }: { pet: Pet; userId: string }) {
   const [activeTab, setActiveTab] = useState<string>("Pet Details");

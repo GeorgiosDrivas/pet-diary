@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import CreateButton from "@/components/createButton";
-import AppointmentsTable from "./appointmentsTable";
-import SelectPetMessage from "../pet/selectPet";
+import CreateButton from "@/components/CreateButton";
+import AppointmentsTable from "./AppointmentsTable";
+import SelectPetMessage from "../pet/SelectPet";
 import CloseSvg from "@/assets/closeSvg";
-import AppointmentsForm from "./appointmentsForm";
+import AppointmentsForm from "./AppointmentsForm";
 import { useEffect, useState } from "react";
 import { AppointmentsType, Pet } from "@/types";
 

@@ -3,7 +3,7 @@ import DeleteSvg from "@/assets/deleteSvg";
 import EditSvg from "@/assets/editSvg";
 import { MedicationType, Pet } from "@/types";
 import { removeMedication } from "../../../firebase/deleteMethods";
-import EditMedication from "./editMedication";
+import EditMedication from "./EditMedication";
 
 export default function MedicationsTable({
   pet,
