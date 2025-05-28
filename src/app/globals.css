@@ -52,7 +52,7 @@ h3 {
 button {
   border: 1px solid #ebebeb;
   background-color: transparent;
-  padding: 10px;
+  padding: 14px;
   border-radius: 7px;
   transition: all, 0.3s;
 }
