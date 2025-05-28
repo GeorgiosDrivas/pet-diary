@@ -6,7 +6,7 @@ export default function Credits() {
       <p>
         Developed by
         <a
-          href="https://www.linkedin.com/in/drivasgeorgios/"
+          href="https://github.com/GeorgiosDrivas"
           target="_blank"
           rel="noreferrer"
         >
