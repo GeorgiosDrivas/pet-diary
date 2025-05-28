@@ -73,7 +73,7 @@ label {
   display: block;
 }
 
-table{
+table {
   border-collapse: unset;
 }
 
@@ -193,8 +193,6 @@ table{
 }
 
 .logo {
-  height: 150px;
-  width: 150px;
   margin-top: -21px;
   margin-left: -26px;
 }

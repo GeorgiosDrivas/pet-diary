@@ -48,7 +48,13 @@ export default function Home() {
             </p>
           </div>
           <div className="landing-page-img h-auto flex jutsify-end items-end overflow-hidden">
-            <img src="./landing-page.png" alt="Landing page image" />
+            <Image
+              src="/landing-page.png"
+              alt="Landing page image"
+              width={700}
+              height={100}
+              priority
+            />
           </div>
         </div>
         <div className="flex flex-row justify-center items-center mt-20">
