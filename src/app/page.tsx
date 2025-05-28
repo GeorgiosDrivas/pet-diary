@@ -34,7 +34,7 @@ export default function Home() {
     <>
       <header>
         <div className="logo">
-          <img src="./logo.png" alt="Logo" />
+          <Image src="/logo.png" alt="Logo" width={150} height={150} />
         </div>
       </header>
       <main>
