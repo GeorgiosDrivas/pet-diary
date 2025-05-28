@@ -65,6 +65,7 @@ const sanitizeAppointment = (appointment: AppointmentsType) => {
 
   return Object.fromEntries(
     Object.entries(sanitizedAppointment).filter(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ([_, value]) => value !== undefined && value !== null
     )
   );
