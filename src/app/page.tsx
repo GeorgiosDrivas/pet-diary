@@ -5,6 +5,7 @@ import { auth, writeUsers } from "../../firebase/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import Credits from "@/components/Credits";
 
 export default function Home() {
   const router = useRouter();
@@ -66,19 +67,7 @@ export default function Home() {
           </button>
         </div>
       </main>
-      <div className="bottom-txt absolute">
-        <p>
-          Developed by
-          <a
-            href="https://www.linkedin.com/in/drivasgeorgios/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {" "}
-            Georgios Drivas
-          </a>
-        </p>
-      </div>
+      <Credits />
     </>
   );
 }

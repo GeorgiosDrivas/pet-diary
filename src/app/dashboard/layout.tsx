@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../globals.css";
 import React from "react";
+import Credits from "@/components/Credits";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -33,19 +34,7 @@ export default function RootLayout({
         <div id="root" className="position-relative">
           {children}
         </div>
-        <div className="bottom-txt absolute">
-          <p>
-            Developed by
-            <a
-              href="https://www.linkedin.com/in/drivasgeorgios/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {" "}
-              Georgios Drivas
-            </a>
-          </p>
-        </div>
+        <Credits />
       </body>
     </html>
   );
