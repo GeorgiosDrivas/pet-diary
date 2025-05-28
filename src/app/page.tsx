@@ -4,30 +4,37 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, writeUsers } from "../../firebase/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import Credits from "@/components/Credits";
 
 export default function Home() {
   const router = useRouter();
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const handleGoogle = async () => {
-    if (auth.currentUser) {
-      console.log("Already signed in:", auth.currentUser);
-      router.push(`/dashboard?${auth.currentUser.uid}`);
-      return;
+    try {
+      setLoginLoading(true);
+      if (auth.currentUser) {
+        console.log("Already signed in:", auth.currentUser);
+        router.push(`/dashboard?${auth.currentUser.uid}`);
+        return;
+      }
+
+      const provider = new GoogleAuthProvider();
+      provider.addScope("profile");
+      provider.addScope("email");
+
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      writeUsers(user.uid, user.displayName, []);
+
+      router.push(`/dashboard?${user.uid}`);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoginLoading(false);
     }
-
-    const provider = new GoogleAuthProvider();
-    provider.addScope("profile");
-    provider.addScope("email");
-
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-
-    writeUsers(user.uid, user.displayName, []);
-
-    router.push(`/dashboard?${user.uid}`);
-    console.log("User signed in:", user);
   };
 
   return (
@@ -72,8 +79,13 @@ export default function Home() {
             <span>Connect with Google</span>
           </button>
         </div>
+        <Credits />
+        {loginLoading && (
+          <div className="absolute w-screen h-screen bg-white top-0 left-0 flex justify-center items-center  z-50">
+            <div className="w-12 h-12 border-4 border-[#FF9300] border-t-transparent rounded-full animate-spin" />
+          </div>
+        )}
       </main>
-      <Credits />
     </>
   );
 }
