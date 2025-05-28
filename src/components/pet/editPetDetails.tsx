@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pet } from "@/types";
-import { editPetDetails } from "../../firebase/editMethods";
+import { editPetDetails } from "../../../firebase/editMethods";
 
 export default function EditPetDetails({
   setEdit,

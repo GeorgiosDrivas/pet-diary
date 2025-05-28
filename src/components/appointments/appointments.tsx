@@ -3,7 +3,7 @@
 import React from "react";
 import CreateButton from "@/components/createButton";
 import AppointmentsTable from "./appointmentsTable";
-import SelectPetMessage from "../selectPet";
+import SelectPetMessage from "../pet/selectPet";
 import CloseSvg from "@/assets/closeSvg";
 import AppointmentsForm from "./appointmentsForm";
 import { useEffect, useState } from "react";

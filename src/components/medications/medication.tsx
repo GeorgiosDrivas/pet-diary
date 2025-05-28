@@ -4,7 +4,7 @@ import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/components/createButton";
 import NewMedicationForm from "./newMedicationForm";
 import MedicationsTable from "./medicationsTable";
-import SelectPetMessage from "../selectPet";
+import SelectPetMessage from "../pet/selectPet";
 
 export default function Medication({
   pet,

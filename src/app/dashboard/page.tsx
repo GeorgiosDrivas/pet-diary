@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../../../firebase/client";
 import { readData } from "../../../firebase/readMethods";
 import { Pet, User, UserData } from "@/types";
-import NewPet from "@/components/newPet";
+import NewPet from "@/components/pet/newPet";
 import Logout from "@/components/logout";
 import ProfileSvg from "@/assets/profileSvg";
-import SelectPetMessage from "@/components/selectPet";
+import SelectPetMessage from "@/components/pet/selectPet";
 import CreateButton from "@/components/createButton";
 import Tabs from "@/components/Tabs";
 
