@@ -114,7 +114,7 @@ export default function Dashboard() {
                   )}
                 </div>
                 <div className="col-span-2">
-                  <div className="flex justify-center items-center">
+                  <div className="flex justify-end me-3">
                     <Logout />
                   </div>
                 </div>
