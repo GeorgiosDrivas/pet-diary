@@ -6,7 +6,6 @@ import { readData } from "../../../firebase/readMethods";
 import { Pet, User, UserData } from "@/types";
 import NewPet from "@/components/pet/NewPet";
 import Logout from "@/components/Logout";
-import ProfileSvg from "@/assets/profileSvg";
 import SelectPetMessage from "@/components/pet/SelectPet";
 import CreateButton from "@/components/CreateButton";
 import Tabs from "@/components/Tabs";
@@ -16,7 +15,6 @@ export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
   const [newPetBool, setNewPetBool] = useState<boolean>(false);
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
-  const [profileModal, setProfileModal] = useState<boolean>(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -117,31 +115,8 @@ export default function Dashboard() {
                 </div>
                 <div className="col-span-2">
                   <div className="flex justify-center items-center">
-                    <button
-                      className="profile-icon border-none"
-                      onClick={() => setProfileModal((prv) => !prv)}
-                    >
-                      <ProfileSvg />
-                    </button>
                     <Logout />
                   </div>
-                  {profileModal && (
-                    <div className="user-info flex">
-                      <img
-                        src={user?.photoURL}
-                        alt="User logo"
-                        className="user-img me-3"
-                      />
-                      <div className="user-details">
-                        <p className="m-0">
-                          {user?.displayName || "User Name"}
-                        </p>
-                        <p className="m-0">
-                          Total pets: {userData?.pets.length}
-                        </p>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             )}
