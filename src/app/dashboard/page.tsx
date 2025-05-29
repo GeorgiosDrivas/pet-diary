@@ -107,8 +107,7 @@ export default function Dashboard() {
                     <Tabs pet={currentPet} userId={user?.uid || ""} />
                   ) : (
                     <SelectPetMessage
-                      message="Select a pet to view it's appointments, medication
-                      and details"
+                      message={`Select a pet to view its appointments, medication and details. Or add a new pet to get started.`}
                       cls="select-pet-msg text-center"
                     />
                   )}
