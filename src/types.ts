@@ -40,7 +40,6 @@ export type UserData = {
 export type User = {
   displayName: string | null;
   email: string | null;
-  photoURL?: string;
   uid: string;
 };
 
