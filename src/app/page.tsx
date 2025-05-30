@@ -50,8 +50,7 @@ export default function Home() {
             <h1 className="text-center">Pet Diary</h1>
             <p className="landing-text text-center text-lg">
               Keep track of your pet&apos;s health with ease! <br />
-              Pet Diary helps you manage vet visits, medications, and daily care
-              all in one place.
+              Pet Diary helps you manage vet visit and medications all in one place.
             </p>
           </div>
           <div className="landing-page-img h-auto flex jutsify-end items-end overflow-hidden">
