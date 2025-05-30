@@ -23,7 +23,6 @@ export default function Dashboard() {
           uid: user.uid,
           email: user.email || "",
           displayName: user.displayName || "",
-          photoURL: user.photoURL || undefined,
         });
         try {
           const data = await readData(user.uid);
