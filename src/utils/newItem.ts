@@ -9,6 +9,6 @@ export const handleNewItem = <T extends MedicationType | AppointmentsType>(
   if (pet) {
     setter(userId, pet.name, newItem);
   } else {
-    console.error("No pet selected for adding a medication.");
+    alert("No pet selected for adding a medication.");
   }
 };
