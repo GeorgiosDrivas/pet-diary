@@ -68,7 +68,6 @@ export async function addAppointment(
     if (snapshot.exists()) {
       const userData: { username: string; pets: Pet[] } = snapshot.val();
 
-      // Ensure pets is always an array
       const petsArray = Array.isArray(userData.pets)
         ? userData.pets
         : Object.values(userData.pets || {});
