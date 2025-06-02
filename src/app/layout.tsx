@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./responsive.css";
 import React from "react";
-import {geistSans, geistMono} from "./fonts/fonts.ts";
+import {geistSans, geistMono} from "./fonts/fonts";
 
 export const metadata: Metadata = {
   title: "Pet Diary",
