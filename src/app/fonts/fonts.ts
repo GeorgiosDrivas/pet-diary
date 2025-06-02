@@ -5,3 +5,9 @@ export const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
+export const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
