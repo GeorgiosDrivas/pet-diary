@@ -64,16 +64,18 @@ export default function EditMedication({
               }
             />
           </div>
-          <button type="submit" className="submit-btn">
-            Submit
-          </button>
+          <div className="flex justify-between my-4">
+            <button type="submit" className="submit-btn">
+              Submit
+            </button>
+            <button
+              className="remove-btn"
+              onClick={() => setEditable((prv) => !prv)}
+            >
+              Close
+            </button>
+          </div>
         </form>
-        <button
-          className="hide-form-btn remove-btn"
-          onClick={() => setEditable((prv) => !prv)}
-        >
-          <CloseSvg />
-        </button>
       </div>
     </>
   );
