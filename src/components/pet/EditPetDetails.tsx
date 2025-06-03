@@ -31,7 +31,7 @@ export default function EditPetDetails({
 
   return (
     <>
-      <form onSubmit={() => handleSubmit()}>
+      <form onSubmit={() => handleSubmit()} className="w-[30%]">
         <div>
           <label htmlFor="name">Name</label>
           <input
