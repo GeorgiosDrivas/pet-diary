@@ -1,4 +1,3 @@
-import CloseSvg from "@/assets/closeSvg";
 import { MedicationType, Pet } from "@/types";
 import React from "react";
 import { editMedication } from "../../../firebase/editMethods";
