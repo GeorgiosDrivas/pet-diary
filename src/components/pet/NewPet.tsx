@@ -36,9 +36,9 @@ export default function NewPet({ userId }: { userId: string }) {
   };
 
   return (
-    <div className="h-full py-3 new-pet bg-white rounded-[40px] flex justify-center items-center flex-col">
+    <div className="h-full mt-8 bg-white rounded-[40px]">
       <h1 className="new-pet-title font-bold">Add your pet&apos;s details</h1>
-      <p>Don&apos;t worry. You can always change them</p>
+      <p>Don&apos;t worry. You can always change them.</p>
       <div className="mt-5 w-[25%]">
         <form
           onSubmit={(e) => {
@@ -89,7 +89,7 @@ export default function NewPet({ userId }: { userId: string }) {
               setNewPetState({ ...newPetState, age: e.currentTarget.value })
             }
           />
-          <div className="text-center">
+          <div className="mt-4">
             <button type="submit" className="mt-3 submit-btn">
               Add new pet
             </button>
