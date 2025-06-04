@@ -15,7 +15,9 @@
   .dashboard-container {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 0;
+    padding: 0 20px;
   }
+
   .dashboard-container div:first-child,
   .dashboard-container div:last-child:not(.sidebar-container div:last-child) {
     width: 100%;
