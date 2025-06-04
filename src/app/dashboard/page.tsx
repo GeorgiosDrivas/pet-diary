@@ -49,13 +49,6 @@ export default function Dashboard() {
       <div className="w-full h-screen">
         <div className="grid grid-cols-12 gap-4 h-full">
           <div className="col-span-2">
-            <div className="logo relative flex justify-start items-start">
-              <img
-                src="./logo.png"
-                className="absolute w-full h-full"
-                alt="Logo"
-              />
-            </div>
             <div
               id="sidebar"
               className="bg-transparent h-screen grid grid-rows-12 ps-5"
