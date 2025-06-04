@@ -3,3 +3,21 @@
     width: 500px;
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .main-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .landing-page-img {
+    width: 70%;
+  }
+
+  .landing-text {
+    font-size: 17px;
+    line-height: 19px;
+  }
+}

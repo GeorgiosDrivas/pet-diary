@@ -31,6 +31,10 @@ body.__variable_1e4310.__variable_c3aa02 {
   color: rgb(41, 88, 124);
 }
 
+.main-container {
+  flex-direction: row;
+}
+
 h1 {
   font-size: 35px;
 }
@@ -220,7 +224,8 @@ table {
 
 .bottom-txt {
   bottom: 1px;
-  left: calc(100% - 57%);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .tab-button {
