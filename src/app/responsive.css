@@ -12,6 +12,37 @@
 }
 
 @media only screen and (max-width: 992px) {
+  .dashboard-container {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0;
+  }
+  .dashboard-container div:first-child,
+  .dashboard-container div:last-child:not(.sidebar-container div:last-child) {
+    width: 100%;
+  }
+
+  #sidebar {
+    height: 300px;
+    display: unset;
+    padding: 0;
+  }
+
+  .sidebar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 10px;
+  }
+
+  .sidebar-container h2 {
+    display: none;
+  }
+
+  .sidebar-container div,
+  .sidebar-container button {
+    margin: 0;
+  }
 }
 
 @media only screen and (max-width: 600px) {

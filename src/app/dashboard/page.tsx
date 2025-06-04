@@ -47,13 +47,13 @@ export default function Dashboard() {
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
       <div className="w-full h-screen">
-        <div className="grid grid-cols-12 gap-4 h-full">
+        <div className="dashboard-container grid grid-cols-12 gap-4 h-full">
           <div className="col-span-2">
             <div
               id="sidebar"
               className="bg-transparent h-screen grid grid-rows-12 ps-5"
             >
-              <div className="row-span-12 mt-5 flex justify-start items-start flex-col">
+              <div className="sidebar-container row-span-12 mt-5 flex justify-start items-start flex-col">
                 <h2>Your pets</h2>
                 {userData &&
                   userData.pets &&
