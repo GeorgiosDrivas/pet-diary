@@ -9,12 +9,18 @@ import Logout from "@/components/Logout";
 import SelectPetMessage from "@/components/pet/SelectPet";
 import CreateButton from "@/components/CreateButton";
 import Tabs from "@/components/Tabs";
+import { useMediaQuery } from "react-responsive";
+import PetDetails from "@/components/pet/PetDetails";
+import App from "next/app";
+import Appointments from "@/components/appointments/Appointments";
+import Medication from "@/components/medications/Medication";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [newPetBool, setNewPetBool] = useState<boolean>(false);
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
+  const isDesktop = useMediaQuery({ minWidth: 992 });
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -96,7 +102,26 @@ export default function Dashboard() {
                   }
                 >
                   {currentPet ? (
-                    <Tabs pet={currentPet} userId={user?.uid || ""} />
+                    isDesktop ? (
+                      <Tabs pet={currentPet} userId={user?.uid || ""} />
+                    ) : (
+                      <>
+                        <div className="flex flex-col gap-5">
+                          <PetDetails
+                            pet={currentPet}
+                            userId={user?.uid || ""}
+                          />
+                          <Appointments
+                            pet={currentPet}
+                            userId={user?.uid || ""}
+                          />
+                          <Medication
+                            pet={currentPet}
+                            userId={user?.uid || ""}
+                          />
+                        </div>
+                      </>
+                    )
                   ) : (
                     <SelectPetMessage
                       message={`Select a pet to view its appointments, medication and details. Or add a new pet to get started.`}
