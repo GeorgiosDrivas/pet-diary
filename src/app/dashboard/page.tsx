@@ -11,7 +11,6 @@ import CreateButton from "@/components/CreateButton";
 import Tabs from "@/components/Tabs";
 import { useMediaQuery } from "react-responsive";
 import PetDetails from "@/components/pet/PetDetails";
-import App from "next/app";
 import Appointments from "@/components/appointments/Appointments";
 import Medication from "@/components/medications/Medication";
 
