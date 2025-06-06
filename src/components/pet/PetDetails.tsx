@@ -30,7 +30,7 @@ export default function PetDetails({
               <DeleteSvg />
             </button>
           </div>
-          <div className="flex flex-col justify-between items-start">
+          <div className="table-container flex flex-col justify-between items-start">
             {edit ? (
               <EditPetDetails setEdit={setEdit} pet={pet} userId={userId} />
             ) : (
