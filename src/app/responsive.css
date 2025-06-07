@@ -24,6 +24,7 @@
 
   .table-container table {
     border-spacing: 30px 0;
+    margin-left: -28px;
   }
 
   .dashboard-container {
@@ -32,9 +33,13 @@
     padding: 0 20px;
   }
 
-  .dashboard-container div:first-child,
-  .dashboard-container div:last-child:not(.sidebar-container div:last-child) {
-    width: 100%;
+  .medication th,
+  .medication td {
+    text-align: start;
+  }
+
+  .dashboard-container .col-span-10 {
+    grid-column: span 12 / span 12;
   }
 
   #sidebar {

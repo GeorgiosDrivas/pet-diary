@@ -50,8 +50,8 @@ export default function Dashboard() {
   };
 
   return (
-    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      <div className="nav-bar flex justify-between items-start w-full px-5 mt-3">
+    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start px-5 mt-4">
+      <div className="nav-bar flex justify-between items-start w-full">
         <div id="sidebar" className="bg-transparent grid grid-rows-12">
           <div className="sidebar-container row-span-12 flex justify-start items-start flex-col">
             <h2>Your pets</h2>
