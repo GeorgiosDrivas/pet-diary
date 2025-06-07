@@ -86,48 +86,38 @@ export default function Dashboard() {
           <Logout />
         </div>
       </div>
-      <div className="w-full h-screen">
+      <div className="w-full">
         <div className="dashboard-container grid grid-cols-12 gap-4 h-full">
           <div className="col-span-12">
             {newPetBool && user ? (
               <NewPet userId={user?.uid} />
             ) : (
-              <div className="grid grid-cols-12">
-                <div
-                  className={
-                    currentPet
-                      ? "col-span-10"
-                      : "col-span-10 h-screen flex justify-center items-center"
-                  }
-                >
-                  {currentPet ? (
-                    isDesktop ? (
-                      <Tabs pet={currentPet} userId={user?.uid || ""} />
-                    ) : (
-                      <>
-                        <div className="flex flex-col gap-5">
-                          <PetDetails
-                            pet={currentPet}
-                            userId={user?.uid || ""}
-                          />
-                          <Appointments
-                            pet={currentPet}
-                            userId={user?.uid || ""}
-                          />
-                          <Medication
-                            pet={currentPet}
-                            userId={user?.uid || ""}
-                          />
-                        </div>
-                      </>
-                    )
+              <div
+                className={
+                  currentPet ? "" : " w-full flex justify-center items-center"
+                }
+              >
+                {currentPet ? (
+                  isDesktop ? (
+                    <Tabs pet={currentPet} userId={user?.uid || ""} />
                   ) : (
-                    <SelectPetMessage
-                      message={`Select a pet to view its appointments, medication and details. Or add a new pet to get started.`}
-                      cls="select-pet-msg text-center"
-                    />
-                  )}
-                </div>
+                    <>
+                      <div className="flex flex-col gap-5">
+                        <PetDetails pet={currentPet} userId={user?.uid || ""} />
+                        <Appointments
+                          pet={currentPet}
+                          userId={user?.uid || ""}
+                        />
+                        <Medication pet={currentPet} userId={user?.uid || ""} />
+                      </div>
+                    </>
+                  )
+                ) : (
+                  <SelectPetMessage
+                    message={`Select a pet to view its appointments, medication and details. Or add a new pet to get started.`}
+                    cls="select-pet-msg text-center"
+                  />
+                )}
               </div>
             )}
           </div>
