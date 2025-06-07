@@ -17,6 +17,10 @@
     position: relative;
   }
 
+  #root main {
+    gap: 0;
+  }
+
   .table-container {
     width: 100%;
     overflow-x: scroll;
@@ -43,9 +47,8 @@
   }
 
   #sidebar {
-    height: 300px;
     display: unset;
-    padding: 0;
+    margin-bottom: 30px;
   }
 
   .sidebar-container {
