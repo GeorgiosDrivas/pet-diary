@@ -51,44 +51,44 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      <div className="w-full h-screen">
-        <div className="dashboard-container grid grid-cols-12 gap-4 h-full">
-          <div className="col-span-2">
-            <div
-              id="sidebar"
-              className="bg-transparent h-screen grid grid-rows-12 ps-5"
-            >
-              <div className="sidebar-container row-span-12 mt-5 flex justify-start items-start flex-col">
-                <h2>Your pets</h2>
-                {userData &&
-                  userData.pets &&
-                  userData.pets.map((pet: Pet) => (
-                    <div
-                      className="flex justify-between items-center mb-3 pe-2 single-pet-wrap"
-                      key={pet.name}
-                    >
-                      <button
-                        className="single-pet-btn overflow-hidden flex items-center gap-2 hover:w-auto"
-                        onClick={() => selectPet(pet.name)}
-                      >
-                        <img
-                          src={`/${pet.species.toLowerCase()}.svg`}
-                          alt="Pet logo"
-                          className="species-img me-3"
-                        />
-                        <p className="cursor-pointer single-pet m-0 p-0">
-                          {pet.name}
-                        </p>
-                      </button>
-                    </div>
-                  ))}
-                <div>
-                  <CreateButton showForm={setNewPetBool} text="Add new pet" />
+      <div className="nav-bar flex justify-between items-start w-full px-5 mt-3">
+        <div id="sidebar" className="bg-transparent grid grid-rows-12">
+          <div className="sidebar-container row-span-12 flex justify-start items-start flex-col">
+            <h2>Your pets</h2>
+            {userData &&
+              userData.pets &&
+              userData.pets.map((pet: Pet) => (
+                <div
+                  className="flex justify-between items-center mb-3 pe-2 single-pet-wrap"
+                  key={pet.name}
+                >
+                  <button
+                    className="single-pet-btn overflow-hidden flex items-center gap-2 hover:w-auto"
+                    onClick={() => selectPet(pet.name)}
+                  >
+                    <img
+                      src={`/${pet.species.toLowerCase()}.svg`}
+                      alt="Pet logo"
+                      className="species-img me-3"
+                    />
+                    <p className="cursor-pointer single-pet m-0 p-0">
+                      {pet.name}
+                    </p>
+                  </button>
                 </div>
-              </div>
+              ))}
+            <div>
+              <CreateButton showForm={setNewPetBool} text="Add new pet" />
             </div>
           </div>
-          <div className="col-span-10">
+        </div>
+        <div className="flex justify-end me-3">
+          <Logout />
+        </div>
+      </div>
+      <div className="w-full h-screen">
+        <div className="dashboard-container grid grid-cols-12 gap-4 h-full">
+          <div className="col-span-12">
             {newPetBool && user ? (
               <NewPet userId={user?.uid} />
             ) : (
@@ -127,11 +127,6 @@ export default function Dashboard() {
                       cls="select-pet-msg text-center"
                     />
                   )}
-                </div>
-                <div className="col-span-2">
-                  <div className="flex justify-end me-3">
-                    <Logout />
-                  </div>
                 </div>
               </div>
             )}
