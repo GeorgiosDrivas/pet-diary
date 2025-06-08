@@ -86,7 +86,7 @@ export default function Dashboard() {
           <Logout />
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full h-screen">
         <div className="dashboard-container grid grid-cols-12 gap-4 h-full">
           <div className="col-span-12">
             {newPetBool && user ? (
@@ -94,7 +94,9 @@ export default function Dashboard() {
             ) : (
               <div
                 className={
-                  currentPet ? "" : " w-full flex justify-center items-center"
+                  currentPet
+                    ? ""
+                    : "h-full w-full flex justify-center items-center"
                 }
               >
                 {currentPet ? (
