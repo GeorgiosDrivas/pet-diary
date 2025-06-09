@@ -15,7 +15,6 @@ export default function Home() {
     try {
       setLoginLoading(true);
       if (auth.currentUser) {
-        console.log("Already signed in:", auth.currentUser);
         router.push(`/dashboard?${auth.currentUser.uid}`);
         return;
       }
