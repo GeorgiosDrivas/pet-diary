@@ -95,9 +95,9 @@ export default function Dashboard() {
             ) : (
               <div
                 className={
-                  currentPet
-                    ? ""
-                    : "h-full w-full flex justify-center items-center"
+                  !currentPet
+                    ? "h-full w-full flex justify-center items-center"
+                    : ""
                 }
               >
                 {currentPet ? (
