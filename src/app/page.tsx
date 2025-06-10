@@ -73,7 +73,7 @@ export default function Home() {
               width={20}
               height={20}
               className="me-3"
-              alt="Picture of the author"
+              alt="Google logo"
             />
             <span>Connect with Google</span>
           </button>
