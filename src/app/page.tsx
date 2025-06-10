@@ -63,10 +63,10 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center mt-20">
+        <div className="flex flex-col gap-3 justify-center items-center mt-20">
           <button
             onClick={handleGoogle}
-            className="flex flex-row justify-center items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-200 rounded shadow"
+            className="flex flex-row justify-center items-center bg-white hover:bg-gray-100 text-[#29587C] font-semibold py-2 px-4 border border-gray-200 rounded shadow"
           >
             <Image
               src="/google-logo.png"
@@ -77,6 +77,9 @@ export default function Home() {
             />
             <span>Connect with Google</span>
           </button>
+          <p id="demo-text">
+            Or you can try our <a>free demo</a>.
+          </p>
         </div>
         <Credits />
         {loginLoading && (

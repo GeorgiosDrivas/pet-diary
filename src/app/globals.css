@@ -263,3 +263,12 @@ table {
     transform: rotate(360deg);
   }
 }
+
+#demo-text {
+  font-size: 13px;
+}
+
+#demo-text a {
+  text-decoration: underline;
+  cursor: pointer;
+}
