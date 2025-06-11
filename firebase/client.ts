@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app, process.env.NEXT_PUBLIC_DB);
+export const db = getDatabase(app, process.env.NEXT_PUBLIC_DATABASE_URL);
 
 export async function writeUsers(
   userId: string,
