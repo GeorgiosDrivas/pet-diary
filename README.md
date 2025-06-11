@@ -24,3 +24,4 @@ Pet Diary is a web application designed to help pet owners manage their pets' he
 - **Other Libraries**:
   - `@schedule-x/react` for calendar functionality
   - `uuid` for generating unique IDs
+- **Testing**: Jest
