@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src",
-    "test": "jest",
+    "test": "jest --config ./jest/jest.config.ts",
     "test-w": "jest --watch"
   },
   "dependencies": {
