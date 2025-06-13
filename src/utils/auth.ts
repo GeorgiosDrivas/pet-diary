@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase/client";
 
@@ -11,6 +11,14 @@ const useAuth = () => {
       setIsAuthenticated(!!user);
       setLoading(false);
     });
+
+    // Try to sign in anonymously only if no user is currently signed in
+    if (!auth.currentUser) {
+      signInAnonymously(auth).catch((error) => {
+        console.error("Anonymous sign-in failed", error);
+        setLoading(false);
+      });
+    }
 
     return () => unsubscribe();
   }, []);

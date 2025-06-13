@@ -78,7 +78,7 @@ export default function Home() {
             <span>Connect with Google</span>
           </button>
           <p id="demo-text">
-            Or you can try our <a>free demo</a>.
+            Or you can try our <a href="/demo">free demo</a>.
           </p>
         </div>
         <Credits />
