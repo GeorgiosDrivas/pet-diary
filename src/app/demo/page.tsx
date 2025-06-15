@@ -1,19 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Pet, User, UserData } from "@/types";
+import { Pet, User } from "@/types";
 import Logout from "@/components/Logout";
 import SelectPetMessage from "@/components/pet/SelectPet";
 import CreateButton from "@/components/CreateButton";
 import Tabs from "@/components/Tabs";
 import { useMediaQuery } from "react-responsive";
-import PetDetails from "@/components/pet/PetDetails";
 import Appointments from "@/components/appointments/Appointments";
 import Medication from "@/components/medications/Medication";
 import { auth } from "../../../firebase/client";
 import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import DemoNewPet from "@/components/demo/NewPet";
+import DemoNewPet from "@/components/demo/DemoNewPet";
+import DemoPetDetails from "@/components/demo/DemoPetDetails";
+import DemoTabs from "@/components/demo/DemoTabs";
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
@@ -99,11 +100,11 @@ export default function Dashboard() {
             >
               {currentPet ? (
                 isDesktop ? (
-                  <Tabs pet={currentPet} userId={user?.uid || ""} />
+                  <DemoTabs pet={currentPet} />
                 ) : (
                   <>
                     <div className="flex flex-col gap-5">
-                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
+                      <DemoPetDetails pet={currentPet} />
                       <Appointments pet={currentPet} userId={user?.uid || ""} />
                       <Medication pet={currentPet} userId={user?.uid || ""} />
                     </div>
