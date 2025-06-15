@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Pet, User, UserData } from "@/types";
-import NewPet from "@/components/pet/NewPet";
 import Logout from "@/components/Logout";
 import SelectPetMessage from "@/components/pet/SelectPet";
 import CreateButton from "@/components/CreateButton";
@@ -14,10 +13,11 @@ import Medication from "@/components/medications/Medication";
 import { auth } from "../../../firebase/client";
 import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import DemoNewPet from "@/components/demo/NewPet";
 
 export default function Dashboard() {
-  const [userData, setUserData] = useState<UserData | null>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [pets, setPets] = useState<Pet[]>([]);
   const [newPetBool, setNewPetBool] = useState<boolean>(false);
   const [currentPet, setCurrentPet] = useState<Pet | null>(null);
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
   const selectPet = (name: string) => {
     setNewPetBool(false);
-    const pet = userData?.pets.find((pet: Pet) => pet?.name === name);
+    const pet = pets?.find((pet: Pet) => pet?.name === name);
     setCurrentPet(pet || null);
   };
 
@@ -56,9 +56,8 @@ export default function Dashboard() {
           className="sidebar-container flex justify-start items-start flex-col"
         >
           <h2>Your pets</h2>
-          {userData &&
-            userData.pets &&
-            userData.pets.map((pet: Pet) => (
+          {pets &&
+            pets.map((pet: Pet) => (
               <div
                 className="flex justify-between items-center mb-3 pe-2 single-pet-wrap"
                 key={pet.name}
@@ -89,7 +88,7 @@ export default function Dashboard() {
       <div className="w-full h-screen">
         <div className="dashboard-container h-full">
           {newPetBool && user ? (
-            <NewPet userId={user?.uid} />
+            <DemoNewPet setPets={setPets} />
           ) : (
             <div
               className={
