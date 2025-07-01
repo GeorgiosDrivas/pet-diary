@@ -39,14 +39,12 @@ export default function NewPet({ userId }: { userId: string }) {
     ],
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = () => {
     const result = petSchema.safeParse(newPetState);
 
     if (!result.success) {
       const fieldErrors: typeof errors = {};
-      result.error.errors.forEach((err) => {
+      result.error.errors.forEach((err: any) => {
         const field = err.path[0] as keyof typeof newPetState;
         fieldErrors[field] = err.message;
       });
@@ -67,8 +65,8 @@ export default function NewPet({ userId }: { userId: string }) {
       <p>Don&apos;t worry. You can always change them.</p>
       <div className="mt-5 w-[25%]">
         <form
-          onSubmit={(e) => {
-            onSubmit(e);
+          onSubmit={() => {
+            onSubmit();
           }}
         >
           <label htmlFor="name">Name</label>

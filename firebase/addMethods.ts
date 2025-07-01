@@ -9,7 +9,6 @@ export async function addPet(userId: string, pet: Pet) {
     const snapshot = await get(reference);
     if (snapshot.exists()) {
       const userData: { username: string; pets: Pet[] } = snapshot.val();
-
       const updatedPets = [...(userData.pets || []), pet];
 
       await writeUsers(userId, userData.username, updatedPets);

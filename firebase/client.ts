@@ -21,7 +21,6 @@ export async function writeUsers(
   pets: Pet[]
 ) {
   const reference = ref(db, "users/" + userId);
-
   try {
     const snapshot = await get(reference);
     if (snapshot.exists()) {
@@ -30,16 +29,21 @@ export async function writeUsers(
         ? existingData.pets
         : Object.values(existingData.pets || {});
 
-      const updatedPets = existingPets.map((existingPet: Pet) => {
-        const updatedPet = pets.find((p) => p.name === existingPet.name);
-        return updatedPet ? sanitizePet(updatedPet) : existingPet;
-      });
+      const petsByName: Record<string, Pet> = {};
+      for (const pet of existingPets) {
+        petsByName[pet.name] = pet;
+      }
 
+      for (const incomingPet of pets) {
+        petsByName[incomingPet.name] = sanitizePet(incomingPet);
+      }
+
+      const updatedPets = Object.values(petsByName);
       await update(reference, { pets: updatedPets });
-
       return;
     }
 
+    // First-time user setup
     await set(reference, {
       username: name,
       pets: pets.map(sanitizePet),
@@ -54,7 +58,9 @@ const sanitizePet = (pet: Pet) => ({
   appointments: pet.appointments?.map(sanitizeAppointment) || [],
 });
 
-const sanitizeAppointment = (appointment: AppointmentsType) => {
+const sanitizeAppointment = (
+  appointment: AppointmentsType
+): AppointmentsType => {
   const sanitizedAppointment: AppointmentsType = {
     ...appointment,
     people: appointment.people ?? [],
@@ -68,7 +74,7 @@ const sanitizeAppointment = (appointment: AppointmentsType) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ([_, value]) => value !== undefined && value !== null
     )
-  );
+  ) as AppointmentsType;
 };
 
 export const auth = getAuth(app);
