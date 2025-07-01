@@ -8,7 +8,7 @@ export default function NewPet({ userId }: { userId: string }) {
     name: "",
     species: "",
     breed: "",
-    age: "",
+    age: 1,
   });
   const [errors, setErrors] = useState<
     Partial<Record<keyof typeof newPetState, string>>
@@ -57,7 +57,7 @@ export default function NewPet({ userId }: { userId: string }) {
     setErrors({});
     if (userId) {
       addPet(userId, newPet);
-      setNewPetState({ name: "", species: "", breed: "", age: "" });
+      setNewPetState({ name: "", species: "", breed: "", age: 1 });
     }
   };
 
@@ -119,12 +119,15 @@ export default function NewPet({ userId }: { userId: string }) {
 
           <label htmlFor="age">Age</label>
           <input
-            type="text"
+            type="number"
             id="age"
             name="age"
             value={newPetState.age}
             onChange={(e) =>
-              setNewPetState({ ...newPetState, age: e.currentTarget.value })
+              setNewPetState({
+                ...newPetState,
+                age: Number(e.currentTarget.value),
+              })
             }
             required
           />

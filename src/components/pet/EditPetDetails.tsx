@@ -68,11 +68,11 @@ export default function EditPetDetails({
         <div>
           <label htmlFor="age">Age</label>
           <input
-            type="text"
+            type="number"
             id="age"
             value={updatedPet.age || ""}
             onChange={(e) =>
-              setUpdatedPet((prv) => ({ ...prv, age: e.target.value }))
+              setUpdatedPet((prv) => ({ ...prv, age: Number(e.target.value) }))
             }
           />
         </div>

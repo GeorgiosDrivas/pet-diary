@@ -27,7 +27,7 @@ export type Pet = {
   name: string;
   species: string;
   breed: string;
-  age: string;
+  age: number;
   appointments: AppointmentsType[];
   medications: MedicationType[];
 };
