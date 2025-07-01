@@ -16,11 +16,11 @@ export type AppointmentsType = {
   _options?: AppointmentOptions;
 };
 
-export type MedicationType = {
+export type NoteType = {
   id: string;
-  medicationName: string;
+  NoteName: string;
   dosage: string;
-  notes?: string;
+  Notes?: string;
 };
 
 export type Pet = {
@@ -29,7 +29,7 @@ export type Pet = {
   breed: string;
   age: number;
   appointments: AppointmentsType[];
-  medications: MedicationType[];
+  Notes: NoteType[];
 };
 
 export type UserData = {

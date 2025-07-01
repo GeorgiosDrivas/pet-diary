@@ -84,9 +84,9 @@ export default function EditAppointment({
             />
           </div>
           <div>
-            <label htmlFor="notes">Description</label>
+            <label htmlFor="Notes">Description</label>
             <textarea
-              id="notes"
+              id="Notes"
               value={appointment?.description || ""}
               onChange={(e) =>
                 setAppointment((prv) =>

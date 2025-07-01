@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { get, ref } from "firebase/database";
 import { db, writeUsers } from "./client";
-import { AppointmentsType, MedicationType, Pet } from "@/types";
+import { AppointmentsType, NoteType, Pet } from "@/types";
 
 export async function addPet(userId: string, pet: Pet) {
   const reference = ref(db, `users/${userId}`);
@@ -20,10 +20,10 @@ export async function addPet(userId: string, pet: Pet) {
   }
 }
 
-export async function addMedication(
+export async function addNote(
   userId: string,
   petName: string,
-  newMedication: MedicationType
+  newNote: NoteType
 ) {
   const reference = ref(db, `users/${userId}`);
   try {
@@ -35,10 +35,10 @@ export async function addMedication(
         if (pet.name === petName) {
           return {
             ...pet,
-            medications: [
-              ...(pet.medications || []),
+            Notes: [
+              ...(pet.Notes || []),
               {
-                ...newMedication,
+                ...newNote,
                 id: uuidv4(),
               },
             ],
@@ -52,7 +52,7 @@ export async function addMedication(
       console.error("User not found!");
     }
   } catch (error) {
-    console.error("Error adding medication:", error);
+    console.error("Error adding Note:", error);
   }
 }
 

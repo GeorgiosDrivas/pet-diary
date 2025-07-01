@@ -6,15 +6,14 @@
 ![image 4](https://github.com/user-attachments/assets/46b19f8b-14f2-4a71-8df4-19782a7f703f)
 ![image 5](https://github.com/user-attachments/assets/76e58a28-ef87-4b1c-b36e-9489bcbd4c6e)
 
-
-Pet Diary is a web application designed to help pet owners manage their pets' health and daily care. With this app, users can track appointments, medications, and other important details about their pets.
+Pet Diary is a web application designed to help pet owners manage their pets' health and daily care. With this app, users can track appointments, Notes, and other important details about their pets.
 
 ## Features
 
 - **User Authentication**: Secure login using Google authentication.
 - **Pet Management**: Add, edit, and remove pets.
 - **Appointments**: Schedule and manage appointments for each pet.
-- **Medications**: Track medications and dosages for pets.
+- **Notes**: Track Notes and dosages for pets.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 
 ## Tech Stack

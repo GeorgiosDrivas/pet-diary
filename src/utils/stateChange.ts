@@ -1,6 +1,6 @@
-import { AppointmentsType, MedicationType } from "@/types";
+import { AppointmentsType, NoteType } from "@/types";
 
-export const stateChange = <T extends MedicationType | AppointmentsType>(
+export const stateChange = <T extends NoteType | AppointmentsType>(
   e:
     | React.ChangeEvent<HTMLInputElement>
     | React.ChangeEvent<HTMLTextAreaElement>,

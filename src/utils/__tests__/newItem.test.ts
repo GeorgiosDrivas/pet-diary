@@ -14,11 +14,11 @@ describe("handleNewItem tests", () => {
       breed: "Poodle",
       age: "3",
       appointments: [],
-      medications: [],
+      Notes: [],
     };
 
     const newItem = {
-      type: "medication",
+      type: "Note",
     };
 
     handleNewItem("user123", pet, mockNewItem, newItem);

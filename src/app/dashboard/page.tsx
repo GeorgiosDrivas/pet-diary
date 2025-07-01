@@ -12,7 +12,7 @@ import Tabs from "@/components/Tabs";
 import { useMediaQuery } from "react-responsive";
 import PetDetails from "@/components/pet/PetDetails";
 import Appointments from "@/components/appointments/Appointments";
-import Medication from "@/components/medications/Medication";
+import Note from "@/components/Notes/Note";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -107,13 +107,13 @@ export default function Dashboard() {
                     <div className="flex flex-col gap-5">
                       <PetDetails pet={currentPet} userId={user?.uid || ""} />
                       <Appointments pet={currentPet} userId={user?.uid || ""} />
-                      <Medication pet={currentPet} userId={user?.uid || ""} />
+                      <Note pet={currentPet} userId={user?.uid || ""} />
                     </div>
                   </>
                 )
               ) : (
                 <SelectPetMessage
-                  message={`Select a pet to view its appointments, medication and details. Or add a new pet to get started.`}
+                  message={`Select a pet to view its appointments, Note and details. Or add a new pet to get started.`}
                   cls="select-pet-msg text-center"
                 />
               )}

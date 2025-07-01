@@ -77,9 +77,9 @@ export default function AppointmentsForm({
           />
         </div>
         <div>
-          <label htmlFor="notes">Description</label>
+          <label htmlFor="Notes">Description</label>
           <textarea
-            id="notes"
+            id="Notes"
             value={newAppointment.description}
             onChange={(e) =>
               stateChange(e, "description", setNewAppointment, newAppointment)

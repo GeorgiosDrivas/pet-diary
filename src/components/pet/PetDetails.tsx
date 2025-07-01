@@ -41,7 +41,7 @@ export default function PetDetails({
                     <th className="text-start">Breed</th>
                     <th className="text-start">Age</th>
                     <th className="text-start">Appointments</th>
-                    <th className="text-start">Medications</th>
+                    <th className="text-start">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,7 +50,7 @@ export default function PetDetails({
                     <td>{pet.breed}</td>
                     <td>{pet.age}</td>
                     <td>{pet.appointments?.length}</td>
-                    <td>{pet.medications.length}</td>
+                    <td>{pet.Notes?.length}</td>
                   </tr>
                 </tbody>
               </table>

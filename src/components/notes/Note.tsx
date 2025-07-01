@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { MedicationType, Pet } from "@/types";
+import { NoteType, Pet } from "@/types";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/components/CreateButton";
-import NewMedicationForm from "./NewMedicationForm";
-import MedicationsTable from "./MedicationsTable";
 import SelectPetMessage from "../pet/SelectPet";
+import NewNoteForm from "./NewNoteForm";
+import NotesTable from "./NotesTable";
 
-export default function Medication({
+export default function Note({
   pet,
   userId,
 }: {
@@ -14,23 +14,23 @@ export default function Medication({
   userId: string;
 }) {
   const [showForm, setShowForm] = useState(false);
-  const [newMedication, setNewMedication] = useState<MedicationType>({
+  const [newNote, setNewNote] = useState<NoteType>({
     id: "1",
-    medicationName: "",
+    NoteName: "",
     dosage: "",
-    notes: "",
+    Notes: "",
   });
 
   return (
     <>
-      <div className="medication rounded-[40px] h-full">
+      <div className="Note rounded-[40px] h-full">
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <NewMedicationForm
+              <NewNoteForm
                 userId={userId}
-                newMedication={newMedication}
-                setNewMedication={setNewMedication}
+                newNote={newNote}
+                setNewNote={setNewNote}
                 pet={pet}
               />
               <button
@@ -44,15 +44,12 @@ export default function Medication({
             <>
               {pet ? (
                 <>
-                  <MedicationsTable pet={pet} userId={userId} />
-                  <CreateButton
-                    showForm={setShowForm}
-                    text="Create a medication"
-                  />
+                  <NotesTable pet={pet} userId={userId} />
+                  <CreateButton showForm={setShowForm} text="Create a Note" />
                 </>
               ) : (
                 <SelectPetMessage
-                  message="Please select a pet to view medications."
+                  message="Please select a pet to view Notes."
                   cls="select-pet-msg text-center"
                 />
               )}

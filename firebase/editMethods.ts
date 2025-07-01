@@ -1,4 +1,4 @@
-import { AppointmentsType, MedicationType, Pet } from "@/types";
+import { AppointmentsType, NoteType, Pet } from "@/types";
 import { db, writeUsers } from "./client";
 import { get, ref } from "firebase/database";
 
@@ -45,11 +45,11 @@ export async function editAppointment(
   }
 }
 
-export async function editMedication(
+export async function editNote(
   userId: string,
   petName: string,
-  medicationId: string,
-  updatedMedication: MedicationType
+  NoteId: string,
+  updatedNote: NoteType
 ) {
   const reference = ref(db, `users/${userId}`);
   try {
@@ -61,11 +61,11 @@ export async function editMedication(
         if (pet.name === petName) {
           return {
             ...pet,
-            medications: pet.medications.map((medication) => {
-              if (medication.id === medicationId) {
-                return updatedMedication;
+            Notes: pet.Notes.map((note) => {
+              if (note.id === NoteId) {
+                return updatedNote;
               }
-              return medication;
+              return note;
             }),
           };
         }

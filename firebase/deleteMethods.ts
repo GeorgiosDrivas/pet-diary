@@ -34,10 +34,10 @@ export async function removeAppointment(
   }
 }
 
-export async function removeMedication(
+export async function removeNote(
   userId: string,
   petName: string,
-  medicationId: string
+  NoteId: string
 ) {
   const reference = ref(db, `users/${userId}`);
   try {
@@ -49,9 +49,7 @@ export async function removeMedication(
         if (pet.name === petName) {
           return {
             ...pet,
-            medications: pet.medications?.filter(
-              (medication) => medication.id !== medicationId
-            ),
+            Notes: pet.Notes?.filter((note) => note.id !== NoteId),
           };
         }
         return pet;
@@ -62,7 +60,7 @@ export async function removeMedication(
       console.error("User not found!");
     }
   } catch (error) {
-    console.error("Error removing medication:", error);
+    console.error("Error removing Note:", error);
   }
 }
 

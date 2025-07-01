@@ -1,27 +1,27 @@
-import { MedicationType, Pet } from "@/types";
+import { NoteType, Pet } from "@/types";
 import React from "react";
-import { editMedication } from "../../../firebase/editMethods";
+import { editNote } from "../../../firebase/editMethods";
 
-export default function EditMedication({
+export default function EditNote({
   userId,
   pet,
-  medication,
+  Note,
   setEditable,
-  setMedication,
+  setNote,
 }: {
   userId: string;
   pet: Pet;
-  medication: MedicationType | null;
+  Note: NoteType | null;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
-  setMedication: React.Dispatch<React.SetStateAction<MedicationType | null>>;
+  setNote: React.Dispatch<React.SetStateAction<NoteType | null>>;
 }) {
   return (
     <>
       <div className="relative w-[300px]">
         <form
           onSubmit={() => {
-            if (medication) {
-              editMedication(userId, pet.name, medication.id, medication);
+            if (Note) {
+              editNote(userId, pet.name, Note.id, Note);
             }
           }}
         >
@@ -30,10 +30,10 @@ export default function EditMedication({
             <input
               type="text"
               id="title"
-              value={medication?.medicationName || ""}
+              value={Note?.NoteName || ""}
               onChange={(e) =>
-                setMedication((prv) =>
-                  prv ? { ...prv, medicationName: e.target.value } : null
+                setNote((prv) =>
+                  prv ? { ...prv, NoteName: e.target.value } : null
                 )
               }
             />
@@ -43,22 +43,22 @@ export default function EditMedication({
             <input
               type="text"
               id="dosage"
-              value={medication?.dosage || ""}
+              value={Note?.dosage || ""}
               onChange={(e) =>
-                setMedication((prv) =>
+                setNote((prv) =>
                   prv ? { ...prv, dosage: e.target.value } : null
                 )
               }
             />
           </div>
           <div>
-            <label htmlFor="notes">Notes</label>
+            <label htmlFor="Notes">Notes</label>
             <textarea
-              id="notes"
-              value={medication?.notes || ""}
+              id="Notes"
+              value={Note?.Notes || ""}
               onChange={(e) =>
-                setMedication((prv) =>
-                  prv ? { ...prv, notes: e.target.value } : null
+                setNote((prv) =>
+                  prv ? { ...prv, Notes: e.target.value } : null
                 )
               }
             />
