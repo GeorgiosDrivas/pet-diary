@@ -16,8 +16,8 @@ export default function Note({
   const [showForm, setShowForm] = useState(false);
   const [newNote, setNewNote] = useState<NoteType>({
     id: "1",
-    NoteName: "",
-    Notes: "",
+    name: "",
+    content: "",
   });
 
   return (

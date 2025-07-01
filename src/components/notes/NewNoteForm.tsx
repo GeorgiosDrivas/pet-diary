@@ -23,16 +23,16 @@ export default function NewNoteForm({
           <input
             type="text"
             id="NoteName"
-            value={newNote.NoteName}
-            onChange={(e) => stateChange(e, "NoteName", setNewNote, newNote)}
+            value={newNote.name}
+            onChange={(e) => stateChange(e, "name", setNewNote, newNote)}
           />
         </div>
         <div>
           <label htmlFor="Notes">Notes</label>
           <textarea
             id="Notes"
-            value={newNote.Notes}
-            onChange={(e) => stateChange(e, "Notes", setNewNote, newNote)}
+            value={newNote.content}
+            onChange={(e) => stateChange(e, "content", setNewNote, newNote)}
           />
         </div>
         <button type="submit" className="submit-btn">

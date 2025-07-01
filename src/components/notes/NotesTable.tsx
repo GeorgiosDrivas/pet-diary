@@ -24,10 +24,6 @@ export default function NotesTable({
     setEditableNote(Note);
   };
 
-  const hasNotes =
-    pet.Notes &&
-    pet.Notes.some((note) => note.Notes && note.Notes.trim() !== "");
-
   return (
     <>
       {editItem ? (
@@ -43,16 +39,15 @@ export default function NotesTable({
           <thead>
             <tr>
               <th>Note Name</th>
-              <th>Dosage</th>
-              {hasNotes && <th>Notes</th>}
+              <th>Content</th>
             </tr>
           </thead>
           <tbody>
             {pet.Notes && pet.Notes.length > 0 ? (
               pet.Notes.map((note: NoteType, index: number) => (
                 <tr key={index} className="border-b border-[#e5e7eb]">
-                  <td className="text-center py-3">{note.NoteName}</td>
-                  <td className="text-center py-3">{note.Notes}</td>
+                  <td className="text-center py-3">{note.name}</td>
+                  <td className="text-center py-3">{note.content}</td>
                   <td className="text-center py-3">
                     <button
                       className="me-3 my-2 edit-btn"

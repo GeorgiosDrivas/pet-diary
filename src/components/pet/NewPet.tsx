@@ -33,8 +33,8 @@ export default function NewPet({ userId }: { userId: string }) {
     Notes: [
       {
         id: "1",
-        NoteName: "Example",
-        dosage: "Dr. Example",
+        name: "Example",
+        content: "Dr. Example",
       },
     ],
   };

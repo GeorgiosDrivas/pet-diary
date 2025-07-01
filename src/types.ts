@@ -18,8 +18,8 @@ export type AppointmentsType = {
 
 export type NoteType = {
   id: string;
-  NoteName: string;
-  Notes?: string;
+  name: string;
+  content: string;
 };
 
 export type Pet = {

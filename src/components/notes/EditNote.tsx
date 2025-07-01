@@ -30,22 +30,10 @@ export default function EditNote({
             <input
               type="text"
               id="title"
-              value={Note?.NoteName || ""}
+              value={Note?.name || ""}
               onChange={(e) =>
                 setNote((prv) =>
-                  prv ? { ...prv, NoteName: e.target.value } : null
-                )
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor="Notes">Notes</label>
-            <textarea
-              id="Notes"
-              value={Note?.Notes || ""}
-              onChange={(e) =>
-                setNote((prv) =>
-                  prv ? { ...prv, Notes: e.target.value } : null
+                  prv ? { ...prv, name: e.target.value } : null
                 )
               }
             />
