@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { addPet } from "../../../firebase/addMethods";
 import { Pet } from "@/types";
+import { PetFormData, petSchema } from "@/schemas/petSchema";
 
 export default function NewPet({ userId }: { userId: string }) {
-  const [newPetState, setNewPetState] = useState({
+  const [newPetState, setNewPetState] = useState<PetFormData>({
     name: "",
     species: "",
     breed: "",
     age: "",
   });
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof typeof newPetState, string>>
+  >({});
 
   const newPet: Pet = {
     name: newPetState.name,
@@ -35,6 +39,28 @@ export default function NewPet({ userId }: { userId: string }) {
     ],
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const result = petSchema.safeParse(newPetState);
+
+    if (!result.success) {
+      const fieldErrors: typeof errors = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof typeof newPetState;
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
+    if (userId) {
+      addPet(userId, newPet);
+      setNewPetState({ name: "", species: "", breed: "", age: "" });
+    }
+  };
+
   return (
     <div className="h-full mt-8 bg-white rounded-[40px]">
       <h1 className="new-pet-title font-bold">Add your pet&apos;s details</h1>
@@ -42,8 +68,7 @@ export default function NewPet({ userId }: { userId: string }) {
       <div className="mt-5 w-[25%]">
         <form
           onSubmit={(e) => {
-            e.preventDefault();
-            if (userId) addPet(userId, newPet);
+            onSubmit(e);
           }}
         >
           <label htmlFor="name">Name</label>
@@ -55,7 +80,10 @@ export default function NewPet({ userId }: { userId: string }) {
             onChange={(e) =>
               setNewPetState({ ...newPetState, name: e.currentTarget.value })
             }
+            required
           />
+          {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+
           <label htmlFor="species">Species</label>
           <input
             type="text"
@@ -68,7 +96,12 @@ export default function NewPet({ userId }: { userId: string }) {
                 species: e.currentTarget.value,
               })
             }
+            required
           />
+          {errors.species && (
+            <p className="text-red-500 text-sm">{errors.species}</p>
+          )}
+
           <label htmlFor="breed">Breed</label>
           <input
             type="text"
@@ -78,7 +111,12 @@ export default function NewPet({ userId }: { userId: string }) {
             onChange={(e) =>
               setNewPetState({ ...newPetState, breed: e.currentTarget.value })
             }
+            required
           />
+          {errors.breed && (
+            <p className="text-red-500 text-sm">{errors.breed}</p>
+          )}
+
           <label htmlFor="age">Age</label>
           <input
             type="text"
@@ -88,7 +126,10 @@ export default function NewPet({ userId }: { userId: string }) {
             onChange={(e) =>
               setNewPetState({ ...newPetState, age: e.currentTarget.value })
             }
+            required
           />
+          {errors.age && <p className="text-red-500 text-sm">{errors.age}</p>}
+
           <div className="mt-4">
             <button type="submit" className="mt-3 submit-btn">
               Add new pet
