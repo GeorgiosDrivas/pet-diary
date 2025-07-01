@@ -44,7 +44,7 @@ export default function NewPet({ userId }: { userId: string }) {
 
     if (!result.success) {
       const fieldErrors: typeof errors = {};
-      result.error.errors.forEach((err: any) => {
+      result.error.errors.forEach((err) => {
         const field = err.path[0] as keyof typeof newPetState;
         fieldErrors[field] = err.message;
       });
