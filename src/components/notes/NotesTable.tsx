@@ -52,7 +52,6 @@ export default function NotesTable({
               pet.Notes.map((note: NoteType, index: number) => (
                 <tr key={index} className="border-b border-[#e5e7eb]">
                   <td className="text-center py-3">{note.NoteName}</td>
-                  <td className="text-center py-3">{note.dosage}</td>
                   <td className="text-center py-3">{note.Notes}</td>
                   <td className="text-center py-3">
                     <button

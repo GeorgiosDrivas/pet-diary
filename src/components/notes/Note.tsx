@@ -17,7 +17,6 @@ export default function Note({
   const [newNote, setNewNote] = useState<NoteType>({
     id: "1",
     NoteName: "",
-    dosage: "",
     Notes: "",
   });
 

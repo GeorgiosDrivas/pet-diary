@@ -39,19 +39,6 @@ export default function EditNote({
             />
           </div>
           <div>
-            <label htmlFor="dosage">Dosage</label>
-            <input
-              type="text"
-              id="dosage"
-              value={Note?.dosage || ""}
-              onChange={(e) =>
-                setNote((prv) =>
-                  prv ? { ...prv, dosage: e.target.value } : null
-                )
-              }
-            />
-          </div>
-          <div>
             <label htmlFor="Notes">Notes</label>
             <textarea
               id="Notes"

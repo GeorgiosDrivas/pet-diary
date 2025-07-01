@@ -28,15 +28,6 @@ export default function NewNoteForm({
           />
         </div>
         <div>
-          <label htmlFor="dosage">Dosage</label>
-          <input
-            type="text"
-            id="dosage"
-            value={newNote.dosage}
-            onChange={(e) => stateChange(e, "dosage", setNewNote, newNote)}
-          />
-        </div>
-        <div>
           <label htmlFor="Notes">Notes</label>
           <textarea
             id="Notes"
