@@ -32,7 +32,7 @@ export default function NewPet({ userId }: { userId: string }) {
     ],
     Notes: [
       {
-        id: "1",
+        id: 1,
         name: "Example",
         content: "Dr. Example",
       },

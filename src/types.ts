@@ -17,7 +17,7 @@ export type AppointmentsType = {
 };
 
 export type NoteType = {
-  id: string;
+  id: number;
   name: string;
   content: string;
 };
