@@ -1,3 +1,5 @@
+import { noteSchemaType } from "./schemas/notesSchemas";
+
 export type AppointmentOptions = {
   [key: string]: string | number | boolean;
 };
@@ -16,19 +18,13 @@ export type AppointmentsType = {
   _options?: AppointmentOptions;
 };
 
-export type NoteType = {
-  id: number;
-  name: string;
-  content: string;
-};
-
 export type Pet = {
   name: string;
   species: string;
   breed: string;
   age: number;
   appointments: AppointmentsType[];
-  Notes: NoteType[];
+  Notes: noteSchemaType[];
 };
 
 export type UserData = {

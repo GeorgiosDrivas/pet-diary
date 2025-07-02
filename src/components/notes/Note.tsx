@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { NoteType, Pet } from "@/types";
+import { Pet } from "@/types";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/components/CreateButton";
 import SelectPetMessage from "../pet/SelectPet";
 import NewNoteForm from "./NewNoteForm";
 import NotesTable from "./NotesTable";
+import { noteSchemaType } from "@/schemas/notesSchemas";
 
 export default function Note({
   pet,
@@ -14,7 +15,7 @@ export default function Note({
   userId: string;
 }) {
   const [showForm, setShowForm] = useState(false);
-  const [newNote, setNewNote] = useState<NoteType>({
+  const [newNote, setNewNote] = useState<noteSchemaType>({
     id: 1,
     name: "",
     content: "",

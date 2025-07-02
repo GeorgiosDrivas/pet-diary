@@ -1,6 +1,7 @@
-import { AppointmentsType, NoteType, Pet } from "@/types";
+import { AppointmentsType, Pet } from "@/types";
 import { db, writeUsers } from "./client";
 import { get, ref } from "firebase/database";
+import { noteSchemaType } from "@/schemas/notesSchemas";
 
 export async function editAppointment(
   userId: string,
@@ -48,8 +49,8 @@ export async function editAppointment(
 export async function editNote(
   userId: string,
   petName: string,
-  NoteId: string,
-  updatedNote: NoteType
+  NoteId: number,
+  updatedNote: noteSchemaType
 ) {
   const reference = ref(db, `users/${userId}`);
   try {

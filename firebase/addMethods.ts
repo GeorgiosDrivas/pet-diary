@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { get, ref } from "firebase/database";
 import { db, writeUsers } from "./client";
-import { AppointmentsType, NoteType, Pet } from "@/types";
+import { AppointmentsType, Pet } from "@/types";
+import { noteSchemaType } from "@/schemas/notesSchemas";
 
 export async function addPet(userId: string, pet: Pet) {
   const reference = ref(db, `users/${userId}`);
@@ -23,7 +24,7 @@ export async function addPet(userId: string, pet: Pet) {
 export async function addNote(
   userId: string,
   petName: string,
-  newNote: NoteType
+  newNote: noteSchemaType
 ) {
   const reference = ref(db, `users/${userId}`);
   try {
@@ -39,7 +40,7 @@ export async function addNote(
               ...(pet.Notes || []),
               {
                 ...newNote,
-                id: uuidv4(),
+                id: Number(uuidv4()),
               },
             ],
           };

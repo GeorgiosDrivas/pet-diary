@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import DeleteSvg from "@/assets/deleteSvg";
 import EditSvg from "@/assets/editSvg";
-import { NoteType, Pet } from "@/types";
+import { Pet } from "@/types";
 import { removeNote } from "../../../firebase/deleteMethods";
 import EditNote from "./EditNote";
+import { noteSchemaType } from "@/schemas/notesSchemas";
 
 export default function NotesTable({
   pet,
@@ -13,13 +14,13 @@ export default function NotesTable({
   userId: string;
 }) {
   const [editItem, setEditItem] = useState(false);
-  const [editableNote, setEditableNote] = useState<NoteType | null>(null);
+  const [editableNote, setEditableNote] = useState<noteSchemaType | null>(null);
 
-  const removeNoteFn = (pet: Pet, index: string) => {
+  const removeNoteFn = (pet: Pet, index: number) => {
     removeNote(userId, pet?.name, index);
   };
 
-  const editNote = (Note: NoteType) => {
+  const editNote = (Note: noteSchemaType) => {
     setEditItem(true);
     setEditableNote(Note);
   };
@@ -44,7 +45,7 @@ export default function NotesTable({
           </thead>
           <tbody>
             {pet.Notes && pet.Notes.length > 0 ? (
-              pet.Notes.map((note: NoteType, index: number) => (
+              pet.Notes.map((note: noteSchemaType, index: number) => (
                 <tr key={index} className="border-b border-[#e5e7eb]">
                   <td className="text-center py-3">{note.name}</td>
                   <td className="text-center py-3">{note.content}</td>

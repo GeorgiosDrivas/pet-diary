@@ -1,6 +1,7 @@
-import { AppointmentsType, NoteType } from "@/types";
+import { noteSchemaType } from "@/schemas/notesSchemas";
+import { AppointmentsType } from "@/types";
 
-export const stateChange = <T extends NoteType | AppointmentsType>(
+export const stateChange = <T extends noteSchemaType | AppointmentsType>(
   e:
     | React.ChangeEvent<HTMLInputElement>
     | React.ChangeEvent<HTMLTextAreaElement>,

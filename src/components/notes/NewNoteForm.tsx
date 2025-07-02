@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { NoteType, Pet } from "@/types";
+import { Pet } from "@/types";
 import { handleNewItem } from "@/utils/newItem";
 import { stateChange } from "@/utils/stateChange";
 import { addNote } from "../../../firebase/addMethods";
-import { noteSchema } from "@/schemas/notesSchemas";
+import { noteSchema, noteSchemaType } from "@/schemas/notesSchemas";
 
 export default function NewNoteForm({
   userId,
@@ -12,8 +12,8 @@ export default function NewNoteForm({
   pet,
 }: {
   userId: string;
-  newNote: NoteType;
-  setNewNote: React.Dispatch<React.SetStateAction<NoteType>>;
+  newNote: noteSchemaType;
+  setNewNote: React.Dispatch<React.SetStateAction<noteSchemaType>>;
   pet: Pet | null;
 }) {
   const [errors, setErrors] = useState<

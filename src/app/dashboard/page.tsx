@@ -12,7 +12,7 @@ import Tabs from "@/components/Tabs";
 import { useMediaQuery } from "react-responsive";
 import PetDetails from "@/components/pet/PetDetails";
 import Appointments from "@/components/appointments/Appointments";
-import Note from "@/components/Notes/Note";
+import Note from "@/components/notes/Note";
 
 export default function Dashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);

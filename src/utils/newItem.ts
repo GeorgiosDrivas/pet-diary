@@ -1,6 +1,7 @@
-import { AppointmentsType, NoteType, Pet } from "@/types";
+import { noteSchemaType } from "@/schemas/notesSchemas";
+import { AppointmentsType, Pet } from "@/types";
 
-export const handleNewItem = <T extends NoteType | AppointmentsType>(
+export const handleNewItem = <T extends noteSchemaType | AppointmentsType>(
   userId: string,
   pet: Pet | null,
   setter: (userId: string, petName: string, newItem: T) => Promise<void>,
