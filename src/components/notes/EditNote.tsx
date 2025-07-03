@@ -1,7 +1,7 @@
-import { Pet } from "@/types";
+import { editNoteTypes } from "@/types";
 import React from "react";
 import { editNote } from "../../../firebase/editMethods";
-import { noteSchema, noteSchemaType } from "@/schemas/notesSchemas";
+import { noteSchema } from "@/schemas/notesSchemas";
 
 export default function EditNote({
   userId,
@@ -9,13 +9,7 @@ export default function EditNote({
   Note,
   setEditable,
   setNote,
-}: {
-  userId: string;
-  pet: Pet;
-  Note: noteSchemaType | null;
-  setEditable: React.Dispatch<React.SetStateAction<boolean>>;
-  setNote: React.Dispatch<React.SetStateAction<noteSchemaType | null>>;
-}) {
+}: editNoteTypes) {
   const handleSubmit = () => {
     const schemaResult = noteSchema.safeParse(Note);
 

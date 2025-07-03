@@ -41,3 +41,11 @@ export type User = {
 export type Data = {
   pet: Pet | null;
 };
+
+export type editNoteTypes = {
+  userId: string;
+  pet: Pet;
+  Note: noteSchemaType | null;
+  setEditable: React.Dispatch<React.SetStateAction<boolean>>;
+  setNote: React.Dispatch<React.SetStateAction<noteSchemaType | null>>;
+};
