@@ -49,7 +49,7 @@ export async function editAppointment(
 export async function editNote(
   userId: string,
   petName: string,
-  NoteId: number,
+  NoteId: string,
   updatedNote: noteSchemaType
 ) {
   const reference = ref(db, `users/${userId}`);
