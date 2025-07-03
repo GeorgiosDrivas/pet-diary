@@ -17,7 +17,7 @@ export default function EditPetDetails({
     breed: pet.breed,
     age: pet.age,
     appointments: pet.appointments,
-    Notes: pet.Notes,
+    notes: pet.notes,
   });
 
   useEffect(() => {

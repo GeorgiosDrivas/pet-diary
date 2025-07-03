@@ -30,10 +30,10 @@ export default function NewPet({ userId }: { userId: string }) {
         description: "This is an example appointment",
       },
     ],
-    Notes: [
+    notes: [
       {
-        id: 1,
-        name: "Example",
+        id: "",
+        title: "Example",
         content: "Dr. Example",
       },
     ],
