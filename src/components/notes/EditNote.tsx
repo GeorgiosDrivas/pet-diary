@@ -35,14 +35,27 @@ export default function EditNote({
           }}
         >
           <div>
-            <label htmlFor="title">Name</label>
+            <label htmlFor="title">Title</label>
             <input
               type="text"
               id="title"
-              value={Note?.name || ""}
+              value={Note?.title || ""}
               onChange={(e) =>
                 setNote((prv) =>
-                  prv ? { ...prv, name: e.target.value } : null
+                  prv ? { ...prv, title: e.target.value } : null
+                )
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="title">Content</label>
+            <input
+              type="text"
+              id="title"
+              value={Note?.content || ""}
+              onChange={(e) =>
+                setNote((prv) =>
+                  prv ? { ...prv, content: e.target.value } : null
                 )
               }
             />

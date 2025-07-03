@@ -48,10 +48,10 @@ export default function NewNoteForm({
           <input
             type="text"
             id="NoteName"
-            value={newNote.name}
-            onChange={(e) => stateChange(e, "name", setNewNote, newNote)}
+            value={newNote.title}
+            onChange={(e) => stateChange(e, "title", setNewNote, newNote)}
           />
-          {errors.name && <p className="error">{errors.name}</p>}
+          {errors.title && <p className="error">{errors.title}</p>}
         </div>
         <div>
           <label htmlFor="Notes">Notes</label>
