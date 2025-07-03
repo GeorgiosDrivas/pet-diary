@@ -49,3 +49,10 @@ export type editNoteTypes = {
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
   setNote: React.Dispatch<React.SetStateAction<noteSchemaType | null>>;
 };
+
+export type newNoteFormTypes = {
+  userId: string;
+  newNote: noteSchemaType;
+  setNewNote: React.Dispatch<React.SetStateAction<noteSchemaType>>;
+  pet: Pet | null;
+};
