@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addPet } from "../../../firebase/addMethods";
-import { Pet } from "@/types";
 import { PetFormData, petSchema } from "@/schemas/petSchema";
+import newPet from "@/utils/newPet";
 
 export default function NewPet({ userId }: { userId: string }) {
   const [newPetState, setNewPetState] = useState<PetFormData>({
@@ -13,31 +13,6 @@ export default function NewPet({ userId }: { userId: string }) {
   const [errors, setErrors] = useState<
     Partial<Record<keyof typeof newPetState, string>>
   >({});
-
-  const newPet: Pet = {
-    name: newPetState.name,
-    species: newPetState.species,
-    breed: newPetState.breed,
-    age: newPetState.age,
-    appointments: [
-      {
-        id: "1",
-        title: "Example",
-        doctor: "Dr. Example",
-        start: "2024-10-10",
-        end: "2024-10-10",
-        time: "",
-        description: "This is an example appointment",
-      },
-    ],
-    notes: [
-      {
-        id: "",
-        title: "Example",
-        content: "Dr. Example",
-      },
-    ],
-  };
 
   const onSubmit = () => {
     const result = petSchema.safeParse(newPetState);
@@ -54,7 +29,7 @@ export default function NewPet({ userId }: { userId: string }) {
 
     setErrors({});
     if (userId) {
-      addPet(userId, newPet);
+      addPet(userId, newPet(newPetState));
       setNewPetState({ name: "", species: "", breed: "", age: 1 });
     }
   };
