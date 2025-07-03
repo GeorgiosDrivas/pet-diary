@@ -36,11 +36,11 @@ export async function addNote(
         if (pet.name === petName) {
           return {
             ...pet,
-            Notes: [
-              ...(pet.Notes || []),
+            notes: [
+              ...(pet.notes || []),
               {
                 ...newNote,
-                id: Number(uuidv4()),
+                id: uuidv4(),
               },
             ],
           };

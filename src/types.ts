@@ -24,7 +24,7 @@ export type Pet = {
   breed: string;
   age: number;
   appointments: AppointmentsType[];
-  Notes: noteSchemaType[];
+  notes: noteSchemaType[];
 };
 
 export type UserData = {

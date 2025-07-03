@@ -62,7 +62,7 @@ export async function editNote(
         if (pet.name === petName) {
           return {
             ...pet,
-            Notes: pet.Notes.map((note) => {
+            notes: pet.notes.map((note) => {
               if (note.id === NoteId) {
                 return updatedNote;
               }

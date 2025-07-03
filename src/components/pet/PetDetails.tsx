@@ -50,7 +50,7 @@ export default function PetDetails({
                     <td>{pet.breed}</td>
                     <td>{pet.age}</td>
                     <td>{pet.appointments?.length}</td>
-                    <td>{pet.Notes?.length}</td>
+                    <td>{pet.notes?.length}</td>
                   </tr>
                 </tbody>
               </table>

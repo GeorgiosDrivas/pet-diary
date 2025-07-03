@@ -16,7 +16,7 @@ export default function NotesTable({
   const [editItem, setEditItem] = useState(false);
   const [editableNote, setEditableNote] = useState<noteSchemaType | null>(null);
 
-  const removeNoteFn = (pet: Pet, index: number) => {
+  const removeNoteFn = (pet: Pet, index: string) => {
     removeNote(userId, pet?.name, index);
   };
 
@@ -44,8 +44,8 @@ export default function NotesTable({
             </tr>
           </thead>
           <tbody>
-            {pet.Notes && pet.Notes.length > 0 ? (
-              pet.Notes.map((note: noteSchemaType, index: number) => (
+            {pet.notes && pet.notes.length > 0 ? (
+              pet.notes.map((note: noteSchemaType, index: number) => (
                 <tr key={index} className="border-b border-[#e5e7eb]">
                   <td className="text-center py-3">{note.name}</td>
                   <td className="text-center py-3">{note.content}</td>

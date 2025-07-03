@@ -37,7 +37,7 @@ export async function removeAppointment(
 export async function removeNote(
   userId: string,
   petName: string,
-  NoteId: number
+  NoteId: string
 ) {
   const reference = ref(db, `users/${userId}`);
   try {
@@ -49,7 +49,7 @@ export async function removeNote(
         if (pet.name === petName) {
           return {
             ...pet,
-            Notes: pet.Notes?.filter((note) => note.id !== NoteId),
+            notes: pet.notes?.filter((note) => note.id !== NoteId),
           };
         }
         return pet;

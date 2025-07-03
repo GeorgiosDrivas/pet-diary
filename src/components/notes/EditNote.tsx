@@ -35,7 +35,7 @@ export default function EditNote({
           }}
         >
           <div>
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Name</label>
             <input
               type="text"
               id="title"

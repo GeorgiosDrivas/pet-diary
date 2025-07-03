@@ -16,7 +16,7 @@ export default function Note({
 }) {
   const [showForm, setShowForm] = useState(false);
   const [newNote, setNewNote] = useState<noteSchemaType>({
-    id: 1,
+    id: "a81bc81b-dead-4e5d-abff-90865d1e13b1",
     name: "",
     content: "",
   });

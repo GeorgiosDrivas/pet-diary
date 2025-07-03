@@ -23,9 +23,11 @@ export default function NewNoteForm({
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const result = noteSchema.safeParse(newNote);
     if (result.success) {
+      console.log("New note is valid:", newNote);
       handleNewItem(userId, pet, addNote, newNote);
     } else {
       e.preventDefault();
+      console.error("Validation errors", result.error.errors);
       const fieldErrors: typeof errors = {};
 
       result.error.errors.forEach((err) => {
