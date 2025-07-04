@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Pet } from "@/types";
 import { editPetDetails } from "../../../firebase/editMethods";
+import { useForm } from "react-hook-form";
+import { PetFormData } from "@/schemas/petSchema";
 
 export default function EditPetDetails({
   setEdit,
@@ -11,69 +13,44 @@ export default function EditPetDetails({
   pet: Pet;
   userId: string;
 }) {
-  const [updatedPet, setUpdatedPet] = useState<Pet>({
-    name: pet.name,
-    species: pet.species,
-    breed: pet.breed,
-    age: pet.age,
-    appointments: pet.appointments,
-    notes: pet.notes,
+  const { register, handleSubmit } = useForm<PetFormData>({
+    defaultValues: {
+      name: pet.name,
+      species: pet.species,
+      breed: pet.breed,
+      age: pet.age,
+    },
   });
 
-  useEffect(() => {
-    setUpdatedPet(pet);
-  }, [pet]);
-
-  const handleSubmit = async () => {
-    await editPetDetails(userId, pet.name, updatedPet);
+  const onSubmit = async (data: PetFormData) => {
+    await editPetDetails(userId, pet.id, {
+      ...pet,
+      ...data,
+    });
     setEdit(false);
   };
 
   return (
     <>
-      <form onSubmit={() => handleSubmit()} className="w-[30%]">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-[30%]">
         <div>
           <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            value={updatedPet.name || ""}
-            onChange={(e) =>
-              setUpdatedPet((prv) => ({ ...prv, name: e.target.value }))
-            }
-          />
+          <input type="text" id="name" {...register("name")} />
         </div>
         <div>
           <label htmlFor="species">Species</label>
-          <input
-            type="text"
-            id="species"
-            value={updatedPet.species || ""}
-            onChange={(e) =>
-              setUpdatedPet((prv) => ({ ...prv, species: e.target.value }))
-            }
-          />
+          <input type="text" id="species" {...register("species")} />
         </div>
         <div>
           <label htmlFor="breed">Breed</label>
-          <input
-            type="text"
-            id="breed"
-            value={updatedPet.breed || ""}
-            onChange={(e) =>
-              setUpdatedPet((prv) => ({ ...prv, breed: e.target.value }))
-            }
-          />
+          <input type="text" id="breed" {...register("breed")} />
         </div>
         <div>
           <label htmlFor="age">Age</label>
           <input
             type="number"
             id="age"
-            value={updatedPet.age || ""}
-            onChange={(e) =>
-              setUpdatedPet((prv) => ({ ...prv, age: Number(e.target.value) }))
-            }
+            {...register("age", { valueAsNumber: true })}
           />
         </div>
         <div className="flex justify-between mt-2">

@@ -84,7 +84,7 @@ export async function editNote(
 
 export async function editPetDetails(
   userId: string,
-  petName: string,
+  petId: string,
   updatedPet: Pet
 ) {
   const reference = ref(db, `users/${userId}`);
@@ -94,7 +94,7 @@ export async function editPetDetails(
       const userData: { username: string; pets: Pet[] } = snapshot.val();
 
       const updatedPets = userData.pets.map((pet) => {
-        if (pet.name === petName) {
+        if (pet.id === petId) {
           return updatedPet;
         }
         return pet;

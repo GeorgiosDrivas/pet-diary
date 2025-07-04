@@ -3,6 +3,7 @@ import { addPet } from "../../../firebase/addMethods";
 import { PetFormData, petSchema } from "@/schemas/petSchema";
 import newPet from "@/utils/newPet";
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 
 export default function NewPet({ userId }: { userId: string }) {
   const { register, handleSubmit, reset } = useForm<PetFormData>();
@@ -25,7 +26,8 @@ export default function NewPet({ userId }: { userId: string }) {
 
     setErrors({});
     if (userId) {
-      addPet(userId, newPet(data));
+      const petData = newPet(data);
+      addPet(userId, { id: uuidv4(), ...petData });
       reset();
     }
   };

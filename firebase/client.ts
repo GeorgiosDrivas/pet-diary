@@ -29,16 +29,16 @@ export async function writeUsers(
         ? existingData.pets
         : Object.values(existingData.pets || {});
 
-      const petsByName: Record<string, Pet> = {};
+      const petsById: Record<string, Pet> = {};
       for (const pet of existingPets) {
-        petsByName[pet.name] = pet;
+        petsById[pet.id] = pet;
       }
 
       for (const incomingPet of pets) {
-        petsByName[incomingPet.name] = sanitizePet(incomingPet);
+        petsById[incomingPet.id] = sanitizePet(incomingPet);
       }
 
-      const updatedPets = Object.values(petsByName);
+      const updatedPets = Object.values(petsById);
       await update(reference, { pets: updatedPets });
       return;
     }
