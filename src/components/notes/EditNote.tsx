@@ -1,7 +1,7 @@
 import { editNoteTypes } from "@/types";
 import React from "react";
 import { editNote } from "../../../firebase/editMethods";
-import { noteSchema, noteSchemaType } from "@/schemas/notesSchemas";
+import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
 import { useForm } from "react-hook-form";
 
 export default function EditNote({
@@ -10,22 +10,20 @@ export default function EditNote({
   Note,
   setEditable,
 }: editNoteTypes) {
-  const { register, handleSubmit } = useForm<noteSchemaType>({
+  const { register, handleSubmit } = useForm<NoteInput>({
     defaultValues: {
       title: Note?.title,
       content: Note?.content,
     },
   });
 
-  const onSubmit = (data: noteSchemaType) => {
-    const schemaResult = noteSchema.safeParse(Note);
+  const onSubmit = (data: NoteInput) => {
+    const schemaResult = noteInputSchema.safeParse(data);
 
-    if (schemaResult.success) {
-      if (Note) {
-        editNote(userId, pet.id, Note.id, data);
-      }
+    if (schemaResult.success && Note) {
+      editNote(userId, pet.id, Note.id, { ...data, id: Note.id });
     } else {
-      console.error("Validation failed", schemaResult.error.format());
+      console.error("Validation failed", schemaResult.error?.format());
     }
   };
 
