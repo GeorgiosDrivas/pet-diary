@@ -31,7 +31,6 @@ export default function NotesTable({
         <EditNote
           pet={pet}
           Note={editableNote}
-          setNote={setEditableNote}
           setEditable={setEditItem}
           userId={userId}
         />

@@ -48,37 +48,37 @@ export async function editAppointment(
 
 export async function editNote(
   userId: string,
-  petName: string,
-  NoteId: string,
+  petId: string,
+  noteId: string,
   updatedNote: noteSchemaType
 ) {
   const reference = ref(db, `users/${userId}`);
   try {
     const snapshot = await get(reference);
-    if (snapshot.exists()) {
-      const userData: { username: string; pets: Pet[] } = snapshot.val();
-
-      const updatedPets = userData.pets.map((pet) => {
-        if (pet.name === petName) {
-          return {
-            ...pet,
-            notes: pet.notes.map((note) => {
-              if (note.id === NoteId) {
-                return updatedNote;
-              }
-              return note;
-            }),
-          };
-        }
-        return pet;
-      });
-
-      await writeUsers(userId, userData.username, updatedPets);
-    } else {
+    if (!snapshot.exists()) {
       console.error("User not found!");
+      return;
     }
+
+    const userData: { username: string; pets: Pet[] } = snapshot.val();
+
+    const updatedPets = userData.pets.map((pet) => {
+      if (pet.id !== petId) return pet;
+
+      return {
+        ...pet,
+        notes: pet.notes.map((note) => {
+          if (note.id === noteId) {
+            return { ...note, ...updatedNote };
+          }
+          return note;
+        }),
+      };
+    });
+
+    await writeUsers(userId, userData.username, updatedPets);
   } catch (error) {
-    console.error("Error editing appointment:", error);
+    console.error("Error editing note:", error);
   }
 }
 
