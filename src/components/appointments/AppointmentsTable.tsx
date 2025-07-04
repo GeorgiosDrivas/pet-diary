@@ -40,6 +40,7 @@ export default function AppointmentsTable({
     try {
       await removeAppointment(userId, pet?.name, appointmentId);
     } catch (err) {
+      console.error("Error removing appointment:", err);
       setAppointments((prev) => [
         ...prev,
         pet.appointments.find((a) => a.id === appointmentId)!,
