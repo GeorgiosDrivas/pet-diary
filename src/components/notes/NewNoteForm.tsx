@@ -4,6 +4,7 @@ import { addNote } from "../../../firebase/addMethods";
 import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function NewNoteForm({
   userId,
@@ -13,17 +14,13 @@ export default function NewNoteForm({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NoteInput>();
+  } = useForm<NoteInput>({
+    resolver: zodResolver(noteInputSchema),
+  });
 
   const handleFormSubmit = (data: NoteInput) => {
-    const result = noteInputSchema.safeParse(data);
-    if (result.success) {
-      console.log("Form submitted with:", data);
-      if (pet) {
-        addNote(userId, pet.id, { ...data, id: uuidv4() });
-      }
-    } else {
-      console.error("Validation errors:", result.error.errors);
+    if (pet) {
+      addNote(userId, pet.id, { ...data, id: uuidv4() });
     }
   };
 
