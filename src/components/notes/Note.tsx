@@ -5,7 +5,6 @@ import CreateButton from "@/components/CreateButton";
 import SelectPetMessage from "../pet/SelectPet";
 import NewNoteForm from "./NewNoteForm";
 import NotesTable from "./NotesTable";
-import { noteSchemaType } from "@/schemas/notesSchemas";
 
 export default function Note({
   pet,
