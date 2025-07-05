@@ -11,6 +11,7 @@
     "test-w": "jest --watch"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "@schedule-x/event-modal": "^2.14.3",
     "@schedule-x/events-service": "^2.14.3",
     "@schedule-x/react": "^2.14.1",

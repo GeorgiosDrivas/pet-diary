@@ -23,7 +23,7 @@ export async function addPet(userId: string, pet: Pet) {
 
 export async function addNote(
   userId: string,
-  petName: string,
+  petId: string,
   newNote: noteSchemaType
 ) {
   const reference = ref(db, `users/${userId}`);
@@ -33,14 +33,13 @@ export async function addNote(
       const userData: { username: string; pets: Pet[] } = snapshot.val();
 
       const updatedPets = userData.pets.map((pet) => {
-        if (pet.name === petName) {
+        if (pet.id === petId) {
           return {
             ...pet,
             notes: [
               ...(pet.notes || []),
               {
                 ...newNote,
-                id: uuidv4(),
               },
             ],
           };

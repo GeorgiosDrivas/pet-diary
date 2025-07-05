@@ -53,6 +53,5 @@ export type editNoteTypes = {
 export type newNoteFormTypes = {
   userId: string;
   newNote: noteSchemaType;
-  setNewNote: React.Dispatch<React.SetStateAction<noteSchemaType>>;
   pet: Pet | null;
 };

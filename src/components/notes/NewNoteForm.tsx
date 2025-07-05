@@ -1,64 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
 import { newNoteFormTypes } from "@/types";
-import { handleNewItem } from "@/utils/newItem";
-import { stateChange } from "@/utils/stateChange";
 import { addNote } from "../../../firebase/addMethods";
-import { noteSchema } from "@/schemas/notesSchemas";
+import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
+import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 
 export default function NewNoteForm({
   userId,
-  newNote,
-  setNewNote,
   pet,
-}: newNoteFormTypes) {
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof typeof newNote, string>>
-  >({});
+}: Omit<newNoteFormTypes, "newNote">) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NoteInput>();
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const result = noteSchema.safeParse(newNote);
+  const handleFormSubmit = (data: NoteInput) => {
+    const result = noteInputSchema.safeParse(data);
     if (result.success) {
-      handleNewItem(userId, pet, addNote, newNote);
+      console.log("Form submitted with:", data);
+      if (pet) {
+        addNote(userId, pet.id, { ...data, id: uuidv4() });
+      }
     } else {
-      e.preventDefault();
-      const fieldErrors: typeof errors = {};
-
-      result.error.errors.forEach((err) => {
-        const field = err.path[0] as keyof typeof newNote;
-        fieldErrors[field] = err.message;
-      });
-
-      setErrors(fieldErrors);
-      return;
+      console.error("Validation errors:", result.error.errors);
     }
   };
 
   return (
-    <>
-      <form onSubmit={(e) => handleFormSubmit(e)}>
-        <div>
-          <label htmlFor="NoteName">Note Name</label>
-          <input
-            type="text"
-            id="NoteName"
-            value={newNote.title}
-            onChange={(e) => stateChange(e, "title", setNewNote, newNote)}
-          />
-          {errors.title && <p className="error">{errors.title}</p>}
-        </div>
-        <div>
-          <label htmlFor="Notes">Notes</label>
-          <textarea
-            id="Notes"
-            value={newNote.content}
-            onChange={(e) => stateChange(e, "content", setNewNote, newNote)}
-          />
-          {errors.content && <p className="error">{errors.content}</p>}
-        </div>
-        <button type="submit" className="submit-btn">
-          Submit
-        </button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
+      <div>
+        <label htmlFor="title">Note Title</label>
+        <input type="text" id="title" {...register("title")} />
+        {errors.title && <p className="error">{errors.title.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="content">Content</label>
+        <textarea id="content" {...register("content")} />
+        {errors.content && <p className="error">{errors.content.message}</p>}
+      </div>
+
+      <button type="submit" className="submit-btn">
+        Submit
+      </button>
+    </form>
   );
 }

@@ -4,11 +4,11 @@ import { AppointmentsType, Pet } from "@/types";
 export const handleNewItem = <T extends noteSchemaType | AppointmentsType>(
   userId: string,
   pet: Pet | null,
-  setter: (userId: string, petName: string, newItem: T) => Promise<void>,
+  setter: (userId: string, petId: string, newItem: T) => Promise<void>,
   newItem: T
 ) => {
   if (pet) {
-    setter(userId, pet.name, newItem);
+    setter(userId, pet.id, newItem);
   } else {
     alert("No pet selected for adding a Note.");
   }

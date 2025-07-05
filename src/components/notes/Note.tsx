@@ -15,11 +15,6 @@ export default function Note({
   userId: string;
 }) {
   const [showForm, setShowForm] = useState(false);
-  const [newNote, setNewNote] = useState<noteSchemaType>({
-    id: "a81bc81b-dead-4e5d-abff-90865d1e13b1",
-    title: "",
-    content: "",
-  });
 
   return (
     <>
@@ -27,12 +22,7 @@ export default function Note({
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <NewNoteForm
-                userId={userId}
-                newNote={newNote}
-                setNewNote={setNewNote}
-                pet={pet}
-              />
+              <NewNoteForm userId={userId} pet={pet} />
               <button
                 className="hide-form-btn remove-btn"
                 onClick={() => setShowForm((prv: boolean) => !prv)}
