@@ -3,6 +3,7 @@ import React from "react";
 import { editNote } from "../../../firebase/editMethods";
 import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function EditNote({
   userId,
@@ -10,20 +11,21 @@ export default function EditNote({
   Note,
   setEditable,
 }: editNoteTypes) {
-  const { register, handleSubmit } = useForm<NoteInput>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NoteInput>({
     defaultValues: {
       title: Note?.title,
       content: Note?.content,
     },
+    resolver: zodResolver(noteInputSchema),
   });
 
   const onSubmit = (data: NoteInput) => {
-    const schemaResult = noteInputSchema.safeParse(data);
-
-    if (schemaResult.success && Note) {
+    if (Note) {
       editNote(userId, pet.id, Note.id, { ...data, id: Note.id });
-    } else {
-      console.error("Validation failed", schemaResult.error?.format());
     }
   };
 
@@ -34,10 +36,14 @@ export default function EditNote({
           <div>
             <label htmlFor="title">Title</label>
             <input type="text" id="title" {...register("title")} />
+            {errors.title && <p className="error">{errors.title.message}</p>}
           </div>
           <div>
-            <label htmlFor="title">Content</label>
+            <label htmlFor="content">Content</label>
             <input type="text" id="content" {...register("content")} />
+            {errors.content && (
+              <p className="error">{errors.content.message}</p>
+            )}
           </div>
           <div className="flex justify-between my-4">
             <button type="submit" className="submit-btn">
