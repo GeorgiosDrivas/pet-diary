@@ -1,5 +1,5 @@
 import { editNoteTypes } from "@/types";
-import React from "react";
+import React, { useEffect } from "react";
 import { editNote } from "../../../firebase/editMethods";
 import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,7 @@ export default function EditNote({
     register,
     handleSubmit,
     formState: { errors },
+    setFocus,
   } = useForm<NoteInput>({
     defaultValues: {
       title: Note?.title,
@@ -22,6 +23,10 @@ export default function EditNote({
     },
     resolver: zodResolver(noteInputSchema),
   });
+
+  useEffect(() => {
+    setFocus("title");
+  }, []);
 
   const onSubmit = (data: NoteInput) => {
     if (Note) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { addPet } from "../../../firebase/addMethods";
 import { PetFormData, petSchema } from "@/schemas/petSchema";
 import newPet from "@/utils/newPet";
@@ -12,9 +12,14 @@ export default function NewPet({ userId }: { userId: string }) {
     handleSubmit,
     reset,
     formState: { errors },
+    setFocus,
   } = useForm<PetFormData>({
     resolver: zodResolver(petSchema),
   });
+
+  useEffect(() => {
+    setFocus("name");
+  }, []);
 
   const onSubmit = (data: PetFormData) => {
     if (userId) {

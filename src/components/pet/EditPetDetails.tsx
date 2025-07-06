@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pet } from "@/types";
 import { editPetDetails } from "../../../firebase/editMethods";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,7 @@ export default function EditPetDetails({
     register,
     handleSubmit,
     formState: { errors },
+    setFocus,
   } = useForm<PetFormData>({
     defaultValues: {
       name: pet.name,
@@ -27,6 +28,10 @@ export default function EditPetDetails({
     },
     resolver: zodResolver(petSchema),
   });
+
+  useEffect(() => {
+    setFocus("name");
+  }, []);
 
   const onSubmit = async (data: PetFormData) => {
     await editPetDetails(userId, pet.id, {

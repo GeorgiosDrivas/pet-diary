@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { newNoteFormTypes } from "@/types";
 import { addNote } from "../../../firebase/addMethods";
 import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
@@ -14,9 +14,14 @@ export default function NewNoteForm({
     register,
     handleSubmit,
     formState: { errors },
+    setFocus,
   } = useForm<NoteInput>({
     resolver: zodResolver(noteInputSchema),
   });
+
+  useEffect(() => {
+    setFocus("title");
+  }, []);
 
   const handleFormSubmit = (data: NoteInput) => {
     if (pet) {
