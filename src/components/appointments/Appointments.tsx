@@ -5,9 +5,9 @@ import CreateButton from "@/components/CreateButton";
 import AppointmentsTable from "./AppointmentsTable";
 import SelectPetMessage from "../pet/SelectPet";
 import CloseSvg from "@/assets/closeSvg";
-import AppointmentsForm from "./AppointmentsForm";
 import { useEffect, useState } from "react";
-import { AppointmentsType, Pet } from "@/types";
+import { Pet } from "@/types";
+import AppointmentsForm from "./AppointmentsForm";
 
 export default function Appointments({
   pet,
@@ -18,15 +18,6 @@ export default function Appointments({
 }) {
   const [showForm, setShowForm] = useState(false);
   const [appointments, setAppointments] = useState(pet.appointments);
-  const [newAppointment, setNewAppointment] = useState<AppointmentsType>({
-    id: "1",
-    title: "",
-    doctor: "",
-    start: "",
-    end: "",
-    time: "",
-    description: "",
-  });
 
   useEffect(() => {
     if (pet.appointments) {
@@ -40,12 +31,7 @@ export default function Appointments({
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <AppointmentsForm
-                userId={userId}
-                newAppointment={newAppointment}
-                setNewAppointment={setNewAppointment}
-                pet={pet}
-              />
+              <AppointmentsForm userId={userId} pet={pet} />
               <button
                 className="hide-form-btn remove-btn"
                 onClick={() => setShowForm((prv: boolean) => !prv)}

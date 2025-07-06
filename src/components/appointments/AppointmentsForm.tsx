@@ -1,90 +1,76 @@
 import React from "react";
-import { AppointmentsType, Pet } from "@/types";
-import { handleNewItem } from "@/utils/newItem";
-import { stateChange } from "@/utils/stateChange";
+import { Pet } from "@/types";
 import { addAppointment } from "../../../firebase/addMethods";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  AppointmentFormType,
+  appointmentSchema,
+} from "@/schemas/appointmentSchema";
+import { v4 as uuidv4 } from "uuid";
 
 export default function AppointmentsForm({
-  newAppointment,
-  setNewAppointment,
-  pet,
   userId,
+  pet,
 }: {
-  newAppointment: AppointmentsType;
-  setNewAppointment: React.Dispatch<React.SetStateAction<AppointmentsType>>;
-  pet: Pet | null;
   userId: string;
+  pet: Pet | null;
 }) {
-  const dateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedDate = e.target.value;
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<AppointmentFormType>({
+    resolver: zodResolver(appointmentSchema),
+  });
 
-    if (selectedDate) {
-      setNewAppointment((prevState) => ({
-        ...prevState,
-        start: selectedDate,
-        end: selectedDate,
-      }));
+  const handleNewAppointmentSubmit = async (data: AppointmentFormType) => {
+    if (pet) {
+      try {
+        await addAppointment(userId, pet.id, {
+          ...data,
+          id: uuidv4(),
+          time: data.time ?? "",
+          start: data.date,
+          end: data.date,
+        });
+        reset();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   return (
     <>
-      <form
-        onSubmit={() => {
-          handleNewItem(userId, pet, addAppointment, newAppointment);
-        }}
-      >
+      <form onSubmit={handleSubmit(handleNewAppointmentSubmit)}>
         <div>
           <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            value={newAppointment.title}
-            onChange={(e) =>
-              stateChange(e, "title", setNewAppointment, newAppointment)
-            }
-          />
+          <input type="text" id="title" {...register("title")} />
+          {errors.title && <p className="error">{errors.title.message}</p>}
         </div>
         <div>
           <label htmlFor="doctor">Doctor</label>
-          <input
-            type="text"
-            id="doctor"
-            value={newAppointment.doctor}
-            onChange={(e) =>
-              stateChange(e, "doctor", setNewAppointment, newAppointment)
-            }
-          />
+          <input type="text" id="doctor" {...register("doctor")} />
+          {errors.doctor && <p className="error">{errors.doctor.message}</p>}
         </div>
         <div>
           <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            id="date"
-            value={newAppointment.start}
-            onChange={(e) => dateChange(e)}
-          />
+          <input type="date" id="date" {...register("date")} />
+          {errors.date && <p className="error">{errors.date.message}</p>}
         </div>
         <div>
           <label htmlFor="time">Time</label>
-          <input
-            type="time"
-            id="time"
-            value={newAppointment.time}
-            onChange={(e) =>
-              stateChange(e, "time", setNewAppointment, newAppointment)
-            }
-          />
+          <input type="time" id="time" {...register("time")} />
+          {errors.time && <p className="error">{errors.time.message}</p>}
         </div>
         <div>
           <label htmlFor="Notes">Description</label>
-          <textarea
-            id="Notes"
-            value={newAppointment.description}
-            onChange={(e) =>
-              stateChange(e, "description", setNewAppointment, newAppointment)
-            }
-          />
+          <textarea id="Notes" {...register("description")} />
+          {errors.description && (
+            <p className="error">{errors.description.message}</p>
+          )}
         </div>
         <button type="submit" className="submit-btn">
           Submit

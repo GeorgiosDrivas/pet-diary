@@ -1,9 +1,5 @@
 import { noteSchemaType } from "./schemas/notesSchemas";
 
-export type AppointmentOptions = {
-  [key: string]: string | number | boolean;
-};
-
 export type AppointmentsType = {
   id: string;
   title: string;
@@ -12,10 +8,6 @@ export type AppointmentsType = {
   end: string;
   time: string;
   description?: string;
-  people?: string[];
-  calendarId?: string | null;
-  location?: string;
-  _options?: AppointmentOptions;
 };
 
 export type Pet = {

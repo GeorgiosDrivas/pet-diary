@@ -58,7 +58,7 @@ export async function addNote(
 
 export async function addAppointment(
   userId: string,
-  petName: string,
+  petId: string,
   newAppointment: AppointmentsType
 ) {
   const reference = ref(db, `users/${userId}`);
@@ -67,19 +67,14 @@ export async function addAppointment(
     if (snapshot.exists()) {
       const userData: { username: string; pets: Pet[] } = snapshot.val();
 
-      const petsArray = Array.isArray(userData.pets)
-        ? userData.pets
-        : Object.values(userData.pets || {});
-
-      const updatedPets = petsArray.map((pet: any) => {
-        if (pet.name === petName) {
+      const updatedPets = userData.pets.map((pet) => {
+        if (pet.id === petId) {
           return {
             ...pet,
             appointments: [
-              ...(Array.isArray(pet.appointments) ? pet.appointments : []),
+              ...(pet.appointments || []),
               {
                 ...newAppointment,
-                id: uuidv4(),
               },
             ],
           };

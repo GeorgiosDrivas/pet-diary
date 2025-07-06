@@ -29,7 +29,7 @@ export default function AppointmentsTable({
 
   const calendarEvents = appointments.map((appointment) => ({
     ...appointment,
-    calendarId: appointment.calendarId ?? undefined,
+    calendarId: appointment.id ?? undefined,
   }));
 
   const removeAppointmentFn = async (appointmentId: string) => {
