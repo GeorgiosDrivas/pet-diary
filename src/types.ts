@@ -6,6 +6,7 @@ export type AppointmentsType = {
   doctor: string;
   start: string;
   end: string;
+  date: string;
   time: string;
   description?: string;
 };

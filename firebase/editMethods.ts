@@ -17,9 +17,7 @@ export async function editAppointment(
 
       const sanitizedAppointment: AppointmentsType = {
         ...updatedAppointment,
-        people: updatedAppointment.people ?? [],
-        calendarId: updatedAppointment.calendarId ?? null,
-        location: updatedAppointment.location ?? "",
+        calendarId: updatedAppointment.id ?? null,
       };
 
       const updatedPets = userData.pets.map((pet) => {
