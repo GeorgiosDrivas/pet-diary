@@ -61,13 +61,7 @@ const sanitizePet = (pet: Pet) => ({
 const sanitizeAppointment = (
   appointment: AppointmentsType
 ): AppointmentsType => {
-  const sanitizedAppointment: AppointmentsType = {
-    ...appointment,
-    people: appointment.people ?? [],
-    calendarId: appointment.calendarId ?? undefined,
-    location: appointment.location ?? "",
-    _options: appointment._options ?? undefined,
-  };
+  const sanitizedAppointment: AppointmentsType = appointment;
 
   return Object.fromEntries(
     Object.entries(sanitizedAppointment).filter(
