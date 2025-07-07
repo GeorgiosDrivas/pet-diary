@@ -26,6 +26,13 @@ export default function EditAppointment({
     formState: { errors },
   } = useForm<AppointmentFormType>({
     resolver: zodResolver(appointmentSchema),
+    defaultValues: {
+      title: appointment?.title || "",
+      doctor: appointment?.doctor || "",
+      date: appointment?.date || "",
+      time: appointment?.time || "",
+      description: appointment?.description || "",
+    },
   });
 
   const handleSubmitForm = (data: AppointmentFormType) => {
