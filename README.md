@@ -22,5 +22,7 @@ Pet Diary is a web application designed to help pet owners manage their pets' he
 - **Backend**: Firebase (Authentication, Realtime Database)
 - **Other Libraries**:
   - `@schedule-x/react` for calendar functionality
+  - `React Hook Form` for forms
   - `uuid` for generating unique IDs
+  - `Zod` for form validation
 - **Testing**: Jest
