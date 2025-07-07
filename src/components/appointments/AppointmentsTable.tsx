@@ -65,7 +65,6 @@ export default function AppointmentsTable({
         <EditAppointment
           pet={pet}
           appointment={editableAppointment}
-          setAppointment={setEditableAppointment}
           setEditable={setEditItem}
           userId={userId}
         />
