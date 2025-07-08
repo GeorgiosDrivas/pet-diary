@@ -49,8 +49,8 @@ export default function PetDetails({
                     <td>{pet.species}</td>
                     <td>{pet.breed}</td>
                     <td>{pet.age}</td>
-                    <td>{pet.appointments?.length}</td>
-                    <td>{pet.notes?.length}</td>
+                    <td>{pet.appointments ? pet.appointments.length : "0"}</td>
+                    <td>{pet.notes ? pet.notes.length : "0"}</td>
                   </tr>
                 </tbody>
               </table>
