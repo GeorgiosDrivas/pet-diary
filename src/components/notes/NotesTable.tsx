@@ -34,7 +34,7 @@ export default function NotesTable({
           setEditable={setEditItem}
           userId={userId}
         />
-      ) : (
+      ) : pet.notes && pet.notes.length > 0 ? (
         <table className="w-full border-none">
           <thead>
             <tr>
@@ -43,36 +43,34 @@ export default function NotesTable({
             </tr>
           </thead>
           <tbody>
-            {pet.notes && pet.notes.length > 0 ? (
-              pet.notes.map((note: noteSchemaType, index: number) => (
-                <tr key={index} className="border-b border-[#e5e7eb]">
-                  <td className="py-3">{note.title}</td>
-                  <td className="py-3">{note.content}</td>
-                  <td className="py-3">
-                    <button
-                      className="me-3 my-2 edit-btn"
-                      onClick={() => editNote(note)}
-                    >
-                      <EditSvg />
-                    </button>
-                    <button
-                      className="my-2 remove-btn"
-                      onClick={() => removeNoteFn(pet, note.id)}
-                    >
-                      <DeleteSvg />
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4} className="text-center">
-                  No Notes available.
+            {pet.notes.map((note: noteSchemaType, index: number) => (
+              <tr key={index} className="border-b border-[#e5e7eb]">
+                <td className="py-3">{note.title}</td>
+                <td className="py-3">{note.content}</td>
+                <td className="py-3">
+                  <button
+                    className="me-3 my-2 edit-btn"
+                    onClick={() => editNote(note)}
+                  >
+                    <EditSvg />
+                  </button>
+                  <button
+                    className="my-2 remove-btn"
+                    onClick={() => removeNoteFn(pet, note.id)}
+                  >
+                    <DeleteSvg />
+                  </button>
                 </td>
               </tr>
-            )}
+            ))}
           </tbody>
         </table>
+      ) : (
+        <tr>
+          <td colSpan={4} className="text-center">
+            No Notes available.
+          </td>
+        </tr>
       )}
     </>
   );
