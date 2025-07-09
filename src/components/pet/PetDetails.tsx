@@ -39,6 +39,7 @@ export default function PetDetails({
                   <tr>
                     <th className="text-start">Species</th>
                     <th className="text-start">Breed</th>
+                    <th className="text-start">Weight</th>
                     <th className="text-start">Age</th>
                     <th className="text-start">Appointments</th>
                     <th className="text-start">Notes</th>
@@ -48,6 +49,7 @@ export default function PetDetails({
                   <tr>
                     <td>{pet.species}</td>
                     <td>{pet.breed}</td>
+                    <td>{pet.weight}</td>
                     <td>{pet.age}</td>
                     <td>{pet.appointments ? pet.appointments.length : "0"}</td>
                     <td>{pet.notes ? pet.notes.length : "0"}</td>

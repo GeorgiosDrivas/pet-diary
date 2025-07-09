@@ -4,10 +4,10 @@ export type AppointmentsType = {
   id: string;
   title: string;
   doctor: string;
-  start: string;
-  end: string;
+  start?: string;
+  end?: string;
   date: string;
-  time: string;
+  time?: string;
   description?: string;
 };
 
@@ -16,6 +16,7 @@ export type Pet = {
   name: string;
   species: string;
   breed: string;
+  weight: number;
   age: number;
   appointments: AppointmentsType[];
   notes: noteSchemaType[];

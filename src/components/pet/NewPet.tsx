@@ -53,6 +53,17 @@ export default function NewPet({ userId }: { userId: string }) {
             <p className="text-red-500 text-sm">{errors.breed.message}</p>
           )}
 
+          <label htmlFor="weight">Weight</label>
+          <input
+            type="number"
+            id="weight"
+            {...register("weight", { valueAsNumber: true })}
+            required
+          />
+          {errors.weight && (
+            <p className="text-red-500 text-sm">{errors.weight.message}</p>
+          )}
+
           <label htmlFor="age">Age</label>
           <input
             type="number"

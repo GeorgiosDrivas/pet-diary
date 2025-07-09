@@ -24,6 +24,7 @@ export default function EditPetDetails({
       name: pet.name,
       species: pet.species,
       breed: pet.breed,
+      weight: pet.weight,
       age: pet.age,
     },
     resolver: zodResolver(petSchema),
@@ -58,6 +59,15 @@ export default function EditPetDetails({
           <label htmlFor="breed">Breed</label>
           <input type="text" id="breed" {...register("breed")} />
           {errors.breed && <p className="error">{errors.breed.message}</p>}
+        </div>
+        <div>
+          <label htmlFor="weight">Weight</label>
+          <input
+            type="number"
+            id="weight"
+            {...register("weight", { valueAsNumber: true })}
+          />
+          {errors.weight && <p className="error">{errors.weight.message}</p>}
         </div>
         <div>
           <label htmlFor="age">Age</label>

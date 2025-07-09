@@ -5,12 +5,14 @@ export default function newPet(newPetObj: PetFormData) {
     name: newPetObj.name,
     species: newPetObj.species,
     breed: newPetObj.breed,
+    weight: newPetObj.weight,
     age: newPetObj.age,
     appointments: [
       {
         id: "1",
         title: "Example",
         doctor: "Dr. Example",
+        date: "2024-10-10",
         start: "2024-10-10",
         end: "2024-10-10",
         time: "",
