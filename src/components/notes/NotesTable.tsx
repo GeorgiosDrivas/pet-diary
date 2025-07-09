@@ -5,6 +5,7 @@ import { Pet } from "@/types";
 import { removeNote } from "../../../firebase/deleteMethods";
 import EditNote from "./EditNote";
 import { noteSchemaType } from "@/schemas/notesSchemas";
+import { useAppContext } from "@/context/appContext";
 
 export default function NotesTable({
   pet,
@@ -15,9 +16,11 @@ export default function NotesTable({
 }) {
   const [editItem, setEditItem] = useState(false);
   const [editableNote, setEditableNote] = useState<noteSchemaType | null>(null);
+  const { refreshUserData, user } = useAppContext();
 
-  const removeNoteFn = (pet: Pet, index: string) => {
-    removeNote(userId, pet?.name, index);
+  const removeNoteFn = async (pet: Pet, index: string) => {
+    await removeNote(userId, pet?.name, index);
+    await refreshUserData(user);
   };
 
   const editNote = (Note: noteSchemaType) => {
