@@ -8,6 +8,7 @@ import {
   appointmentSchema,
 } from "@/schemas/appointmentSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppContext } from "@/context/appContext";
 
 export default function EditAppointment({
   pet,
@@ -34,10 +35,11 @@ export default function EditAppointment({
       description: appointment?.description || "",
     },
   });
+  const { refreshUserData, user } = useAppContext();
 
-  const handleSubmitForm = (data: AppointmentFormType) => {
+  const handleSubmitForm = async (data: AppointmentFormType) => {
     if (appointment) {
-      editAppointment(userId, pet.name, appointment.id, {
+      await editAppointment(userId, pet.name, appointment.id, {
         id: appointment.id,
         title: data.title,
         doctor: data.doctor,
@@ -48,6 +50,7 @@ export default function EditAppointment({
         description: data.description,
       });
       setEditable(false);
+      await refreshUserData(user);
     }
   };
 

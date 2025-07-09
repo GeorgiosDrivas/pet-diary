@@ -11,6 +11,7 @@ import {
   createViewMonthGrid,
 } from "@schedule-x/calendar";
 import "@schedule-x/theme-default/dist/index.css";
+import { useAppContext } from "@/context/appContext";
 
 export default function AppointmentsTable({
   pet,
@@ -26,10 +27,13 @@ export default function AppointmentsTable({
   const [editItem, setEditItem] = useState(false);
   const [editableAppointment, setEditableAppointment] =
     useState<AppointmentsType | null>(null);
+  const { refreshUserData, user } = useAppContext();
 
   const calendarEvents = appointments.map((appointment) => ({
     ...appointment,
     calendarId: appointment.id ?? undefined,
+    start: appointment.start ?? "",
+    end: appointment.end ?? "",
   }));
 
   const removeAppointmentFn = async (appointmentId: string) => {
@@ -39,6 +43,7 @@ export default function AppointmentsTable({
 
     try {
       await removeAppointment(userId, pet?.name, appointmentId);
+      await refreshUserData(user);
     } catch (err) {
       console.error("Error removing appointment:", err);
       setAppointments((prev) => [
