@@ -9,10 +9,12 @@ export default function EditPetDetails({
   setEdit,
   pet,
   userId,
+  refreshUserData,
 }: {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   pet: Pet;
   userId: string;
+  refreshUserData: () => Promise<void>;
 }) {
   const {
     register,
@@ -39,6 +41,7 @@ export default function EditPetDetails({
       ...pet,
       ...data,
     });
+    await refreshUserData();
     setEdit(false);
   };
 

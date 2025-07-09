@@ -8,9 +8,11 @@ import DeleteSvg from "@/assets/deleteSvg";
 export default function PetDetails({
   pet,
   userId,
+  refreshUserData,
 }: {
   pet: Pet | null;
   userId: string;
+  refreshUserData: () => Promise<void>;
 }) {
   const [edit, setEdit] = useState(false);
 
@@ -32,7 +34,12 @@ export default function PetDetails({
           </div>
           <div className="table-container flex flex-col justify-between items-start">
             {edit ? (
-              <EditPetDetails setEdit={setEdit} pet={pet} userId={userId} />
+              <EditPetDetails
+                setEdit={setEdit}
+                pet={pet}
+                userId={userId}
+                refreshUserData={refreshUserData}
+              />
             ) : (
               <table className="w-full mt-4">
                 <thead>

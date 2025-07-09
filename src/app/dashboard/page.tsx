@@ -49,6 +49,18 @@ export default function Dashboard() {
     setCurrentPet(pet || null);
   };
 
+  const refreshUserData = async () => {
+    if (user) {
+      try {
+        const data = await readData(user.uid);
+        setUserData(data);
+        setCurrentPet(null);
+      } catch (error) {
+        console.error("Error refreshing user data:", error);
+      }
+    }
+  };
+
   return (
     <main className="flex flex-col gap-8 items-center sm:items-start px-5 mt-4">
       <div className="nav-bar flex justify-between items-start w-full">
@@ -101,11 +113,19 @@ export default function Dashboard() {
             >
               {currentPet ? (
                 isDesktop ? (
-                  <Tabs pet={currentPet} userId={user?.uid || ""} />
+                  <Tabs
+                    pet={currentPet}
+                    userId={user?.uid || ""}
+                    refreshUserData={refreshUserData}
+                  />
                 ) : (
                   <>
                     <div className="flex flex-col gap-5">
-                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
+                      <PetDetails
+                        refreshUserData={refreshUserData}
+                        pet={currentPet}
+                        userId={user?.uid || ""}
+                      />
                       <Appointments pet={currentPet} userId={user?.uid || ""} />
                       <Note pet={currentPet} userId={user?.uid || ""} />
                     </div>
