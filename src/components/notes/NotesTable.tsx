@@ -9,9 +9,11 @@ import { noteSchemaType } from "@/schemas/notesSchemas";
 export default function NotesTable({
   pet,
   userId,
+  refreshUserData,
 }: {
   pet: Pet;
   userId: string;
+  refreshUserData: () => Promise<void>;
 }) {
   const [editItem, setEditItem] = useState(false);
   const [editableNote, setEditableNote] = useState<noteSchemaType | null>(null);
@@ -33,6 +35,7 @@ export default function NotesTable({
           Note={editableNote}
           setEditable={setEditItem}
           userId={userId}
+          refreshUserData={refreshUserData}
         />
       ) : pet.notes && pet.notes.length > 0 ? (
         <table className="w-full border-none">
@@ -66,11 +69,9 @@ export default function NotesTable({
           </tbody>
         </table>
       ) : (
-        <tr>
-          <td colSpan={4} className="text-center">
-            No Notes available.
-          </td>
-        </tr>
+        <div>
+          <p className="text-start">No Notes available.</p>
+        </div>
       )}
     </>
   );

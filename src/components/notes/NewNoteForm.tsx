@@ -9,7 +9,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 export default function NewNoteForm({
   userId,
   pet,
-}: Omit<newNoteFormTypes, "newNote">) {
+  refreshUserData,
+}: Omit<newNoteFormTypes, "newNote"> & {
+  refreshUserData: () => Promise<void>;
+}) {
   const {
     register,
     handleSubmit,
@@ -23,9 +26,10 @@ export default function NewNoteForm({
     setFocus("title");
   }, []);
 
-  const handleFormSubmit = (data: NoteInput) => {
+  const handleFormSubmit = async (data: NoteInput) => {
     if (pet) {
       addNote(userId, pet.id, { ...data, id: uuidv4() });
+      await refreshUserData();
     }
   };
 

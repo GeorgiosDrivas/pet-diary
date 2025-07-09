@@ -10,6 +10,7 @@ export default function EditNote({
   pet,
   Note,
   setEditable,
+  refreshUserData,
 }: editNoteTypes) {
   const {
     register,
@@ -28,9 +29,10 @@ export default function EditNote({
     setFocus("title");
   }, []);
 
-  const onSubmit = (data: NoteInput) => {
+  const onSubmit = async (data: NoteInput) => {
     if (Note) {
-      editNote(userId, pet.id, Note.id, { ...data, id: Note.id });
+      await editNote(userId, pet.id, Note.id, { ...data, id: Note.id });
+      await refreshUserData();
     }
   };
 

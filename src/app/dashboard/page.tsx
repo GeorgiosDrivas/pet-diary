@@ -127,7 +127,11 @@ export default function Dashboard() {
                         userId={user?.uid || ""}
                       />
                       <Appointments pet={currentPet} userId={user?.uid || ""} />
-                      <Note pet={currentPet} userId={user?.uid || ""} />
+                      <Note
+                        pet={currentPet}
+                        userId={user?.uid || ""}
+                        refreshUserData={refreshUserData}
+                      />
                     </div>
                   </>
                 )

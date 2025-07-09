@@ -29,7 +29,9 @@ export default function Tabs({
       case "Appointments":
         return <Appointments pet={pet} userId={userId} />;
       case "Notes":
-        return <Note pet={pet} userId={userId} />;
+        return (
+          <Note pet={pet} userId={userId} refreshUserData={refreshUserData} />
+        );
     }
   };
   return (
