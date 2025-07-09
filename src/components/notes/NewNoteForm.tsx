@@ -5,14 +5,12 @@ import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppContext } from "@/context/appContext";
 
 export default function NewNoteForm({
   userId,
   pet,
-  refreshUserData,
-}: Omit<newNoteFormTypes, "newNote"> & {
-  refreshUserData: () => Promise<void>;
-}) {
+}: Omit<newNoteFormTypes, "newNote">) {
   const {
     register,
     handleSubmit,
@@ -21,6 +19,7 @@ export default function NewNoteForm({
   } = useForm<NoteInput>({
     resolver: zodResolver(noteInputSchema),
   });
+  const { refreshUserData, user } = useAppContext();
 
   useEffect(() => {
     setFocus("title");
@@ -28,8 +27,8 @@ export default function NewNoteForm({
 
   const handleFormSubmit = async (data: NoteInput) => {
     if (pet) {
-      addNote(userId, pet.id, { ...data, id: uuidv4() });
-      await refreshUserData();
+      await addNote(userId, pet.id, { ...data, id: uuidv4() });
+      await refreshUserData(user);
     }
   };
 

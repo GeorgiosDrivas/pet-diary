@@ -4,17 +4,16 @@ import { editPetDetails } from "../../../firebase/editMethods";
 import { useForm } from "react-hook-form";
 import { PetFormData, petSchema } from "@/schemas/petSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppContext } from "@/context/appContext";
 
 export default function EditPetDetails({
   setEdit,
   pet,
   userId,
-  refreshUserData,
 }: {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   pet: Pet;
   userId: string;
-  refreshUserData: () => Promise<void>;
 }) {
   const {
     register,
@@ -31,6 +30,7 @@ export default function EditPetDetails({
     },
     resolver: zodResolver(petSchema),
   });
+  const { refreshUserData, user } = useAppContext();
 
   useEffect(() => {
     setFocus("name");
@@ -41,7 +41,7 @@ export default function EditPetDetails({
       ...pet,
       ...data,
     });
-    await refreshUserData();
+    await refreshUserData(user);
     setEdit(false);
   };
 

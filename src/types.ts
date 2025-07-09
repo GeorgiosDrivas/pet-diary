@@ -42,7 +42,6 @@ export type editNoteTypes = {
   pet: Pet;
   Note: noteSchemaType | null;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
-  refreshUserData: () => Promise<void>;
 };
 
 export type newNoteFormTypes = {

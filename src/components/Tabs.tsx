@@ -4,34 +4,18 @@ import Appointments from "./appointments/Appointments";
 import PetDetails from "./pet/PetDetails";
 import Note from "./notes/Note";
 
-export default function Tabs({
-  pet,
-  userId,
-  refreshUserData,
-}: {
-  pet: Pet;
-  userId: string;
-  refreshUserData: () => Promise<void>;
-}) {
+export default function Tabs({ pet, userId }: { pet: Pet; userId: string }) {
   const [activeTab, setActiveTab] = useState<string>("Pet Details");
   const tabs = ["Pet Details", "Appointments", "Notes"];
 
   const renderTabContent = () => {
     switch (activeTab) {
       case "Pet Details":
-        return (
-          <PetDetails
-            pet={pet}
-            userId={userId}
-            refreshUserData={refreshUserData}
-          />
-        );
+        return <PetDetails pet={pet} userId={userId} />;
       case "Appointments":
         return <Appointments pet={pet} userId={userId} />;
       case "Notes":
-        return (
-          <Note pet={pet} userId={userId} refreshUserData={refreshUserData} />
-        );
+        return <Note pet={pet} userId={userId} />;
     }
   };
   return (

@@ -9,11 +9,9 @@ import NotesTable from "./NotesTable";
 export default function Note({
   pet,
   userId,
-  refreshUserData,
 }: {
   pet: Pet | null;
   userId: string;
-  refreshUserData: () => Promise<void>;
 }) {
   const [showForm, setShowForm] = useState(false);
 
@@ -23,11 +21,7 @@ export default function Note({
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <NewNoteForm
-                userId={userId}
-                pet={pet}
-                refreshUserData={refreshUserData}
-              />
+              <NewNoteForm userId={userId} pet={pet} />
               <button
                 className="hide-form-btn remove-btn"
                 onClick={() => setShowForm((prv: boolean) => !prv)}
@@ -39,11 +33,7 @@ export default function Note({
             <>
               {pet ? (
                 <>
-                  <NotesTable
-                    pet={pet}
-                    userId={userId}
-                    refreshUserData={refreshUserData}
-                  />
+                  <NotesTable pet={pet} userId={userId} />
                   <CreateButton showForm={setShowForm} text="Create a Note" />
                 </>
               ) : (

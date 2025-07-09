@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../../../firebase/client";
 import { readData } from "../../../firebase/readMethods";
-import { Pet, User, UserData } from "@/types";
+import { Pet } from "@/types";
 import NewPet from "@/components/pet/NewPet";
 import Logout from "@/components/Logout";
 import SelectPetMessage from "@/components/pet/SelectPet";
@@ -13,13 +13,13 @@ import { useMediaQuery } from "react-responsive";
 import PetDetails from "@/components/pet/PetDetails";
 import Appointments from "@/components/appointments/Appointments";
 import Note from "@/components/notes/Note";
+import { useAppContext } from "@/context/appContext";
 
 export default function Dashboard() {
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [user, setUser] = useState<User | null>(null);
   const [newPetBool, setNewPetBool] = useState<boolean>(false);
-  const [currentPet, setCurrentPet] = useState<Pet | null>(null);
   const isDesktop = useMediaQuery({ minWidth: 992 });
+  const { setUser, setUserData, user, userData, currentPet, setCurrentPet } =
+    useAppContext();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -47,18 +47,6 @@ export default function Dashboard() {
     setNewPetBool(false);
     const pet = userData?.pets.find((pet: Pet) => pet?.name === name);
     setCurrentPet(pet || null);
-  };
-
-  const refreshUserData = async () => {
-    if (user) {
-      try {
-        const data = await readData(user.uid);
-        setUserData(data);
-        setCurrentPet(null);
-      } catch (error) {
-        console.error("Error refreshing user data:", error);
-      }
-    }
   };
 
   return (
@@ -113,25 +101,13 @@ export default function Dashboard() {
             >
               {currentPet ? (
                 isDesktop ? (
-                  <Tabs
-                    pet={currentPet}
-                    userId={user?.uid || ""}
-                    refreshUserData={refreshUserData}
-                  />
+                  <Tabs pet={currentPet} userId={user?.uid || ""} />
                 ) : (
                   <>
                     <div className="flex flex-col gap-5">
-                      <PetDetails
-                        refreshUserData={refreshUserData}
-                        pet={currentPet}
-                        userId={user?.uid || ""}
-                      />
+                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
                       <Appointments pet={currentPet} userId={user?.uid || ""} />
-                      <Note
-                        pet={currentPet}
-                        userId={user?.uid || ""}
-                        refreshUserData={refreshUserData}
-                      />
+                      <Note pet={currentPet} userId={user?.uid || ""} />
                     </div>
                   </>
                 )

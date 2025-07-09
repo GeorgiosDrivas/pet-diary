@@ -4,13 +4,13 @@ import { editNote } from "../../../firebase/editMethods";
 import { NoteInput, noteInputSchema } from "@/schemas/notesSchemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppContext } from "@/context/appContext";
 
 export default function EditNote({
   userId,
   pet,
   Note,
   setEditable,
-  refreshUserData,
 }: editNoteTypes) {
   const {
     register,
@@ -24,6 +24,7 @@ export default function EditNote({
     },
     resolver: zodResolver(noteInputSchema),
   });
+  const { refreshUserData, user } = useAppContext();
 
   useEffect(() => {
     setFocus("title");
@@ -32,7 +33,7 @@ export default function EditNote({
   const onSubmit = async (data: NoteInput) => {
     if (Note) {
       await editNote(userId, pet.id, Note.id, { ...data, id: Note.id });
-      await refreshUserData();
+      await refreshUserData(user);
     }
   };
 

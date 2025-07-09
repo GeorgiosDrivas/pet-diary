@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./responsive.css";
 import React from "react";
-import {geistSans, geistMono} from "./fonts/fonts";
+import { geistSans, geistMono } from "./fonts/fonts";
+import { AppProvider } from "@/context/appContext";
 
 export const metadata: Metadata = {
   title: "Pet Diary",
@@ -20,7 +21,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );
