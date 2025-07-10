@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Pet } from "@/types";
 import { editPetDetails } from "../../../firebase/editMethods";
 import { useForm } from "react-hook-form";
 import { PetFormData, petSchema } from "@/schemas/petSchema";
@@ -8,13 +7,13 @@ import { useAppContext } from "@/context/appContext";
 
 export default function EditPetDetails({
   setEdit,
-  pet,
   userId,
 }: {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  pet: Pet;
   userId: string;
 }) {
+  const { refreshUserData, user, currentPet } = useAppContext();
+
   const {
     register,
     handleSubmit,
@@ -22,23 +21,23 @@ export default function EditPetDetails({
     setFocus,
   } = useForm<PetFormData>({
     defaultValues: {
-      name: pet.name,
-      species: pet.species,
-      breed: pet.breed,
-      weight: pet.weight,
-      age: pet.age,
+      name: currentPet?.name,
+      species: currentPet?.species,
+      breed: currentPet?.breed,
+      weight: currentPet?.weight,
+      age: currentPet?.age,
     },
     resolver: zodResolver(petSchema),
   });
-  const { refreshUserData, user } = useAppContext();
 
   useEffect(() => {
     setFocus("name");
   }, []);
 
   const onSubmit = async (data: PetFormData) => {
-    await editPetDetails(userId, pet.id, {
-      ...pet,
+    if (!currentPet) return;
+    await editPetDetails(userId, currentPet.id, {
+      ...currentPet,
       ...data,
     });
     await refreshUserData(user);

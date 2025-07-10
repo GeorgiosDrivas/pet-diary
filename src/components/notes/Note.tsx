@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import { Pet } from "@/types";
 import CloseSvg from "@/assets/closeSvg";
 import CreateButton from "@/components/CreateButton";
 import SelectPetMessage from "../pet/SelectPet";
 import NewNoteForm from "./NewNoteForm";
 import NotesTable from "./NotesTable";
+import { useAppContext } from "@/context/appContext";
 
-export default function Note({
-  pet,
-  userId,
-}: {
-  pet: Pet | null;
-  userId: string;
-}) {
+export default function Note({ userId }: { userId: string }) {
   const [showForm, setShowForm] = useState(false);
+  const { currentPet } = useAppContext();
 
   return (
     <>
@@ -21,7 +16,7 @@ export default function Note({
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <NewNoteForm userId={userId} pet={pet} />
+              <NewNoteForm userId={userId} />
               <button
                 className="hide-form-btn remove-btn"
                 onClick={() => setShowForm((prv: boolean) => !prv)}
@@ -31,9 +26,9 @@ export default function Note({
             </div>
           ) : (
             <>
-              {pet ? (
+              {currentPet ? (
                 <>
-                  <NotesTable pet={pet} userId={userId} />
+                  <NotesTable userId={userId} />
                   <CreateButton showForm={setShowForm} text="Create a Note" />
                 </>
               ) : (

@@ -9,7 +9,6 @@ import { useAppContext } from "@/context/appContext";
 
 export default function NewNoteForm({
   userId,
-  pet,
 }: Omit<newNoteFormTypes, "newNote">) {
   const {
     register,
@@ -19,15 +18,15 @@ export default function NewNoteForm({
   } = useForm<NoteInput>({
     resolver: zodResolver(noteInputSchema),
   });
-  const { refreshUserData, user } = useAppContext();
+  const { refreshUserData, user, currentPet } = useAppContext();
 
   useEffect(() => {
     setFocus("title");
   }, []);
 
   const handleFormSubmit = async (data: NoteInput) => {
-    if (pet) {
-      await addNote(userId, pet.id, { ...data, id: uuidv4() });
+    if (currentPet) {
+      await addNote(userId, currentPet.id, { ...data, id: uuidv4() });
       await refreshUserData(user);
     }
   };

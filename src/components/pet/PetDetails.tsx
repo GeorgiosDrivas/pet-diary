@@ -1,30 +1,25 @@
-import { Pet } from "@/types";
 import React, { useState } from "react";
 import EditPetDetails from "./EditPetDetails";
 import EditSvg from "@/assets/editSvg";
 import { removePet } from "../../../firebase/deleteMethods";
 import DeleteSvg from "@/assets/deleteSvg";
+import { useAppContext } from "@/context/appContext";
 
-export default function PetDetails({
-  pet,
-  userId,
-}: {
-  pet: Pet | null;
-  userId: string;
-}) {
+export default function PetDetails({ userId }: { userId: string }) {
   const [edit, setEdit] = useState(false);
+  const { currentPet } = useAppContext();
 
   return (
     <>
-      {pet && (
+      {currentPet && (
         <>
           <div className="inline-flex mt-8">
-            <h1 className="me-2">{pet.name}</h1>
+            <h1 className="me-2">{currentPet.name}</h1>
             <button onClick={() => setEdit((prv) => !prv)} className="edit-btn">
               <EditSvg />
             </button>
             <button
-              onClick={() => removePet(userId, pet.name)}
+              onClick={() => removePet(userId, currentPet.name)}
               className="ms-2 remove-btn"
             >
               <DeleteSvg />
@@ -32,7 +27,7 @@ export default function PetDetails({
           </div>
           <div className="table-container flex flex-col justify-between items-start">
             {edit ? (
-              <EditPetDetails setEdit={setEdit} pet={pet} userId={userId} />
+              <EditPetDetails setEdit={setEdit} userId={userId} />
             ) : (
               <table className="w-full mt-4">
                 <thead>
@@ -47,12 +42,16 @@ export default function PetDetails({
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{pet.species}</td>
-                    <td>{pet.breed}</td>
-                    <td>{pet.weight}</td>
-                    <td>{pet.age}</td>
-                    <td>{pet.appointments ? pet.appointments.length : "0"}</td>
-                    <td>{pet.notes ? pet.notes.length : "0"}</td>
+                    <td>{currentPet.species}</td>
+                    <td>{currentPet.breed}</td>
+                    <td>{currentPet.weight}</td>
+                    <td>{currentPet.age}</td>
+                    <td>
+                      {currentPet.appointments
+                        ? currentPet.appointments.length
+                        : "0"}
+                    </td>
+                    <td>{currentPet.notes ? currentPet.notes.length : "0"}</td>
                   </tr>
                 </tbody>
               </table>

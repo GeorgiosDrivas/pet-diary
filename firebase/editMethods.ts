@@ -5,7 +5,7 @@ import { noteSchemaType } from "@/schemas/notesSchemas";
 
 export async function editAppointment(
   userId: string,
-  petName: string,
+  petName: string | undefined,
   appointmentId: string,
   updatedAppointment: AppointmentsType
 ) {
@@ -46,7 +46,7 @@ export async function editAppointment(
 
 export async function editNote(
   userId: string,
-  petId: string,
+  petId: string | undefined,
   noteId: string,
   updatedNote: noteSchemaType
 ) {

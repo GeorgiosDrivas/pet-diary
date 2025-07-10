@@ -9,6 +9,7 @@ export type AppointmentsType = {
   date: string;
   time?: string;
   description?: string;
+  calendarId?: string | null;
 };
 
 export type Pet = {
@@ -39,7 +40,6 @@ export type Data = {
 
 export type editNoteTypes = {
   userId: string;
-  pet: Pet;
   Note: noteSchemaType | null;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -47,5 +47,4 @@ export type editNoteTypes = {
 export type newNoteFormTypes = {
   userId: string;
   newNote: noteSchemaType;
-  pet: Pet | null;
 };

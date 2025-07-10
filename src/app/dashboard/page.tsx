@@ -101,13 +101,13 @@ export default function Dashboard() {
             >
               {currentPet ? (
                 isDesktop ? (
-                  <Tabs pet={currentPet} userId={user?.uid || ""} />
+                  <Tabs userId={user?.uid || ""} />
                 ) : (
                   <>
                     <div className="flex flex-col gap-5">
-                      <PetDetails pet={currentPet} userId={user?.uid || ""} />
-                      <Appointments pet={currentPet} userId={user?.uid || ""} />
-                      <Note pet={currentPet} userId={user?.uid || ""} />
+                      <PetDetails userId={user?.uid || ""} />
+                      <Appointments userId={user?.uid || ""} />
+                      <Note userId={user?.uid || ""} />
                     </div>
                   </>
                 )

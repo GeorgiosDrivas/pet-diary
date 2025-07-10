@@ -7,16 +7,10 @@ import EditNote from "./EditNote";
 import { noteSchemaType } from "@/schemas/notesSchemas";
 import { useAppContext } from "@/context/appContext";
 
-export default function NotesTable({
-  pet,
-  userId,
-}: {
-  pet: Pet;
-  userId: string;
-}) {
+export default function NotesTable({ userId }: { userId: string }) {
   const [editItem, setEditItem] = useState(false);
   const [editableNote, setEditableNote] = useState<noteSchemaType | null>(null);
-  const { refreshUserData, user } = useAppContext();
+  const { refreshUserData, user, currentPet } = useAppContext();
 
   const removeNoteFn = async (pet: Pet, index: string) => {
     await removeNote(userId, pet?.name, index);
@@ -32,12 +26,11 @@ export default function NotesTable({
     <>
       {editItem ? (
         <EditNote
-          pet={pet}
           Note={editableNote}
           setEditable={setEditItem}
           userId={userId}
         />
-      ) : pet.notes && pet.notes.length > 0 ? (
+      ) : currentPet?.notes && currentPet.notes.length > 0 ? (
         <table className="w-full border-none">
           <thead>
             <tr>
@@ -46,7 +39,7 @@ export default function NotesTable({
             </tr>
           </thead>
           <tbody>
-            {pet.notes.map((note: noteSchemaType, index: number) => (
+            {currentPet.notes.map((note: noteSchemaType, index: number) => (
               <tr key={index} className="border-b border-[#e5e7eb]">
                 <td className="py-3">{note.title}</td>
                 <td className="py-3">{note.content}</td>
@@ -59,7 +52,7 @@ export default function NotesTable({
                   </button>
                   <button
                     className="my-2 remove-btn"
-                    onClick={() => removeNoteFn(pet, note.id)}
+                    onClick={() => removeNoteFn(currentPet, note.id)}
                   >
                     <DeleteSvg />
                   </button>

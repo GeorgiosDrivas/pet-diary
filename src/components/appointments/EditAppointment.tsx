@@ -1,5 +1,5 @@
 import CloseSvg from "@/assets/closeSvg";
-import { AppointmentsType, Pet } from "@/types";
+import { AppointmentsType } from "@/types";
 import React from "react";
 import { editAppointment } from "../../../firebase/editMethods";
 import { useForm } from "react-hook-form";
@@ -11,12 +11,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppContext } from "@/context/appContext";
 
 export default function EditAppointment({
-  pet,
   appointment,
   setEditable,
   userId,
 }: {
-  pet: Pet;
   appointment: AppointmentsType | null;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
   userId: string;
@@ -35,11 +33,11 @@ export default function EditAppointment({
       description: appointment?.description || "",
     },
   });
-  const { refreshUserData, user } = useAppContext();
+  const { refreshUserData, user, currentPet } = useAppContext();
 
   const handleSubmitForm = async (data: AppointmentFormType) => {
     if (appointment) {
-      await editAppointment(userId, pet.name, appointment.id, {
+      await editAppointment(userId, currentPet?.name, appointment.id, {
         id: appointment.id,
         title: data.title,
         doctor: data.doctor,

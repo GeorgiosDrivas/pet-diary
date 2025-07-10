@@ -6,12 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppContext } from "@/context/appContext";
 
-export default function EditNote({
-  userId,
-  pet,
-  Note,
-  setEditable,
-}: editNoteTypes) {
+export default function EditNote({ userId, Note, setEditable }: editNoteTypes) {
   const {
     register,
     handleSubmit,
@@ -24,7 +19,7 @@ export default function EditNote({
     },
     resolver: zodResolver(noteInputSchema),
   });
-  const { refreshUserData, user } = useAppContext();
+  const { refreshUserData, user, currentPet } = useAppContext();
 
   useEffect(() => {
     setFocus("title");
@@ -32,7 +27,7 @@ export default function EditNote({
 
   const onSubmit = async (data: NoteInput) => {
     if (Note) {
-      await editNote(userId, pet.id, Note.id, { ...data, id: Note.id });
+      await editNote(userId, currentPet?.id, Note.id, { ...data, id: Note.id });
       await refreshUserData(user);
     }
   };

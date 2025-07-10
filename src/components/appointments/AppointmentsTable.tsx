@@ -1,4 +1,4 @@
-import { AppointmentsType, Pet } from "@/types";
+import { AppointmentsType } from "@/types";
 import React from "react";
 import EventModal from "@/components/EventModal";
 import { ScheduleXCalendar, useCalendarApp } from "@schedule-x/react";
@@ -14,20 +14,18 @@ import "@schedule-x/theme-default/dist/index.css";
 import { useAppContext } from "@/context/appContext";
 
 export default function AppointmentsTable({
-  pet,
   userId,
   appointments,
   setAppointments,
 }: {
-  pet: Pet;
   userId: string;
   appointments: AppointmentsType[];
   setAppointments: React.Dispatch<React.SetStateAction<AppointmentsType[]>>;
 }) {
+  const { refreshUserData, user, currentPet } = useAppContext();
   const [editItem, setEditItem] = useState(false);
   const [editableAppointment, setEditableAppointment] =
     useState<AppointmentsType | null>(null);
-  const { refreshUserData, user } = useAppContext();
 
   const calendarEvents = appointments.map((appointment) => ({
     ...appointment,
@@ -40,16 +38,17 @@ export default function AppointmentsTable({
     setAppointments((prev) =>
       prev.filter((appointment) => appointment.id !== appointmentId)
     );
-
-    try {
-      await removeAppointment(userId, pet?.name, appointmentId);
-      await refreshUserData(user);
-    } catch (err) {
-      console.error("Error removing appointment:", err);
-      setAppointments((prev) => [
-        ...prev,
-        pet.appointments.find((a) => a.id === appointmentId)!,
-      ]);
+    if (currentPet) {
+      try {
+        await removeAppointment(userId, currentPet?.name, appointmentId);
+        await refreshUserData(user);
+      } catch (err) {
+        console.error("Error removing appointment:", err);
+        setAppointments((prev) => [
+          ...prev,
+          currentPet.appointments.find((a) => a.id === appointmentId)!,
+        ]);
+      }
     }
   };
 
@@ -68,7 +67,6 @@ export default function AppointmentsTable({
     <>
       {editItem ? (
         <EditAppointment
-          pet={pet}
           appointment={editableAppointment}
           setEditable={setEditItem}
           userId={userId}

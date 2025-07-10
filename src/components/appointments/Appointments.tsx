@@ -6,24 +6,24 @@ import AppointmentsTable from "./AppointmentsTable";
 import SelectPetMessage from "../pet/SelectPet";
 import CloseSvg from "@/assets/closeSvg";
 import { useEffect, useState } from "react";
-import { Pet } from "@/types";
 import AppointmentsForm from "./AppointmentsForm";
+import { useAppContext } from "@/context/appContext";
+import { AppointmentsType } from "@/types";
 
-export default function Appointments({
-  pet,
-  userId,
-}: {
-  pet: Pet;
-  userId: string;
-}) {
+export default function Appointments({ userId }: { userId: string }) {
+  const { currentPet } = useAppContext();
   const [showForm, setShowForm] = useState(false);
-  const [appointments, setAppointments] = useState(pet.appointments);
+  const [appointments, setAppointments] = useState<AppointmentsType[]>(
+    currentPet?.appointments ?? []
+  );
 
   useEffect(() => {
-    if (pet.appointments) {
-      setAppointments([...pet.appointments]);
+    if (currentPet && currentPet.appointments) {
+      setAppointments([...currentPet.appointments]);
+    } else {
+      setAppointments([]);
     }
-  }, [pet.appointments]);
+  }, [currentPet?.appointments]);
 
   return (
     <>
@@ -31,7 +31,7 @@ export default function Appointments({
         <div className="mt-8">
           {showForm ? (
             <div className="relative w-[300px]">
-              <AppointmentsForm userId={userId} pet={pet} />
+              <AppointmentsForm userId={userId} pet={currentPet} />
               <button
                 className="hide-form-btn remove-btn"
                 onClick={() => setShowForm((prv: boolean) => !prv)}
@@ -41,14 +41,13 @@ export default function Appointments({
             </div>
           ) : (
             <>
-              {pet ? (
+              {currentPet ? (
                 <>
-                  {pet.appointments ? (
+                  {currentPet.appointments ? (
                     <>
                       <AppointmentsTable
-                        pet={pet}
                         userId={userId}
-                        appointments={appointments}
+                        appointments={appointments ?? []}
                         setAppointments={setAppointments}
                       />
                       <CreateButton
