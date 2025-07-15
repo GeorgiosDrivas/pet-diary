@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-background: var(--background);
@@ -188,7 +188,7 @@ table {
 }
 
 .single-pet-btn:hover {
-  overflow: auto;
+  width: auto;
 }
 
 .select-pet-msg {
