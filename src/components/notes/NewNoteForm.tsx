@@ -13,7 +13,7 @@ export default function NewNoteForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting},
     setFocus,
   } = useForm<NoteInput>({
     resolver: zodResolver(noteInputSchema),
@@ -45,7 +45,7 @@ export default function NewNoteForm({
         {errors.content && <p className="error">{errors.content.message}</p>}
       </div>
 
-      <button type="submit" className="submit-btn">
+      <button disabled={isSubmitting} type="submit" className="submit-btn">
         Submit
       </button>
     </form>
