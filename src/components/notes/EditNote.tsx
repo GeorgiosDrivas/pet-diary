@@ -10,7 +10,7 @@ export default function EditNote({ userId, Note, setEditable }: editNoteTypes) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting},
     setFocus,
   } = useForm<NoteInput>({
     defaultValues: {
@@ -53,6 +53,7 @@ export default function EditNote({ userId, Note, setEditable }: editNoteTypes) {
               Submit
             </button>
             <button
+              disabled={isSubmitting} 
               className="remove-btn"
               onClick={() => setEditable((prv) => !prv)}
             >
