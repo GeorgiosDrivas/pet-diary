@@ -17,7 +17,7 @@ export default function EditPetDetails({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting},
     setFocus,
   } = useForm<PetFormData>({
     defaultValues: {
@@ -81,7 +81,7 @@ export default function EditPetDetails({
           {errors.age && <p className="error">{errors.age.message}</p>}
         </div>
         <div className="flex justify-between mt-2">
-          <button type="submit" className="mt-0 create-item-button">
+          <button disabled={isSubmitting} type="submit" className="mt-0 create-item-button">
             Submit
           </button>
           <button onClick={() => setEdit(false)} className="remove-btn">
