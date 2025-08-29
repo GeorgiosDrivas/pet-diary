@@ -20,7 +20,7 @@ export default function AppointmentsForm({
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting},
   } = useForm<AppointmentFormType>({
     resolver: zodResolver(appointmentSchema),
   });
@@ -66,13 +66,13 @@ export default function AppointmentsForm({
           {errors.time && <p className="error">{errors.time.message}</p>}
         </div>
         <div>
-          <label htmlFor="Notes">Description</label>
-          <textarea id="Notes" {...register("description")} />
+          <label htmlFor="notes">Description</label>
+          <textarea id="notes" {...register("description")} />
           {errors.description && (
             <p className="error">{errors.description.message}</p>
           )}
         </div>
-        <button type="submit" className="submit-btn">
+        <button disabled={isSubmitting} type="submit" className="submit-btn">
           Submit
         </button>
       </form>
