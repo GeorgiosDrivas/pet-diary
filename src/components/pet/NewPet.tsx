@@ -11,7 +11,7 @@ export default function NewPet({ userId }: { userId: string }) {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting},
     setFocus,
   } = useForm<PetFormData>({
     resolver: zodResolver(petSchema),
@@ -76,7 +76,7 @@ export default function NewPet({ userId }: { userId: string }) {
           )}
 
           <div className="mt-4">
-            <button type="submit" className="mt-3 submit-btn">
+            <button disabled={isSubmitting} type="submit" className="mt-3 submit-btn">
               Add new pet
             </button>
           </div>
