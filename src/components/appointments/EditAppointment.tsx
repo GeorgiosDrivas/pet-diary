@@ -22,7 +22,7 @@ export default function EditAppointment({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting},
   } = useForm<AppointmentFormType>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
@@ -93,7 +93,7 @@ export default function EditAppointment({
               </p>
             )}
           </div>
-          <button type="submit" className="submit-btn">
+          <button disabled={isSubmitting} type="submit" className="submit-btn">
             Submit
           </button>
         </form>
